@@ -14,6 +14,11 @@
     display: grid;
     place-items: center;
     min-height: 100vh;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 120, 78, 1) 0%,
+      rgba(251, 52, 124, 1) 100%
+    );
     
 }
 .container {

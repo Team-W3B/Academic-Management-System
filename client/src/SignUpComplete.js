@@ -39,7 +39,9 @@ const TextBox = () => {
 const LogInButton = () => {
     return (
         <div className={styles.button}>
-            <p className={styles.text}>로그인 하러가기</p>
+            <a href="./">
+                <p className={styles.text}>로그인 하러가기</p>
+            </a>
         </div>);
 };
     
