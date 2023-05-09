@@ -21,7 +21,7 @@ function LecCard() {
                 console.log(error.data)
             })
     };
-    // getLecInfo();
+    getLecInfo();
     
     
 
