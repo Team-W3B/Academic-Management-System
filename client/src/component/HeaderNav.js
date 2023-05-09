@@ -1,13 +1,13 @@
 /* eslint-disable */
 import React from "react";
-import './App.scss';
-import styles from './MainPage.module.scss';
+import './../App.scss';
+import styles from './../MainPage.module.scss';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
-import magic from './magic.svg'
-import face from './faceid.svg'
+import magic from './../imgs/magic.svg'
+import face from './../imgs/faceid.svg'
 
 let HeaderNav = () => {
 

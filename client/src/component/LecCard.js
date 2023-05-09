@@ -1,35 +1,36 @@
 /* eslint-disable */
 import React, { useState } from "react";
-import './App.scss';
-import styles from './MainPage.module.scss';
+import './../App.scss';
+import styles from './../MainPage.module.scss';
 import { Col, Row } from "react-bootstrap";
 
 function LecCard() {
 
     let info = [
         {
-            id : '0',
+            id : 0,
             home_lec : '머신러닝',
             home_lec_class : '새빛관 203호',
             home_prof : '박철수',
-            home_lectime : '3',
+            home_lectime : 3,
         },
         {
-            id : '1',
+            id : 1,
             home_lec : '산학협력캡스톤설계1',
             home_lec_class : '새빛관 102호',
             home_prof : '이형근',
-            home_lectime : '5',
+            home_lectime : 5,
         },
         {
-            id : '2',
+            id : 2,
             home_lec : '자본주의역사',
             home_lec_class : '한울과 B102호',
             home_prof : '임경섭',
-            home_lectime : '4',
+            home_lectime : 4,
         },
     ]
     let [lecInfo, setLecInfo] = useState(info);
+    console.log(lecInfo[0].class1)
     
 
     return (
@@ -39,7 +40,7 @@ function LecCard() {
                 <div style={{ margin: "0px" }} className={styles.whiteCard}>
                     <h2 className={styles.day} style={{ color: "#4DA58B" }} > 월요일 </h2>
                     {
-                        lecInfo.map(function(a) {
+                        lecInfo.map(function(a, i) {
                             return (
                                 <Lec lecInfo={a} />
                             );
@@ -105,7 +106,7 @@ export default LecCard
 let Lec = (props) => {
 
     let lecInfo = props.lecInfo;
-    console.log(lecInfo);
+    // console.log(lecInfo.home_lec_class);
 
     return (
         <>

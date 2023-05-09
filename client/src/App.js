@@ -1,8 +1,8 @@
 /* eslint-disable */
 import React from "react";
 import './App.scss';
-import SignUpComplete from './SignUpComplete';
-import MainPage from "./MainPage";
+import SignUpComplete from './pages/SignUpComplete';
+import MainPage from "./pages/MainPage";
 import { Routes, Route, Link } from "react-router-dom";
 
 function App() {

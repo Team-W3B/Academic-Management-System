@@ -1,10 +1,10 @@
 /* eslint-disable */
 import React from "react";
-import hello from "./hello.svg"
-import './App.scss';
-import styles from './MainPage.module.scss';
-import HeaderNav from "./HeaderNav";
-import LecCard from "./LecCard";
+import hello from "./../imgs/hello.svg"
+import './../App.scss';
+import styles from './../MainPage.module.scss';
+import HeaderNav from "./../component/HeaderNav";
+import LecCard from "./../component/LecCard";
 
 function MainPage() {
     return (
