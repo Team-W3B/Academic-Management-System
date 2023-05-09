@@ -7,6 +7,7 @@ import HeaderNav from "./../component/HeaderNav";
 import LecCard from "./../component/LecCard";
 
 function MainPage() {
+
     return (
         <>
             <div>

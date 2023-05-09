@@ -1,5 +1,20 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
+
+let user = createSlice({
+    name : 'user',
+    initialState : '임태헌',
+    reducers : {
+        changUser(state, action) {
+            return action.payload
+        }
+    }
+})
+export let { changUser } = user.actions
+
 
 export default configureStore({
-    reducer: {}
+    reducer: {
+        user : user.reducer
+    }
+
 })

@@ -8,10 +8,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
 import magic from './../imgs/magic.svg'
 import face from './../imgs/faceid.svg'
+import { useSelector } from "react-redux";
 
 let HeaderNav = () => {
 
     let navigate = useNavigate();
+    let user = useSelector( (state) => state.user )
 
     return (
         <>
@@ -28,7 +30,7 @@ let HeaderNav = () => {
                             </Nav>
                             <Nav>
                                 <Nav.Link className={styles.faceid}  href = "#mypage">
-                                    <p style={{ marginRight: "1rem" }}>임태헌</p>
+                                    <p style={{ marginRight: "1rem" }}> {user} </p>
                                     <img src={face} />
                                 </Nav.Link>
                             </Nav>
