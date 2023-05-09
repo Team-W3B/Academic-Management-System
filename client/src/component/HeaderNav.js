@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import magic from './../imgs/magic.svg'
 import face from './../imgs/faceid.svg'
 import { useSelector } from "react-redux";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 let HeaderNav = () => {
 
