@@ -3,105 +3,69 @@ import React, { useState } from "react";
 import './../App.scss';
 import styles from './../MainPage.module.scss';
 import { Col, Row } from "react-bootstrap";
+import axios from 'axios';
+import info from "../data";
 
 function LecCard() {
-
-    let info = [
-        {
-            id : 0,
-            home_lec : '머신러닝',
-            home_lec_class : '새빛관 203호',
-            home_prof : '박철수',
-            home_lectime : 3,
-        },
-        {
-            id : 1,
-            home_lec : '산학협력캡스톤설계1',
-            home_lec_class : '새빛관 102호',
-            home_prof : '이형근',
-            home_lectime : 5,
-        },
-        {
-            id : 2,
-            home_lec : '자본주의역사',
-            home_lec_class : '한울과 B102호',
-            home_prof : '임경섭',
-            home_lectime : 4,
-        },
-    ]
+ 
     let [lecInfo, setLecInfo] = useState(info);
-    console.log(lecInfo[0].class1)
+    // console.log(lecInfo['mon']);
+
+    let getLecInfo = () => {
+        axios.get('url.json')
+            .then((res)=> {
+                let copy = [...res.data]
+                setLecInfo(copy)
+            })
+            .catch((error)=>{
+                console.log(error.data)
+            })
+    };
+    // getLecInfo();
+    
     
 
     return (
         <>
         <Row className={styles.Wrapper} >
-            <Col >
-                <div style={{ margin: "0px" }} className={styles.whiteCard}>
-                    <h2 className={styles.day} style={{ color: "#4DA58B" }} > 월요일 </h2>
-                    {
-                        lecInfo.map(function(a, i) {
-                            return (
-                                <Lec lecInfo={a} />
-                            );
-                        })
-                    }
-                </div>
-            </Col>
-            <Col>
-                <div className={styles.whiteCard}>
-                    <h2 className={styles.day} style={{ color: "#FFB650" }} > 화요일 </h2>
-                    {
-                        lecInfo.map(function(a) {
-                            return (
-                                <Lec lecInfo={a} />
-                            );
-                        })
-                    }
-                </div>
-            </Col>
-            <Col>
-                <div className={styles.whiteCard}>
-                    <h2 className={styles.day} style={{ color: "#F55848" }} > 수요일 </h2>
-                    {
-                        lecInfo.map(function(a) {
-                            return (
-                                <Lec lecInfo={a} />
-                            );
-                        })
-                    }
-                </div>
-            </Col>
-            <Col>
-                <div className={styles.whiteCard}>
-                    <h2 className={styles.day} style={{ color: "#7F6BAF" }} > 목요일 </h2>
-                    {
-                        lecInfo.map(function(a) {
-                            return (
-                                <Lec lecInfo={a} />
-                            );
-                        })
-                    }
-                </div>
-            </Col>
-            <Col>
-                <div className={styles.whiteCard}>
-                    <h2 className={styles.day} style={{ color: "#6577C7" }} > 금요일 </h2>
-                    {
-                        lecInfo.map(function(a) {
-                            return (
-                                <Lec lecInfo={a} />
-                            );
-                        })
-                    }
-                </div>
-            </Col>
+            {
+                ['mon', 'tue', 'wed', 'thur', 'fri'].map(function(a, i) {
+                    console.log(a);
+                    return (
+                        <DayCard key={i} i={i} lecInfo={lecInfo[a]} day={['월요일', '화요일', '수요일', '목요일', '금요일']} color={['#4DA58B', '#FFB650', '#F55848', '#7F6BAF', '#6577C7' ]} />
+                    )
+                })
+            }
         </Row>
         </>
     )
 }
 
 export default LecCard
+
+let DayCard = (props) => {
+
+    let lecInfo = props.lecInfo;
+    let color = props.color;
+    let day = props.day[props.i];
+
+    return (
+        <>
+        <Col >
+            <div className={styles.whiteCard}>
+                <h2 className={styles.day} style={{ color: color[props.i] }} > {day} </h2>
+                {
+                    lecInfo.map(function(a, i) {
+                        return (
+                            <Lec key={i} lecInfo={a} />
+                        );
+                    })
+                }
+            </div>
+        </Col>
+        </>
+    )
+}
 
 let Lec = (props) => {
 
