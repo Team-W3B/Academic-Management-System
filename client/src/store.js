@@ -16,4 +16,5 @@ export default configureStore({
     reducer: {
         user : user.reducer
     }
+
 })
