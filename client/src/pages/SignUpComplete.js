@@ -1,8 +1,8 @@
 /* eslint-disable */
 import React from "react";
-import Emoticon from './Emoji.svg';
-import './App.scss';
-import styles from "./Emoji.module.scss";
+import Emoticon from './../imgs/Emoji.svg';
+import './../App.scss';
+import styles from "./../SignUpComplete.module.scss";
 
 function SignUpComplete() {
     return (
