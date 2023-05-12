@@ -1,15 +1,20 @@
 var model = require("../models");
 const bcrypt = require("bcrypt");
 
+// 회원가입 페이지의 대학 및 학부를 띄우는 함수
+exports.signupPage = async (req, res) => {
+  const college_department = await model.college.findAll({});
+};
+
+// 회원가입 버튼을 누를 때 학생 및 교수 데이터를 DB에 저장하는 함수
 exports.signupData = async (req, res) => {
   try {
     // 비밀번호 암호화
-    //const encrypted = bcrypt.hash(req.body.signUp_pw, 10);
-    var password = req.body.signUp_pw;
-    var member_type = req.body.signUp_check;
-    var signUp_birth = req.body.signUp_birth.split(".").join("-");
-    var college_id = req.body.signUp_college;
-    var department_id = req.body.signUp_major;
+    let encrypted = await bcrypt.hash(req.body.signUp_pw, 10);
+    let member_type = req.body.signUp_check;
+    let signUp_birth = req.body.signUp_birth.split(".").join("-");
+    let college_id = req.body.signUp_college;
+    let department_id = req.body.signUp_major;
 
     //대학이름을 id로 매핑해주는 부분 (추후 삭제 예정)
     if (
@@ -44,7 +49,7 @@ exports.signupData = async (req, res) => {
         college_id: college_id,
         department_id: department_id,
         grade_semester_id: 1,
-        passwd: password,
+        passwd: encrypted,
         name: req.body.signUp_name,
         birth: signUp_birth,
         tel: req.body.signUp_phonenum,
@@ -61,7 +66,7 @@ exports.signupData = async (req, res) => {
         college_id: req.body.signUp_college,
         department_id: req.body.signUp_department,
         grade_semester_id: 1,
-        passwd: password,
+        passwd: encrypted,
         name: req.body.signUp_name,
         birth: signUp_birth,
         tel: req.body.signUp_phonenum,
@@ -79,7 +84,11 @@ exports.signupData = async (req, res) => {
       res.status(409).send();
     } else {
       // 서버 에러
+      console.log(err.message);
       res.status(500).send();
     }
   }
 };
+
+// 회원가입이 완료한 후 회원 가입한 이름이 뜨게 하는 함수
+exports.signupComplete = async (req, res) => {};
