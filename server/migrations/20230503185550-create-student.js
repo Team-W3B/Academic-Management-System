@@ -10,9 +10,9 @@ module.exports = {
           primaryKey: true,
           type: Sequelize.INTEGER,
         },
-        member_id: {
+        member_type: {
           allowNull: false,
-          type: Sequelize.INTEGER,
+          type: Sequelize.STRING,
         },
         college_id: {
           allowNull: false,
@@ -48,6 +48,7 @@ module.exports = {
         },
       },
       {
+        id: false,
         timestamps: false,
       }
     );
