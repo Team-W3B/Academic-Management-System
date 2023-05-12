@@ -28,6 +28,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "board",
+      timestamps: false,
+      id: false,
     }
   );
   return board;

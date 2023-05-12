@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class student_lecture extends Model {
     /**
@@ -13,22 +11,27 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  student_lecture.init({
-    student_id: DataTypes.INTEGER,
-    grade_semester_id: DataTypes.INTEGER,
-    lecture_id: DataTypes.INTEGER,
-    day_of_week: DataTypes.CHAR,
-    period: DataTypes.INTEGER,
-    is_retake: DataTypes.BOOLEAN,
-    attendance: DataTypes.INTEGER,
-    assignment: DataTypes.INTEGER,
-    midterm_exam: DataTypes.INTEGER,
-    final_exam: DataTypes.INTEGER,
-    total: DataTypes.INTEGER,
-    score: DataTypes.CHAR
-  }, {
-    sequelize,
-    modelName: 'student_lecture',
-  });
+  student_lecture.init(
+    {
+      student_id: { type: DataTypes.INTEGER, primaryKey: true },
+      grade_semester_id: { type: DataTypes.INTEGER, primaryKey: true },
+      lecture_id: { type: DataTypes.INTEGER, primaryKey: true },
+      day_of_week: { type: DataTypes.STRING, primaryKey: true },
+      period: { type: DataTypes.INTEGER, primaryKey: true },
+      is_retake: DataTypes.BOOLEAN,
+      attendance: DataTypes.INTEGER,
+      assignment: DataTypes.INTEGER,
+      midterm_exam: DataTypes.INTEGER,
+      final_exam: DataTypes.INTEGER,
+      total: DataTypes.INTEGER,
+      score: DataTypes.CHAR,
+    },
+    {
+      sequelize,
+      modelName: "student_lecture",
+      timestamps: false,
+      id: false,
+    }
+  );
   return student_lecture;
 };
