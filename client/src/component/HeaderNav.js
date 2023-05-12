@@ -14,6 +14,7 @@ let HeaderNav = () => {
 
     let navigate = useNavigate();
     let user = useSelector( (state) => state.user )
+    // let user = '김도연';
 
     return (
         <>
