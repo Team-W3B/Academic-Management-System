@@ -10,15 +10,15 @@ module.exports = {
           primaryKey: true,
           type: Sequelize.INTEGER,
         },
+        member_type: {
+          allowNull: false,
+          type: Sequelize.STRING,
+        },
         college_id: {
           allowNull: false,
           type: Sequelize.INTEGER,
         },
         department_id: {
-          allowNull: false,
-          type: Sequelize.INTEGER,
-        },
-        member_id: {
           allowNull: false,
           type: Sequelize.INTEGER,
         },
@@ -47,7 +47,10 @@ module.exports = {
           type: Sequelize.STRING,
         },
       },
-      { timestamps: false }
+      {
+        id: false,
+        timestamps: false,
+      }
     );
   },
   async down(queryInterface, Sequelize) {
