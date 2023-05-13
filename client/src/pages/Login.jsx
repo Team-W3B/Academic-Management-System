@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {useDispatch} from "react-redux";
 import { loginUser } from '../login_store.js';
 import MainPage from './MainPage.js';
-// const User = {/*
-//     id: '2017202060',
-//   pw: 'test2323@'*/
-// }
+
+//  const User = {
+//      id: 2017202060,
+//    pw: 'test2323@'
+//  }
 
 export default function Login() {
+    let navigate = useNavigate();
     const dispatch = useDispatch();
     const User=(e)=>{
       let user={
@@ -17,23 +19,26 @@ export default function Login() {
         logIn_pw
       };
 
-      axios.post('https://localhost:3000', user)
+      axios.post('/api/login', user)
         .then((res) => {
-          console.log(res.data);
-          if(res.data.code === 200) {
-            console.log("로그인");
-            dispatch(loginUser(res.data.userInfo));
+          console.log(res.status);
+          if(res.status === 200) {
+            //console.log("로그인");
+            dispatch(loginUser(res.status.userInfo));
             alert('로그인에 성공하였습니다.');
-            <Link to ="./MainPage"/>
+            //<Link to ="./MainPage"/>
+            navigate("/MainPage");
           }
-          if(res.data.code === 400) {
+         })
+        .catch((error) => {
+          if(error.response.status == 401){
             alert("존재하지 않는 사용자입니다");
           }
-          if(res.data.code === 500) {
-            alert("서버 오류 발생!(회원가입)");
+          if(error.response.status == 500){
+            alert("서버 오류 발생!(회원가입");
           }
         });
-    }
+    };
 
     
     const [logIn_id, setid] = useState('');
@@ -147,75 +152,3 @@ export default function Login() {
       </div>
     );
 }
-/*
-
-    return (
-      <div className="RootWrapperLogIn">
-        <div className="LogIn_0001">
-          <div className="Frame8">
-            <div className="Frame7">
-              <div className="Frame7_0001">
-                <div className="NaN_0001">
-                  광운대학교<br/>
-  학사정보 관리시스템
-                </div>
-              </div>
-            </div>
-            <div className="Input">
-              <div className="NaN_0002">
-                <div className="NaN_0003">
-                  학번을 입력하세요
-                  <div className="inputWrap">
-            <input
-              className="input"
-              type="text"
-              placeholder="test@gmail.com"
-              value={email}
-              onChange={handleEmail}
-            />
-            </div>
-                </div>
-                <div className="LoginInput">
-                  <div className="_2016722087">
-                    2016722087
-                  </div>
-                </div>
-              </div>
-              <div className="NaN_0002">
-                <div className="Frame5">
-                  <div className="NaN_0005">
-                    비밀번호를 입력하세요
-                  </div>
-                  <div className="NaN_0006">
-                    비밀번호를 잊었나요?
-                  </div>
-                </div>
-                <div className="PwInput">
-                  <div className="NaN_0007">
-                    ***********
-                  </div>
-                  <div className="EyeSlash"></div>
-                    􀋯
-                  </div>
-                </div>
-              </div>
-              <div className="NaN_0008">
-                <div className="NaN_0009">
-                  로그인
-                </div>
-              </div>
-              <div className="NaN_0010">
-                <div className="Klas">
-                  KLAS가 처음이에요?
-                </div>
-                <div className="NaN_0006">
-                  신입생만 누르셈.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      
-    )
-  }
-  */

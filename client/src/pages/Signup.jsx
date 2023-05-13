@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { signupUser } from '../signup_store.js';
+import Dropdown from 'react-bootstrap/Dropdown';
+import { DropdownButton, SplitButton } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 /*
 const User = {
@@ -14,142 +21,173 @@ const User = {
   email:'email@gmail.com'
 }
 */
+const college_name = {
+  '전자정보공과대학': ['전자공학과'],
+  '소프트웨어융합대학': ['컴퓨터정보공학부', '소프트웨어학부', '정보융합학부']
+}
+const major_name = {
+  fir: ['전자공학과'],
+  sec: ['컴퓨터정보공학부', '소프트웨어학부', '정보융합학부']
+}
+
 
 export default function Signup() {
-    const dispatch = useDispatch();
-    const User=(e)=>{
-      let user={
-      signUp_id, //: logIn_id
-      signUp_pw, //: logIn_pw
+  let navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const User = (e) => {
+    let user = {
+      signUp_id,
+      signUp_pw,
       signUp_name,
-     // signUp_grade,
       signUp_birth,
       signUp_phonenum,
       signUp_email,
-      //signUp_collge,
-      //signUp_major,
-      //signUp_check 
-      };
-
-      axios.post('https://localhost:3000', user)
-        .then((res) => {
-          console.log(res.data);
-          if(res.data.code === 200) {
-           // console.log("로그인");
-            dispatch(signupUser(res.data.userInfo));
-            alert('회원가입에 성공하였습니다.');
-            
-          }
-          if(res.data.code === 500) {
-            alert("서버 오류 발생!(회원가입)");
-          }
-        });
-    }
-
-
-
-    const [signUp_id, setid] = useState('');
-    const [signUp_pw, setPw] = useState('');
-    const [signUp_name, setName] = useState('');
-    const [signUp_birth, setBirth] = useState('');
-    const [signUp_phonenum, setPhonenum] = useState('');
-    const [signUp_email, setEmail] = useState('');
-
-    const [idValid, setidValid] = useState(false);
-    const [pwValid, setPwValid] = useState(false);
-    const [nameValid, setNameValid] = useState(false);
-    const [birthValid, setBirthValid] = useState(false);
-    const [phonenumValid, setPhonenumValid] = useState(false);
-    const [emailValid, setEmailValid] = useState(false);
-    const [notAllow, setNotAllow] = useState(true);
-
-    /*----------------*/
-
-    
-    useEffect(() => {
-      if(idValid && pwValid&&nameValid&&birthValid&&phonenumValid&&emailValid) {
-        setNotAllow(false);
-        return;
-      }
-      setNotAllow(true);
-    }, [idValid, pwValid,nameValid,birthValid,phonenumValid,emailValid]);
-
-    const handleid = (e) => {
-      setid(e.target.value);
-      const regex =/^[0-9+]{10}$/;
-      if (regex.test(e.target.value)) {
-        setidValid(true);
-      } else {
-        setidValid(false);
-      }
+      signUp_college,
+      signUp_major,
+      signUp_check
     };
-    const handlePw = (e) => {
-      setPw(e.target.value);
-      const regex =
-        /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
-      if (regex.test(e.target.value)) {
-        setPwValid(true);
-      } else {
-        setPwValid(false);
-      }
-    };
-    /*----------------*/
-    const handleName= (e) => {
-        setName(e.target.value);
-        const regex =
-        /^[가-힣]{2,15}$/;
-        if (regex.test(e.target.value)) {
-          setNameValid(true);
-        } else {
-          setNameValid(false);
-        }
-      };
-      const handleBirth = (e) => {
-        setBirth(e.target.value);
-        const regex =
-        /^(19[0-9][0-9]|20\d{2}).(0[0-9]|1[0-2]).(0[1-9]|[1-2][0-9]|3[0-1])$/;
-        if (regex.test(e.target.value)) {
-          setBirthValid(true);
-        } else {
-          setBirthValid(false);
-        }
-      };
 
-      const handlePhonenum = (e) => {
-        setPhonenum(e.target.value);
-        const regex =
-        /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
-        if (regex.test(e.target.value)) {
-          setPhonenumValid(true);
-        } else {
-          setPhonenumValid(false);
+    axios.post('/api/signup', user)
+
+      .then((res) => {
+        console.log(res.status);
+        if (res.status === 200) {
+          // console.log("로그인");
+          dispatch(signupUser(res.status.userInfo));
+          alert('회원가입에 성공하였습니다.');
+          navigate("/Login");
         }
-      };
-      const handleEmail = (e) => {
-        setEmail(e.target.value);
-        const regex =
-        /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-        if (regex.test(e.target.value)) {
-          setEmailValid(true);
-        } else {
-          setEmailValid(false);
+
+      })
+      .catch((error) => {
+        if (error.response.status == 500) {
+          alert("서버 오류 발생!(회원가입)");
         }
-      };
-/*
-    const onClickConfirmButton = () => {
-      if(id === User.id && pw === User.name) {
-        alert('회원가입에 성공했습니다.');
-        
-      } else {
-        alert("등록되지 않은 정보입니다.");
-      }
+      });
+
+  };
+
+
+
+  const [signUp_id, setid] = useState('');
+  const [signUp_pw, setPw] = useState('');
+  const [signUp_name, setName] = useState('');
+  const [signUp_birth, setBirth] = useState('');
+  const [signUp_phonenum, setPhonenum] = useState('');
+  const [signUp_email, setEmail] = useState('');
+  const [signUp_college, setCollege] = useState('');
+  const [signUp_major, setMajor] = useState('');
+  const [signUp_check, setCheck] = useState('');
+
+  const [idValid, setidValid] = useState(false);
+  const [pwValid, setPwValid] = useState(false);
+  const [nameValid, setNameValid] = useState(false);
+  const [birthValid, setBirthValid] = useState(false);
+  const [phonenumValid, setPhonenumValid] = useState(false);
+  const [emailValid, setEmailValid] = useState(false);
+  const [collegeValid, setCollegeValid] = useState(false);
+  const [majorValid, setMajorlValid] = useState(false);
+  const [checkValid, setChecklValid] = useState(false);
+  const [notAllow, setNotAllow] = useState(true);
+
+  /*----------------*/
+
+
+  useEffect(() => {
+    if (idValid && pwValid && nameValid && birthValid && phonenumValid &&
+      emailValid) {
+      setNotAllow(false);
+      return;
     }
-*/
-    return (
-      <div className="signup_page">
-        <div className='Frame8'>
+    setNotAllow(true);
+  }, [idValid, pwValid, nameValid, birthValid, phonenumValid, emailValid]);
+
+  const handleid = (e) => {
+    setid(e.target.value);
+    const regex = /^[0-9+]{10}$/;
+    if (regex.test(e.target.value)) {
+      setidValid(true);
+    } else {
+      setidValid(false);
+    }
+  };
+  const handlePw = (e) => {
+    setPw(e.target.value);
+    const regex =
+      /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
+    if (regex.test(e.target.value)) {
+      setPwValid(true);
+    } else {
+      setPwValid(false);
+    }
+  };
+  /*----------------*/
+  const handleName = (e) => {
+    setName(e.target.value);
+    const regex =
+      /^[가-힣]{2,15}$/;
+    if (regex.test(e.target.value)) {
+      setNameValid(true);
+    } else {
+      setNameValid(false);
+    }
+  };
+  const handleBirth = (e) => {
+    setBirth(e.target.value);
+    const regex =
+      /^(19[0-9][0-9]|20\d{2}).(0[0-9]|1[0-2]).(0[1-9]|[1-2][0-9]|3[0-1])$/;
+    if (regex.test(e.target.value)) {
+      setBirthValid(true);
+    } else {
+      setBirthValid(false);
+    }
+  };
+
+  const handlePhonenum = (e) => {
+    setPhonenum(e.target.value);
+    const regex =
+      /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
+    if (regex.test(e.target.value)) {
+      setPhonenumValid(true);
+    } else {
+      setPhonenumValid(false);
+    }
+  };
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+    const regex =
+      /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+    if (regex.test(e.target.value)) {
+      setEmailValid(true);
+    } else {
+      setEmailValid(false);
+    }
+    //console.log(signUp_email);
+  };
+
+  const handlecollege = (e) => {
+    setCollege(e);
+    //console.log(signUp_collge);
+
+  }
+  const handlemajor = (e) => {
+    setMajor(e);
+    //console.log(signUp_major);
+  }
+
+  const handlecheck = (e) => {
+    setCheck(e);
+
+      //console.log(signUp_check);
+  }
+
+
+  return (
+    <div className="signup_page">
+      <div className='Frame8'>
         <div className="titleWrap">
-            <div className="namecolortitle">
+          <div className="namecolortitle">
             광운대학교
           </div>
           학사정보 관리시스템
@@ -171,7 +209,7 @@ export default function Signup() {
               <div>올바른 학번을 입력해주세요.</div>
             )}
           </div>
-          
+
           <div className="inputWrap">
             <input
               className="input"
@@ -201,6 +239,60 @@ export default function Signup() {
               <div>올바르지 않은 형식입니다.</div>
             )}
           </div>
+          <Container>
+            <Row>
+              <Col sm={5}>
+                <div className="inputTitle" >
+                  단과대
+                  <Dropdown>
+                    <SplitButton variant="" id="dropdown-size-large" title={signUp_college} onSelect={handlecollege} value={signUp_college}>
+                      <Dropdown.Item eventKey="전자정보공과대학">전자정보공과대학</Dropdown.Item>
+                      <Dropdown.Item eventKey="소프트웨어융합대학">소프트웨어융합대학</Dropdown.Item>
+                      {/* <Dropdown.Item eventKey="공과대학">공과대학</Dropdown.Item>
+                      <Dropdown.Item eventKey="자연과학대학">자연과학대학</Dropdown.Item>
+                      <Dropdown.Item eventKey="인문사회과학대학">인문사회과학대학</Dropdown.Item>
+                      <Dropdown.Item eventKey="정책법학대학">정책법학대학</Dropdown.Item>
+                      <Dropdown.Item eventKey="경영대학">경영대학</Dropdown.Item> */}
+
+                    </SplitButton>
+                  </Dropdown></div></Col>
+
+              <Col sm={5}>
+                <div className="inputTitle">
+                  학부(과)
+                  <Dropdown>
+                    <DropdownButton variant="" id="dropdown-basic" title={signUp_major} onSelect={handlemajor} value={signUp_major}>
+                      <Dropdown.Item eventKey={major_name.fir[0]}>{major_name.fir[0]}</Dropdown.Item>
+
+                      <Dropdown.Item eventKey={major_name.sec[0]}>{major_name.sec[0]}</Dropdown.Item>
+                      <Dropdown.Item eventKey={major_name.sec[1]}>{major_name.sec[1]}</Dropdown.Item>
+                      <Dropdown.Item eventKey={major_name.sec[2]}>{major_name.sec[2]}</Dropdown.Item>
+                    </DropdownButton>
+                  </Dropdown>
+                </div>
+              </Col>
+              <Col sm={2}>
+                <Form>
+                  <Form.Group >
+                    <Form.Check onChange={() => { handlecheck('학생') }}
+                      inline
+                      label="학생"
+                      name="group1"
+                      type="radio"
+                      id={`reverse-radio-1`}
+                    />
+                    <Form.Check onChange={() => { handlecheck('교수') }}
+                      inline
+                      label="교수"
+                      name="group1"
+                      type="radio"
+                      id={`reverse-radio-2`}
+                    />
+                  </Form.Group>
+                </Form>
+              </Col>
+            </Row>
+          </Container>
           <div className="inputTitle">
             생년월일을 입력하세요</div>
           <div className="inputWrap">
@@ -216,7 +308,7 @@ export default function Signup() {
             {!birthValid && signUp_birth.length > 0 && (
               <div>올바르지 않은 형식입니다.</div>
             )}
-            </div>
+          </div>
 
           <div className="inputTitle">
             핸드폰 번호를 입력하세요</div>
@@ -233,7 +325,7 @@ export default function Signup() {
             {!phonenumValid && signUp_phonenum.length > 0 && (
               <div>올바르지 않은 형식입니다.</div>
             )}
-            </div>
+          </div>
           <div className="inputTitle">
             E-mail 주소를 입력하세요</div>
           <div className="inputWrap">
@@ -249,25 +341,26 @@ export default function Signup() {
             {!emailValid && signUp_email.length > 0 && (
               <div>올바르지 않은 형식입니다.</div>
             )}
-            </div>
+          </div>
 
 
           <button onClick={User} disabled={notAllow} className="bottomButton">
             나도 이제 대학생
-          </button>
-          <div className ="NaN_0010">
-              <div className="Klas">
-                나 혹시 화석...?
-              </div>
-              <div className ="namecolor">
-                <Link to="/Login">
-                뒤로가기</Link>
-              </div>
-           </div>
 
+          </button>
+          <div className="NaN_0010">
+            <div className="Klas">
+              나 혹시 화석...?
+            </div>
+            <div className="namecolor">
+              <Link to="/Login">
+                뒤로가기</Link>
+            </div>
           </div>
-        </div> 
-        
+
+        </div>
       </div>
-    );
+
+    </div>
+  );
 }

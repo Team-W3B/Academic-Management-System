@@ -5,7 +5,7 @@ top: 0;
 bottom: 0;
 width: 80%;
 max-width: 500px;
-  padding: 10px;
+  padding: 1px;
 
 left: 50%;
 transform: translate(-50%, 0);
@@ -16,7 +16,7 @@ overflow: hidden;
   flex-direction: column;
   
   width: 600px;
-	height: 600px;
+	height: 500px;
 	background-color: white;
 	border: solid 1px white;
 	border-radius: 64px;
@@ -41,14 +41,14 @@ overflow: hidden;
 }
 
 .titleWrap {
-  margin-top: 87px;
+  margin-top: 40px;
     font-size: 26px;
 	font-weight: bold;
 	color: #262626;
 }
 
 .contentWrap {
-  margin-top:26px;
+  margin-top:10px;
   flex: 1;
   width: 350px;
 
