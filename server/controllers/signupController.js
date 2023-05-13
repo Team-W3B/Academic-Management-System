@@ -13,33 +13,16 @@ exports.signupData = async (req, res) => {
     let encrypted = await bcrypt.hash(req.body.signUp_pw, 10);
     let member_type = req.body.signUp_check;
     let signUp_birth = req.body.signUp_birth.split(".").join("-");
-    let college_id = req.body.signUp_college;
-    let department_id = req.body.signUp_major;
+    let department = req.body.signUp_major;
 
-    //대학이름을 id로 매핑해주는 부분 (추후 삭제 예정)
-    if (
-      college_id === "소프트웨어융합대학" &&
-      department_id === "컴퓨터정보공학부"
-    ) {
-      college_id = 1;
-      department_id = 1;
-    } else if (
-      college_id === "소프트웨어융합대학" &&
-      department_id === "소프트웨어학부"
-    ) {
-      college_id = 1;
-      department_id = 2;
-    } else if (
-      college_id === "소프트웨어융합대학" &&
-      department_id === "정보융합학부"
-    ) {
-      college_id = 1;
-      department_id = 3;
-    }
-    if (college_id === "전자정보공과대학" && department_id === "전자공학과") {
-      college_id = 2;
-      department_id = 1;
-    }
+    //대학 이름을 토대로 대확과 학부 id를 DB에서 가져옴
+    let department_data = await model.Department.findOne({
+      where: { department_name: department },
+      attributes: ["college_id", "department_id"],
+    });
+
+    let college_id = department_data.college_id;
+    let department_id = department_data.department_id;
 
     if (member_type == "학생") {
       //학생일 경우 학생 테이블에 정보 저장

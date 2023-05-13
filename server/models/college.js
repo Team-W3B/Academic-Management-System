@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   College.init(
     {
-      college_id: DataTypes.INTEGER,
+      college_id: { type: DataTypes.INTEGER, primarykey: true },
       college_name: DataTypes.STRING,
     },
     {
