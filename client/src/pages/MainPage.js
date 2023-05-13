@@ -5,6 +5,7 @@ import "./../App.scss";
 import styles from "./../MainPage.module.scss";
 import HeaderNav from "./../component/HeaderNav";
 import LecCard from "./../component/LecCard";
+import Footer from "../component/Footer";
 
 function MainPage() {
   return (
@@ -42,7 +43,7 @@ const WhiteCard = () => {
   return <div className={styles.whiteCard} />;
 };
 
-const Footer = () => {
+/* const Footer = () => {
   return (
     <>
       <div className={styles.Footer}>
@@ -56,6 +57,6 @@ const Footer = () => {
       </div>
     </>
   );
-};
+}; */
 
 export default MainPage;
