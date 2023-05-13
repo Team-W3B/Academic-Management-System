@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
+import axios from "axios";
 import { useDispatch } from "react-redux";
-import { signupUser } from '../signup_store.js';
-import Dropdown from 'react-bootstrap/Dropdown';
-import { DropdownButton, SplitButton } from 'react-bootstrap';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
+import { signupUser } from "../signup_store.js";
+import Dropdown from "react-bootstrap/Dropdown";
+import { DropdownButton, SplitButton } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 
 /*
 const User = {
@@ -22,14 +28,14 @@ const User = {
 }
 */
 const college_name = {
-  '전자정보공과대학': ['전자공학과'],
-  '소프트웨어융합대학': ['컴퓨터정보공학부', '소프트웨어학부', '정보융합학부']
-}
-const major_name = {
-  fir: ['전자공학과'],
-  sec: ['컴퓨터정보공학부', '소프트웨어학부', '정보융합학부']
-}
 
+  전자정보공과대학: ["전자공학과"],
+  소프트웨어융합대학: ["컴퓨터정보공학부", "소프트웨어학부", "정보융합학부"],
+};
+const major_name = {
+  fir: ["전자공학과"],
+  sec: ["컴퓨터정보공학부", "소프트웨어학부", "정보융합학부"],
+};
 
 export default function Signup() {
   let navigate = useNavigate();
@@ -45,40 +51,37 @@ export default function Signup() {
       signUp_email,
       signUp_college,
       signUp_major,
-      signUp_check
+      signUp_check,
     };
 
-    axios.post('/api/signup', user)
+    axios
+      .post("/api/signup", user)
 
       .then((res) => {
         console.log(res.status);
         if (res.status === 200) {
           // console.log("로그인");
           dispatch(signupUser(res.status.userInfo));
-          alert('회원가입에 성공하였습니다.');
-          navigate("/Login");
+          alert("회원가입에 성공하였습니다.");
+          navigate("/SignUpComplete");
         }
-
       })
       .catch((error) => {
         if (error.response.status == 500) {
           alert("서버 오류 발생!(회원가입)");
         }
       });
-
   };
 
-
-
-  const [signUp_id, setid] = useState('');
-  const [signUp_pw, setPw] = useState('');
-  const [signUp_name, setName] = useState('');
-  const [signUp_birth, setBirth] = useState('');
-  const [signUp_phonenum, setPhonenum] = useState('');
-  const [signUp_email, setEmail] = useState('');
-  const [signUp_college, setCollege] = useState('');
-  const [signUp_major, setMajor] = useState('');
-  const [signUp_check, setCheck] = useState('');
+  const [signUp_id, setid] = useState("");
+  const [signUp_pw, setPw] = useState("");
+  const [signUp_name, setName] = useState("");
+  const [signUp_birth, setBirth] = useState("");
+  const [signUp_phonenum, setPhonenum] = useState("");
+  const [signUp_email, setEmail] = useState("");
+  const [signUp_college, setCollege] = useState("");
+  const [signUp_major, setMajor] = useState("");
+  const [signUp_check, setCheck] = useState("");
 
   const [idValid, setidValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
@@ -93,10 +96,15 @@ export default function Signup() {
 
   /*----------------*/
 
-
   useEffect(() => {
-    if (idValid && pwValid && nameValid && birthValid && phonenumValid &&
-      emailValid) {
+    if (
+      idValid &&
+      pwValid &&
+      nameValid &&
+      birthValid &&
+      phonenumValid &&
+      emailValid
+    ) {
       setNotAllow(false);
       return;
     }
@@ -125,8 +133,7 @@ export default function Signup() {
   /*----------------*/
   const handleName = (e) => {
     setName(e.target.value);
-    const regex =
-      /^[가-힣]{2,15}$/;
+    const regex = /^[가-힣]{2,15}$/;
     if (regex.test(e.target.value)) {
       setNameValid(true);
     } else {
@@ -146,8 +153,7 @@ export default function Signup() {
 
   const handlePhonenum = (e) => {
     setPhonenum(e.target.value);
-    const regex =
-      /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
+    const regex = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
     if (regex.test(e.target.value)) {
       setPhonenumValid(true);
     } else {
@@ -169,27 +175,24 @@ export default function Signup() {
   const handlecollege = (e) => {
     setCollege(e);
     //console.log(signUp_collge);
-
-  }
+  };
   const handlemajor = (e) => {
     setMajor(e);
     //console.log(signUp_major);
-  }
+  };
 
   const handlecheck = (e) => {
     setCheck(e);
 
-      //console.log(signUp_check);
-  }
 
+    //console.log(signUp_check);
+  };
 
   return (
     <div className="signup_page">
-      <div className='Frame8'>
+      <div className="Frame8">
         <div className="titleWrap">
-          <div className="namecolortitle">
-            광운대학교
-          </div>
+          <div className="namecolortitle">광운대학교</div>
           학사정보 관리시스템
         </div>
 
@@ -242,12 +245,23 @@ export default function Signup() {
           <Container>
             <Row>
               <Col sm={5}>
-                <div className="inputTitle" >
+
+                <div className="inputTitle">
                   단과대
                   <Dropdown>
-                    <SplitButton variant="" id="dropdown-size-large" title={signUp_college} onSelect={handlecollege} value={signUp_college}>
-                      <Dropdown.Item eventKey="전자정보공과대학">전자정보공과대학</Dropdown.Item>
-                      <Dropdown.Item eventKey="소프트웨어융합대학">소프트웨어융합대학</Dropdown.Item>
+                    <SplitButton
+                      variant=""
+                      id="dropdown-size-large"
+                      title={signUp_college}
+                      onSelect={handlecollege}
+                      value={signUp_college}
+                    >
+                      <Dropdown.Item eventKey="전자정보공과대학">
+                        전자정보공과대학
+                      </Dropdown.Item>
+                      <Dropdown.Item eventKey="소프트웨어융합대학">
+                        소프트웨어융합대학
+                      </Dropdown.Item>
                       {/* <Dropdown.Item eventKey="공과대학">공과대학</Dropdown.Item>
                       <Dropdown.Item eventKey="자연과학대학">자연과학대학</Dropdown.Item>
                       <Dropdown.Item eventKey="인문사회과학대학">인문사회과학대학</Dropdown.Item>
@@ -255,33 +269,57 @@ export default function Signup() {
                       <Dropdown.Item eventKey="경영대학">경영대학</Dropdown.Item> */}
 
                     </SplitButton>
-                  </Dropdown></div></Col>
-
+                  </Dropdown>
+                </div>
+              </Col>
               <Col sm={5}>
                 <div className="inputTitle">
                   학부(과)
                   <Dropdown>
-                    <DropdownButton variant="" id="dropdown-basic" title={signUp_major} onSelect={handlemajor} value={signUp_major}>
-                      <Dropdown.Item eventKey={major_name.fir[0]}>{major_name.fir[0]}</Dropdown.Item>
 
-                      <Dropdown.Item eventKey={major_name.sec[0]}>{major_name.sec[0]}</Dropdown.Item>
-                      <Dropdown.Item eventKey={major_name.sec[1]}>{major_name.sec[1]}</Dropdown.Item>
-                      <Dropdown.Item eventKey={major_name.sec[2]}>{major_name.sec[2]}</Dropdown.Item>
+                    <DropdownButton
+                      variant=""
+                      id="dropdown-basic"
+                      title={signUp_major}
+                      onSelect={handlemajor}
+                      value={signUp_major}
+                    >
+                      <Dropdown.Item eventKey={major_name.fir[0]}>
+                        {major_name.fir[0]}
+                      </Dropdown.Item>
+
+                      <Dropdown.Item eventKey={major_name.sec[0]}>
+                        {major_name.sec[0]}
+                      </Dropdown.Item>
+                      <Dropdown.Item eventKey={major_name.sec[1]}>
+                        {major_name.sec[1]}
+                      </Dropdown.Item>
+                      <Dropdown.Item eventKey={major_name.sec[2]}>
+                        {major_name.sec[2]}
+                      </Dropdown.Item>
                     </DropdownButton>
                   </Dropdown>
                 </div>
               </Col>
               <Col sm={2}>
                 <Form>
-                  <Form.Group >
-                    <Form.Check onChange={() => { handlecheck('학생') }}
+
+                  <Form.Group>
+                    <Form.Check
+                      onChange={() => {
+                        handlecheck("학생");
+                      }}
                       inline
                       label="학생"
                       name="group1"
                       type="radio"
                       id={`reverse-radio-1`}
                     />
-                    <Form.Check onChange={() => { handlecheck('교수') }}
+
+                    <Form.Check
+                      onChange={() => {
+                        handlecheck("교수");
+                      }}
                       inline
                       label="교수"
                       name="group1"
@@ -293,8 +331,8 @@ export default function Signup() {
               </Col>
             </Row>
           </Container>
-          <div className="inputTitle">
-            생년월일을 입력하세요</div>
+
+          <div className="inputTitle">생년월일을 입력하세요</div>
           <div className="inputWrap">
             <input
               className="input"
@@ -310,8 +348,7 @@ export default function Signup() {
             )}
           </div>
 
-          <div className="inputTitle">
-            핸드폰 번호를 입력하세요</div>
+          <div className="inputTitle">핸드폰 번호를 입력하세요</div>
           <div className="inputWrap">
             <input
               className="input"
@@ -326,8 +363,8 @@ export default function Signup() {
               <div>올바르지 않은 형식입니다.</div>
             )}
           </div>
-          <div className="inputTitle">
-            E-mail 주소를 입력하세요</div>
+
+          <div className="inputTitle">E-mail 주소를 입력하세요</div>
           <div className="inputWrap">
             <input
               className="input"
@@ -343,24 +380,18 @@ export default function Signup() {
             )}
           </div>
 
-
           <button onClick={User} disabled={notAllow} className="bottomButton">
             나도 이제 대학생
 
           </button>
           <div className="NaN_0010">
-            <div className="Klas">
-              나 혹시 화석...?
-            </div>
+            <div className="Klas">나 혹시 화석...?</div>
             <div className="namecolor">
-              <Link to="/Login">
-                뒤로가기</Link>
+              <Link to="/Login">뒤로가기</Link>
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
   );
 }

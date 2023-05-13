@@ -1,16 +1,16 @@
 /* eslint-disable */
 import React from "react";
-import './App.css';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+import "./App.css";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 //---
-import './App.scss';
-import SignUpComplete from './pages/SignUpComplete';
+import "./App.scss";
+import SignUpComplete from "./pages/SignUpComplete";
 import MainPage from "./pages/MainPage";
 //---
- 
+
 function App() {
   return (
     <BrowserRouter>
@@ -26,7 +26,7 @@ function App() {
       </Routes>
     </div>
     
-    </BrowserRouter>
+    //</BrowserRouter>
   );
 }
 
