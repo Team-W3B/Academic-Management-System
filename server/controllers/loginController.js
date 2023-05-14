@@ -7,6 +7,7 @@ exports.loginProcess = async (req, res) => {
     const id = req.body.logIn_id;
     const request_password = req.body.logIn_pw;
 
+    //학생 로그인 시도
     const student = await model.Student.findOne({
       where: { student_id: id },
       attributes: ["passwd"],
@@ -18,6 +19,7 @@ exports.loginProcess = async (req, res) => {
       return;
     }
 
+    //교수 로그인 시도
     const professor = await model.Professor.findOne({
       where: { professor_id: id },
       attributes: ["passwd"],
