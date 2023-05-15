@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { signupUser } from "../signup_store.js";
@@ -187,199 +181,210 @@ export default function Signup() {
   };
 
   return (
-    <div className="signup_page">
-      <div className="Frame8">
-        <div className="titleWrap">
-          <div className="namecolortitle">광운대학교</div>
-          학사정보 관리시스템
-        </div>
+    <div className="login_signup">
+      <div className="whiteCard_signup">
+        <div className="wrapper">
 
-        <div className="contentWrap">
-          <div className="inputTitle"></div>
-          <div className="inputWrap">
-            <input
-              className="input"
-              type="text"
-              placeholder="학번을 입력하세요"
-              value={signUp_id}
-              onChange={handleid}
-            />
-          </div>
-          <div className="errorMessageWrap">
-            {!idValid && signUp_id.length > 0 && (
-              <div>올바른 학번을 입력해주세요.</div>
-            )}
+          <div className="loginTitle">
+            <p style={{ margin: "0px" }} className="signatureFontColor">광운대학교</p>
+            <p>학사정보 관리시스템</p>
           </div>
 
-          <div className="inputWrap">
-            <input
-              className="input"
-              type="password"
-              placeholder="비밀번호를 입력하세요"
-              value={signUp_pw}
-              onChange={handlePw}
-            />
-          </div>
-          <div className="errorMessageWrap">
-            {!pwValid && signUp_pw.length > 0 && (
-              <div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
-            )}
-          </div>
-
-          <div className="inputWrap">
-            <input
-              className="input"
-              type="name"
-              placeholder="이름을 입력하세요"
-              value={signUp_name}
-              onChange={handleName}
-            />
-          </div>
-          <div className="errorMessageWrap">
-            {!nameValid && signUp_name.length > 0 && (
-              <div>올바르지 않은 형식입니다.</div>
-            )}
-          </div>
-          <Container>
-            <Row>
-              <Col sm={5}>
-                <div className="inputTitle">
-                  단과대
-                  <Dropdown>
-                    <SplitButton
-                      variant=""
-                      id="dropdown-size-large"
-                      title={signUp_college}
-                      onSelect={handlecollege}
-                      value={signUp_college}
-                    >
-                      <Dropdown.Item eventKey="전자정보공과대학">
-                        전자정보공과대학
-                      </Dropdown.Item>
-                      <Dropdown.Item eventKey="소프트웨어융합대학">
-                        소프트웨어융합대학
-                      </Dropdown.Item>
-                      {/* <Dropdown.Item eventKey="공과대학">공과대학</Dropdown.Item>
-                      <Dropdown.Item eventKey="자연과학대학">자연과학대학</Dropdown.Item>
-                      <Dropdown.Item eventKey="인문사회과학대학">인문사회과학대학</Dropdown.Item>
-                      <Dropdown.Item eventKey="정책법학대학">정책법학대학</Dropdown.Item>
-                      <Dropdown.Item eventKey="경영대학">경영대학</Dropdown.Item> */}
-                    </SplitButton>
-                  </Dropdown>
-                </div>
-              </Col>
-
-              <Col sm={5}>
-                <div className="inputTitle">
-                  학부(과)
-                  <Dropdown>
-                    <DropdownButton
-                      variant=""
-                      id="dropdown-basic"
-                      title={signUp_major}
-                      onSelect={handlemajor}
-                      value={signUp_major}
-                    >
-                      <Dropdown.Item eventKey={major_name.fir[0]}>
-                        {major_name.fir[0]}
-                      </Dropdown.Item>
-
-                      <Dropdown.Item eventKey={major_name.sec[0]}>
-                        {major_name.sec[0]}
-                      </Dropdown.Item>
-                      <Dropdown.Item eventKey={major_name.sec[1]}>
-                        {major_name.sec[1]}
-                      </Dropdown.Item>
-                      <Dropdown.Item eventKey={major_name.sec[2]}>
-                        {major_name.sec[2]}
-                      </Dropdown.Item>
-                    </DropdownButton>
-                  </Dropdown>
-                </div>
-              </Col>
-              <Col sm={2}>
-                <Form>
-                  <Form.Group>
-                    <Form.Check
-                      onChange={() => {
-                        handlecheck("학생");
-                      }}
-                      inline
-                      label="학생"
-                      name="group1"
-                      type="radio"
-                      id={`reverse-radio-1`}
-                    />
-                    <Form.Check
-                      onChange={() => {
-                        handlecheck("교수");
-                      }}
-                      inline
-                      label="교수"
-                      name="group1"
-                      type="radio"
-                      id={`reverse-radio-2`}
-                    />
-                  </Form.Group>
-                </Form>
-              </Col>
-            </Row>
-          </Container>
-          <div className="inputTitle">생년월일을 입력하세요</div>
-          <div className="inputWrap">
-            <input
-              className="input"
-              type="birth"
-              placeholder="xxxx.xx.xx"
-              value={signUp_birth}
-              onChange={handleBirth}
-            />
-          </div>
-          <div className="errorMessageWrap">
-            {!birthValid && signUp_birth.length > 0 && (
-              <div>올바르지 않은 형식입니다.</div>
-            )}
-          </div>
-
-          <div className="inputTitle">핸드폰 번호를 입력하세요</div>
-          <div className="inputWrap">
-            <input
-              className="input"
-              type="phonenum"
-              placeholder="010-1234-5678"
-              value={signUp_phonenum}
-              onChange={handlePhonenum}
-            />
-          </div>
-          <div className="errorMessageWrap">
-            {!phonenumValid && signUp_phonenum.length > 0 && (
-              <div>올바르지 않은 형식입니다.</div>
-            )}
-          </div>
-          <div className="inputTitle">E-mail 주소를 입력하세요</div>
-          <div className="inputWrap">
-            <input
-              className="input"
-              type="email"
-              placeholder="email@gmail.com"
-              value={signUp_email}
-              onChange={handleEmail}
-            />
-          </div>
-          <div className="errorMessageWrap">
-            {!emailValid && signUp_email.length > 0 && (
-              <div>올바르지 않은 형식입니다.</div>
-            )}
-          </div>
-
-          <button onClick={User} disabled={notAllow} className="bottomButton">
-            나도 이제 대학생
-          </button>
-          <div className="NaN_0010">
-            <div className="Klas">나 혹시 화석...?</div>
-            <div className="namecolor">
-              <Link to="/Login">뒤로가기</Link>
+          {/* 학번입력 */}
+          <div className="loginContent">
+            <div className="inputWrap">
+              <input
+                className="input"
+                type="text"
+                placeholder="학번을 입력하세요"
+                value={signUp_id}
+                onChange={handleid}
+              />
             </div>
+            {/* 학번오류 */}
+            <div className="errorMessageWrap">
+              {!idValid && signUp_id.length > 0 && (
+                <div>올바른 학번을 입력해주세요.</div>
+              )}
+            </div>
+
+            {/* 비밀번호 입력 */}
+            <div className="inputWrap">
+              <input
+                className="input"
+                type="password"
+                placeholder="비밀번호를 입력하세요"
+                value={signUp_pw}
+                onChange={handlePw}
+              />
+            </div>
+            {/* 비밀번호 오류 */}
+            <div className="errorMessageWrap">
+              {!pwValid && signUp_pw.length > 0 && (
+                <div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
+              )}
+            </div>
+
+            {/* 이름 입력 */}
+            <div className="inputWrap">
+              <input
+                className="input"
+                type="name"
+                placeholder="이름을 입력하세요"
+                value={signUp_name}
+                onChange={handleName}
+              />
+            </div>
+            {/* 이름 오류 */}
+            <div className="errorMessageWrap">
+              {!nameValid && signUp_name.length > 0 && (
+                <div>올바르지 않은 형식입니다.</div>
+              )}
+            </div>
+            
+            <Container>
+              <Row>
+                <Col sm={4}>
+                  <div className="inputTitle">
+                    단과대
+                    <Dropdown>
+                      <SplitButton
+                        variant=""
+                        id="dropdown-size-large"
+                        title={signUp_college}
+                        onSelect={handlecollege}
+                        value={signUp_college}
+                      >
+                        <Dropdown.Item eventKey="전자정보공과대학">
+                          전자정보공과대학
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey="소프트웨어융합대학">
+                          소프트웨어융합대학
+                        </Dropdown.Item>
+                        {/* <Dropdown.Item eventKey="공과대학">공과대학</Dropdown.Item>
+                        <Dropdown.Item eventKey="자연과학대학">자연과학대학</Dropdown.Item>
+                        <Dropdown.Item eventKey="인문사회과학대학">인문사회과학대학</Dropdown.Item>
+                        <Dropdown.Item eventKey="정책법학대학">정책법학대학</Dropdown.Item>
+                        <Dropdown.Item eventKey="경영대학">경영대학</Dropdown.Item> */}
+                      </SplitButton>
+                    </Dropdown>
+                  </div>
+                </Col>
+
+                <Col sm={4}>
+                  <div className="inputTitle">
+                    학부(과)
+                    <Dropdown>
+                      <DropdownButton
+                        variant=""
+                        id="dropdown-basic"
+                        title={signUp_major}
+                        onSelect={handlemajor}
+                        value={signUp_major}
+                      >
+                        <Dropdown.Item eventKey={major_name.fir[0]}>
+                          {major_name.fir[0]}
+                        </Dropdown.Item>
+
+                        <Dropdown.Item eventKey={major_name.sec[0]}>
+                          {major_name.sec[0]}
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey={major_name.sec[1]}>
+                          {major_name.sec[1]}
+                        </Dropdown.Item>
+                        <Dropdown.Item eventKey={major_name.sec[2]}>
+                          {major_name.sec[2]}
+                        </Dropdown.Item>
+                      </DropdownButton>
+                    </Dropdown>
+                  </div>
+                </Col>
+                <Col sm={4}>
+                  <Form>
+                    <Form.Group>
+                      <Form.Check
+                        onChange={() => {
+                          handlecheck("학생");
+                        }}
+                        inline
+                        label="학생"
+                        name="group1"
+                        type="radio"
+                        id={`reverse-radio-1`}
+                      />
+                      <Form.Check
+                        onChange={() => {
+                          handlecheck("교수");
+                        }}
+                        inline
+                        label="교수"
+                        name="group1"
+                        type="radio"
+                        id={`reverse-radio-2`}
+                      />
+                    </Form.Group>
+                  </Form>
+                </Col>
+              </Row>
+            </Container>
+            <div className="inputTitle">생년월일을 입력하세요</div>
+            <div className="inputWrap">
+              <input
+                className="input"
+                type="birth"
+                placeholder="xxxx.xx.xx"
+                value={signUp_birth}
+                onChange={handleBirth}
+              />
+            </div>
+            <div className="errorMessageWrap">
+              {!birthValid && signUp_birth.length > 0 && (
+                <div>올바르지 않은 형식입니다.</div>
+              )}
+            </div>
+
+            <div className="inputTitle">핸드폰 번호를 입력하세요</div>
+            <div className="inputWrap">
+              <input
+                className="input"
+                type="phonenum"
+                placeholder="010-1234-5678"
+                value={signUp_phonenum}
+                onChange={handlePhonenum}
+              />
+            </div>
+            <div className="errorMessageWrap">
+              {!phonenumValid && signUp_phonenum.length > 0 && (
+                <div>올바르지 않은 형식입니다.</div>
+              )}
+            </div>
+            <div className="inputTitle">E-mail 주소를 입력하세요</div>
+            <div className="inputWrap">
+              <input
+                className="input"
+                type="email"
+                placeholder="email@gmail.com"
+                value={signUp_email}
+                onChange={handleEmail}
+              />
+            </div>
+            <div className="errorMessageWrap">
+              {!emailValid && signUp_email.length > 0 && (
+                <div>올바르지 않은 형식입니다.</div>
+              )}
+            </div>
+
+            <button onClick={User} disabled={notAllow} className="bottomButton">
+              나도 이제 대학생!
+            </button>
+
+            <Container className="message">
+              <Row>
+                <Col></Col>
+                <Col xs={6}> 나 혹시 화석...? </Col>
+                <Col className="signatureFontColor" onClick={ () => {navigate( '/Signup' ) } }>  뒤로가기 </Col>
+              </Row>
+            </Container>
           </div>
         </div>
       </div>

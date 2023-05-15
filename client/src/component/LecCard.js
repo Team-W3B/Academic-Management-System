@@ -13,7 +13,7 @@ function LecCard() {
     // console.log(lecInfo['mon']);
 
     let getLecInfo = () => {
-        axios.get('url.json')
+        axios.get('/api/home')
             .then((res)=> {
                 let copy = [...res.data]
                 setLecInfo(copy)
