@@ -11,8 +11,9 @@ function LecCard() {
  
     let [lecInfo, setLecInfo] = useState(info);
     // console.log(lecInfo['mon']);
-
+    
     let getLecInfo = () => {
+        
         axios.get('url.json')
             .then((res)=> {
                 let copy = [...res.data]
@@ -28,10 +29,12 @@ function LecCard() {
 
     return (
         <>
+        
         <Row className={styles.Wrapper} >
             {
                 ['mon', 'tue', 'wed', 'thur', 'fri'].map(function(a, i) {
                     console.log(a);
+                    
                     return (
                         <DayCard key={i} i={i} lecInfo={lecInfo[a]} day={['월요일', '화요일', '수요일', '목요일', '금요일']} color={['#4DA58B', '#FFB650', '#F55848', '#7F6BAF', '#6577C7' ]} />
                     )

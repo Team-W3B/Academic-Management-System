@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState  } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -7,7 +7,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signupUser } from "../signup_store.js";
 import Dropdown from "react-bootstrap/Dropdown";
 import { DropdownButton, SplitButton } from "react-bootstrap";
@@ -16,31 +16,29 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import coll from "../college_data.js";
+import { setsignUpName } from "../store.js";
 
-/*
-const User = {
-    id: '2017202060',
-  pw: 'test2323@',
-  name:'김도연',
-  birth:'1997.08.17',
-  phonenum:'010-1111-1111',
-  email:'email@gmail.com'
-}
-*/
-const college_name = {
 
-  전자정보공과대학: ["전자공학과"],
-  소프트웨어융합대학: ["컴퓨터정보공학부", "소프트웨어학부", "정보융합학부"],
-};
-const major_name = {
-  fir: ["전자공학과"],
-  sec: ["컴퓨터정보공학부", "소프트웨어학부", "정보융합학부"],
-};
+// const college_name = {
+// //college_name.fir
+//   fir:"전자정보공과대학",
+//   sec:"소프트웨어융합대학"
+// };
+// const major_name = {
+//   //major_name.fir.[0]
+//   fir: ["전자공학과"],
+//   sec: ["컴퓨터정보공학부", "소프트웨어학부", "정보융합학부"],
+// };
+
 
 export default function Signup() {
   let navigate = useNavigate();
+  //---------
+  //const signname = useSelector((state) => state.user.value)
 
   const dispatch = useDispatch();
+  
   const User = (e) => {
     let user = {
       signUp_id,
@@ -53,10 +51,10 @@ export default function Signup() {
       signUp_major,
       signUp_check,
     };
-
+    dispatch(setsignUpName(signUp_name));
+    console.log(signUp_name);
     axios
       .post("/api/signup", user)
-
       .then((res) => {
         console.log(res.status);
         if (res.status === 200) {
@@ -67,6 +65,9 @@ export default function Signup() {
         }
       })
       .catch((error) => {
+        if (error.response.status == 409) {
+          alert("중복 아이디(회원가입)");
+        }
         if (error.response.status == 500) {
           alert("서버 오류 발생!(회원가입)");
         }
@@ -90,11 +91,33 @@ export default function Signup() {
   const [phonenumValid, setPhonenumValid] = useState(false);
   const [emailValid, setEmailValid] = useState(false);
   const [collegeValid, setCollegeValid] = useState(false);
-  const [majorValid, setMajorlValid] = useState(false);
-  const [checkValid, setChecklValid] = useState(false);
+  const [majorValid, setMajorValid] = useState(false);
+  const [checkValid, setCheckValid] = useState(false);
   const [notAllow, setNotAllow] = useState(true);
-
+  let [valu,setvalu]=useState(coll); // college 등록
   /*----------------*/
+  let [collegemajor_list,setcollegemajor_list]=useState(coll);
+  //const [major_list,setmajor_list]=useState([]);
+  // ['fir','sec'].map((a,i) =>{
+  //   return(
+  //     <li key={i} i={i} collegemajor_list={collegemajor_list[a]}></li>
+  //   )
+  // })
+  let [i,a] = useState(0);
+   
+   useEffect(() =>{
+    
+    if(signUp_college==collegemajor_list.colleg[0].a){
+      valu=collegemajor_list.maj[0];
+      a(i=0);
+      //i=0;
+    }
+    else{
+      valu=collegemajor_list.maj[1];
+      a(i=1);
+      //console.log(i);
+    }
+  },[collegemajor_list,signUp_college,i]);
 
   useEffect(() => {
     if (
@@ -110,10 +133,10 @@ export default function Signup() {
     }
     setNotAllow(true);
   }, [idValid, pwValid, nameValid, birthValid, phonenumValid, emailValid]);
-
+  
   const handleid = (e) => {
     setid(e.target.value);
-    const regex = /^[0-9+]{10}$/;
+    const regex = /^[2]{1}[0]{1}[0-9+]{8}$/;
     if (regex.test(e.target.value)) {
       setidValid(true);
     } else {
@@ -130,7 +153,6 @@ export default function Signup() {
       setPwValid(false);
     }
   };
-  /*----------------*/
   const handleName = (e) => {
     setName(e.target.value);
     const regex = /^[가-힣]{2,15}$/;
@@ -139,6 +161,7 @@ export default function Signup() {
     } else {
       setNameValid(false);
     }
+    
   };
   const handleBirth = (e) => {
     setBirth(e.target.value);
@@ -175,6 +198,17 @@ export default function Signup() {
   const handlecollege = (e) => {
     setCollege(e);
     //console.log(signUp_collge);
+    
+  //  // useEffect(() =>{
+  //     if(signUp_college==collegemajor_list.colleg[0].a){
+  //       valu=collegemajor_list.maj[0];
+  //     }
+  //     else{
+  //       valu=collegemajor_list.maj[1];
+  //     }
+  //  // });
+    //console.log(valu);
+    
   };
   const handlemajor = (e) => {
     setMajor(e);
@@ -187,6 +221,7 @@ export default function Signup() {
 
     //console.log(signUp_check);
   };
+  
 
   return (
     <div className="signup_page">
@@ -244,8 +279,7 @@ export default function Signup() {
           </div>
           <Container>
             <Row>
-              <Col sm={5}>
-
+              <Col sm={5}>                
                 <div className="inputTitle">
                   단과대
                   <Dropdown>
@@ -256,11 +290,11 @@ export default function Signup() {
                       onSelect={handlecollege}
                       value={signUp_college}
                     >
-                      <Dropdown.Item eventKey="전자정보공과대학">
-                        전자정보공과대학
+                      <Dropdown.Item eventKey={collegemajor_list.colleg[0].a}>
+                        {collegemajor_list.colleg[0].a}
                       </Dropdown.Item>
-                      <Dropdown.Item eventKey="소프트웨어융합대학">
-                        소프트웨어융합대학
+                      <Dropdown.Item eventKey={collegemajor_list.colleg[0].b}>
+                        {collegemajor_list.colleg[0].b}
                       </Dropdown.Item>
                       {/* <Dropdown.Item eventKey="공과대학">공과대학</Dropdown.Item>
                       <Dropdown.Item eventKey="자연과학대학">자연과학대학</Dropdown.Item>
@@ -276,7 +310,7 @@ export default function Signup() {
                 <div className="inputTitle">
                   학부(과)
                   <Dropdown>
-
+                    
                     <DropdownButton
                       variant=""
                       id="dropdown-basic"
@@ -284,19 +318,24 @@ export default function Signup() {
                       onSelect={handlemajor}
                       value={signUp_major}
                     >
-                      <Dropdown.Item eventKey={major_name.fir[0]}>
-                        {major_name.fir[0]}
+                        <Dropdown.Item  eventKey={valu.maj[i].a} >
+                          {valu.maj[i].a}
+                        </Dropdown.Item>
+                        <Dropdown.Item  eventKey={valu.maj[i].b} >
+                          {valu.maj[i].b}
+                        </Dropdown.Item>
+                        <Dropdown.Item  eventKey={valu.maj[i].c} >
+                          {valu.maj[i].c}
+                        </Dropdown.Item>
+                      {/* <Dropdown.Item eventKey={collegemajor_list.sec[0].signUp_major}>
+                        {collegemajor_list.sec[0].signUp_major}
                       </Dropdown.Item>
-
-                      <Dropdown.Item eventKey={major_name.sec[0]}>
-                        {major_name.sec[0]}
+                      <Dropdown.Item eventKey={collegemajor_list.sec[1].signUp_major}>
+                        {collegemajor_list.sec[1].signUp_major}
                       </Dropdown.Item>
-                      <Dropdown.Item eventKey={major_name.sec[1]}>
-                        {major_name.sec[1]}
-                      </Dropdown.Item>
-                      <Dropdown.Item eventKey={major_name.sec[2]}>
-                        {major_name.sec[2]}
-                      </Dropdown.Item>
+                      <Dropdown.Item eventKey={collegemajor_list.sec[2].signUp_major}>
+                        {collegemajor_list.sec[2].signUp_major}
+                      </Dropdown.Item> */}
                     </DropdownButton>
                   </Dropdown>
                 </div>

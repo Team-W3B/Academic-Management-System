@@ -3,6 +3,9 @@ import React from "react";
 import Emoticon from "./../imgs/Emoji.svg";
 import "./../App.scss";
 import styles from "./../SignUpComplete.module.scss";
+import Signup from "./Signup";
+import { useDispatch, useSelector } from "react-redux";
+import { setsignUpName, signUpSlice } from "../store";
 
 function SignUpComplete() {
   return (
@@ -12,21 +15,27 @@ function SignUpComplete() {
           <Emoji />
           <TextBox />
           <LogInButton />
+         
         </div>
       </div>
     </>
   );
 }
 
+
+
 const Emoji = () => {
   return <img alt="" className={styles.emoji} src={Emoticon} />;
 };
 
-const TextBox = () => {
+const TextBox = () => {   
+  //----
+  const signUpName = useSelector((state)=>state.signUp.name);
+  console.log(signUpName);
   return (
     <div className={styles.textBox}>
       <p className={styles.mainText}>
-        반갑습니다 <strong className={styles.emphasis1}>임태헌</strong>님!
+        반갑습니다 <strong className={styles.emphasis1}>{signUpName}</strong>님!
       </p>
       <p className={styles.subText}>
         이제 KLAS를 이용하실 수 있습니다. 광운의 자랑이 되어주세요!

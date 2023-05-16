@@ -21,12 +21,11 @@ function App() {
 			<Route exact path="/Login" element={<Login/>}/>
       
       <Route path="/SignUpComplete" element={ <SignUpComplete /> } />
-      
       <Route path="/MainPage" element={ <MainPage /> } />
       </Routes>
     </div>
     
-    //</BrowserRouter>
+    </BrowserRouter>
   );
 }
 
