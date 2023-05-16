@@ -4,8 +4,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './store';
-import './index.css';
-import './App.scss';
 
 import { BrowserRouter } from 'react-router-dom';
 
