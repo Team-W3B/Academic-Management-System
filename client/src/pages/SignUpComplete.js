@@ -1,8 +1,7 @@
 /* eslint-disable */
 import React from "react";
 import Emoticon from "./../imgs/Emoji.svg";
-import "./../App.scss";
-import styles from "./../SignUpComplete.module.scss";
+import styles from "./../scss/SignUpComplete.module.scss";
 
 function SignUpComplete() {
   return (
@@ -18,10 +17,12 @@ function SignUpComplete() {
   );
 }
 
+/* 이모지 */
 const Emoji = () => {
   return <img alt="" className={styles.emoji} src={Emoticon} />;
 };
 
+/* 환영문구 */
 const TextBox = () => {
   return (
     <div className={styles.textBox}>
@@ -35,10 +36,11 @@ const TextBox = () => {
   );
 };
 
+/* 로그인 버튼 */
 const LogInButton = () => {
   return (
     <div className={styles.button}>
-      <a href="/Login">
+      <a style={{ textDecorationLine : "none" }} href="/Login">
         <p className={styles.text}>로그인 하러가기</p>
       </a>
     </div>

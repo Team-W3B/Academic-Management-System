@@ -6,6 +6,7 @@ import { loginUser } from "../login_store.js";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import styles from './../scss/Login.module.scss'
 
 // const User = {/*
 //     id: '2017202060',
@@ -78,22 +79,22 @@ export default function Login() {
   };
 
   return (
-    <div className="login_signup">
-      <div className="whiteCard_login">
-        <div className="wrapper">
+    <div className={styles.login_signup}>
+      <div className={styles.whiteCard_login}>
+        <div className={styles.wrapper}>
 
-          <div className="loginTitle">
-            <p style={{ margin: "0px" }} className="signatureFontColor">광운대학교</p>
+          <div className={styles.loginTitle}>
+            <p style={{ margin: "0px" }} className={styles.signatureFontColor}>광운대학교</p>
             <p>학사정보 관리시스템</p>
           </div>
 
-          <div className="loginContent">
+          <div className={styles.loginContent}>
 
             {/* 학번을 입력하세요! */}
-            <div className="inputTitle">학번을 입력하세요</div>
-            <div className="inputWrap">
+            <div className={styles.inputTitle}>학번을 입력하세요</div>
+            <div className={styles.inputWrap}>
               <input
-                className="input"
+                className={styles.input}
                 type="text"
                 placeholder="20xxxxxxxx"
                 value={logIn_id}
@@ -101,7 +102,7 @@ export default function Login() {
               />
             </div>
 
-            <div className="errorMessageWrap">
+            <div className={styles.errorMessageWrap}>
               {
                 !idValid
                 && logIn_id.length > 0
@@ -112,14 +113,14 @@ export default function Login() {
             </div>
 
             {/* 비밀번호를 입력하세요! */}
-            <div className="inputTitle">
+            <div className={styles.inputTitle}>
               <p>비밀번호를 입력하세요</p>
-              <p className="signatureFontColor" style={{ marginLeft: "auto" }} >비밀번호를 잊었나요?</p>
+              <p className={styles.signatureFontColor} style={{ marginLeft: "auto" }} >비밀번호를 잊었나요?</p>
             </div>
 
-            <div className="inputWrap">
+            <div className={styles.inputWrap}>
               <input
-                className="input"
+                className={styles.input}
                 type="password"
                 placeholder="**********"
                 value={logIn_pw}
@@ -127,22 +128,22 @@ export default function Login() {
               />
             </div>
 
-            <div className="errorMessageWrap">
+            <div className={styles.errorMessageWrap}>
               {!pwValid && logIn_pw.length > 0 && (
                 <div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
               )}
             </div>
 
-            <button onClick={User} disabled={notAllow} className="bottomButton">
+            <button onClick={User} disabled={notAllow} className={styles.bottomButton}>
               로그인
             </button>
 
             
-            <Container className="message">
+            <Container className={styles.message}>
               <Row>
                 <Col></Col>
                 <Col xs={5}> KLAS가 처음이에요? </Col>
-                <Col className="signatureFontColor" onClick={ () => {navigate( '/Signup' ) } }>  신입생만 누르셈. </Col>
+                <Col className={styles.signatureFontColor} onClick={ () => {navigate( '/Signup' ) } }>  신입생만 누르셈. </Col>
               </Row>
             </Container>
           </div>

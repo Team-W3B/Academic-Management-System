@@ -1,8 +1,6 @@
 /* eslint-disable */
 import React from "react";
 import hello from "./../imgs/hello.svg";
-import "./../App.scss";
-import styles from "./../MainPage.module.scss";
 import HeaderNav from "./../component/HeaderNav";
 import LecCard from "./../component/LecCard";
 import Footer from "../component/Footer";
@@ -27,20 +25,21 @@ function MainPage() {
               height: "auto",
               zIndex: 2,
             }}
-            className={styles.center}
+            // className={styles.center}
           />
         </div>
         <div>
           <LecCard />
         </div>
         <Footer />
+        <div className="testBox">  </div>
       </div>
     </>
   );
 }
 
-const WhiteCard = () => {
+/* const WhiteCard = () => {
   return <div className={styles.whiteCard} />;
-};
+}; */
 
 export default MainPage;

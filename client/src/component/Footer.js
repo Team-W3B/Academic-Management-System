@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React from "react";
-import "./../App.scss";
-import styles from "./../MainPage.module.scss";
+import styles from "./../scss/Footer.module.scss";
 
 const Footer = () => {
     return (

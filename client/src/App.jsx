@@ -1,12 +1,11 @@
 /* eslint-disable */
 import React from "react";
-import "./App.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
 //---
-import "./App.scss";
+import "./scss/App.module.scss";
 import SignUpComplete from "./pages/SignUpComplete";
 import MainPage from "./pages/MainPage";
 //---
@@ -16,7 +15,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route exact path="/" element={<Login />} />
+          <Route exact path="/" element={<Login />} /> 
           <Route exact path="/Signup" element={<Signup />} />
           <Route exact path="/Login" element={<Login />} />
 

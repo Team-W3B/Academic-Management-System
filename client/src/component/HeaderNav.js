@@ -1,7 +1,8 @@
 /* eslint-disable */
 import React from "react";
-import './../App.scss';
-import styles from './../MainPage.module.scss';
+// import './../scss/App.scss';
+// import styles from './../scss/MainPage.module.scss';
+import styles from './../scss/HeaderNav.module.scss';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -25,12 +26,12 @@ let HeaderNav = () => {
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="me-auto nav">
-                                <Nav.Link style={{ padding: "0 1rem" }} className={styles.nav} onClick={ () => {navigate( '/schedule' ) } } > 전체일정 </Nav.Link>
-                                <Nav.Link style={{ padding: "0 1rem" }} className={styles.nav} onClick={ () => { navigate('/lecturePlan') } } > 강의계획서 </Nav.Link>
-                                <Nav.Link style={{ padding: "0 1rem" }} className={styles.nav} onClick={ () => {navigate( '/scores' ) } } > 성적/석차 </Nav.Link>
+                                <Nav.Link style={{ padding: "0 1rem" }} id={styles.nav} onClick={ () => {navigate( '/schedule' ) } } > 전체일정 </Nav.Link>
+                                <Nav.Link style={{ padding: "0 1rem" }} id={styles.nav} onClick={ () => { navigate('/lecturePlan') } } > 강의계획서 </Nav.Link>
+                                <Nav.Link style={{ padding: "0 1rem" }} id={styles.nav} onClick={ () => {navigate( '/scores' ) } } > 성적/석차 </Nav.Link>
                             </Nav>
                             <Nav>
-                                <Nav.Link className={styles.faceid}  href = "#mypage">
+                                <Nav.Link id={styles.faceid}  href = "#mypage">
                                     <p style={{ marginRight: "1rem" }}> {user} </p>
                                     <img src={face} />
                                 </Nav.Link>
