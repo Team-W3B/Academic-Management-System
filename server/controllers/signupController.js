@@ -1,4 +1,4 @@
-var model = require("../models");
+const model = require("../models");
 const bcrypt = require("bcrypt");
 
 // 회원가입 버튼을 누를 때 학생 및 교수 데이터를 DB에 저장하는 함수

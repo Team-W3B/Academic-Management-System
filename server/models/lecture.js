@@ -1,7 +1,7 @@
 "use strict";
-const { Model } = require("sequelize");
+const { Model, Sequelize } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class lecture extends Model {
+  class Lecture extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,24 +11,43 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  lecture.init(
+  Lecture.init(
     {
-      grade_semester_id: { type: DataTypes.INTEGER, primaryKey: true },
-      lecture_id: { type: DataTypes.INTEGER, primaryKey: true },
-      day_of_week: { type: DataTypes.STRING, primaryKey: true },
-      period: { type: DataTypes.INTEGER, primaryKey: true },
-      professor_id: DataTypes.INTEGER,
-      lecture_name: DataTypes.STRING,
-      lecture_room: DataTypes.STRING,
-      is_major: DataTypes.BOOLEAN,
-      credit_point: DataTypes.INTEGER,
+      id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      day_of_week: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        autoIncrement: false,
+        primaryKey: true,
+      },
+      period: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: false,
+        primaryKey: true,
+      },
+      lecture_name: { type: DataTypes.STRING, allowNull: false },
+      lecture_room: { type: DataTypes.STRING, allowNull: false },
+      is_major: { type: DataTypes.BOOLEAN, allowNull: false },
+      credit_point: { type: DataTypes.INTEGER, allowNull: false },
+      grade_semester_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: false,
+        primaryKey: true,
+      },
+      professor_id: { type: DataTypes.INTEGER, allowNull: false },
     },
     {
       sequelize,
-      modelName: "lecture",
+      modelName: "Lecture",
       timestamps: false,
-      id: false,
     }
   );
-  return lecture;
+  return Lecture;
 };

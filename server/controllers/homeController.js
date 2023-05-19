@@ -1,4 +1,4 @@
-var model = require("../models");
+const model = require("../models");
 const { Sequelize } = require("sequelize");
 
 exports.homeForm = async (req, res) => {
@@ -7,20 +7,20 @@ exports.homeForm = async (req, res) => {
     const userId = req.session.userId;
 
     // ID 값을 사용하여 학생이 수강하고 있는 모든 강의 정보를 조회
-    const lectures = await model.student_lecture.findAll({
+    let lectures = await model.Student_lecture.findAll({
       include: [
         {
-          model: model.lecture,
+          model: model.Lecture,
           attributes: ["lecture_name", "lecture_room"],
           where: {
-            lecture_id: Sequelize.col("student_lecture.lecture_id"),
+            lecture_id: Sequelize.col("Student_lecture.lecture_id"),
           },
         },
         {
-          model: model.professor,
+          model: model.Professor,
           attributes: ["name"],
           where: {
-            professor_id: Sequelize.col("lecture.professor_id"),
+            professor_id: Sequelize.col("Lecture.professor_id"),
           },
         },
       ],
@@ -36,10 +36,10 @@ exports.homeForm = async (req, res) => {
 
     if (!lectures) {
       // 교수님이 강의 중인 강의 목록에서 전달
-      lectures = await model.lecture.findAll({
+      lectures = await model.Lecture.findAll({
         include: [
           {
-            model: model.professor,
+            model: model.Professor,
             attributes: ["name"],
             where: {
               professor_id: userId,

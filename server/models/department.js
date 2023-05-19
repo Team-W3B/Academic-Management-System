@@ -13,15 +13,24 @@ module.exports = (sequelize, DataTypes) => {
   }
   Department.init(
     {
-      department_id: { type: DataTypes.INTEGER, primaryKey: true },
-      college_id: { type: DataTypes.INTEGER, primaryKey: true },
-      department_name: DataTypes.STRING,
+      id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      department_name: { type: DataTypes.STRING, allowNull: false },
+      collge_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: false,
+        primaryKey: true,
+      },
     },
     {
       sequelize,
       modelName: "Department",
       timestamps: false,
-      id: false,
     }
   );
   return Department;
