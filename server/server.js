@@ -40,7 +40,7 @@ app.use(
 app.use("/api/login", loginRouter);
 app.use("/api/signup", signupRouter);
 app.use("/api/home", homeRouter);
-app.use("/api", loginRouter);
+//app.use("/api", loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

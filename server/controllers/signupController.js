@@ -1,40 +1,23 @@
-var model = require("../models");
+const model = require("../models");
 const bcrypt = require("bcrypt");
 
+// 회원가입 버튼을 누를 때 학생 및 교수 데이터를 DB에 저장하는 함수
 exports.signupData = async (req, res) => {
   try {
-    // 비밀번호 암호화
-    //const encrypted = bcrypt.hash(req.body.signUp_pw, 10);
-    var password = req.body.signUp_pw;
-    var member_type = req.body.signUp_check;
-    var signUp_birth = req.body.signUp_birth.split(".").join("-");
-    var college_id = req.body.signUp_college;
-    var department_id = req.body.signUp_major;
+    // request data 처리 (비밀번호는 암호화)
+    let encrypted = await bcrypt.hash(req.body.signUp_pw, 10);
+    let member_type = req.body.signUp_check;
+    let signUp_birth = req.body.signUp_birth.split(".").join("-");
+    let department = req.body.signUp_major;
 
-    //대학이름을 id로 매핑해주는 부분 (추후 삭제 예정)
-    if (
-      college_id === "소프트웨어융합대학" &&
-      department_id === "컴퓨터정보공학부"
-    ) {
-      college_id = 1;
-      department_id = 1;
-    } else if (
-      college_id === "소프트웨어융합대학" &&
-      department_id === "소프트웨어학부"
-    ) {
-      college_id = 1;
-      department_id = 2;
-    } else if (
-      college_id === "소프트웨어융합대학" &&
-      department_id === "정보융합학부"
-    ) {
-      college_id = 1;
-      department_id = 3;
-    }
-    if (college_id === "전자정보공과대학" && department_id === "전자공학과") {
-      college_id = 2;
-      department_id = 1;
-    }
+    //대학 이름을 토대로 대학과 학부 id를 DB에서 가져옴
+    let department_data = await model.Department.findOne({
+      where: { department_name: department },
+      attributes: ["college_id", "department_id"],
+    });
+
+    let college_id = department_data.college_id;
+    let department_id = department_data.department_id;
 
     if (member_type == "학생") {
       //학생일 경우 학생 테이블에 정보 저장
@@ -44,7 +27,7 @@ exports.signupData = async (req, res) => {
         college_id: college_id,
         department_id: department_id,
         grade_semester_id: 1,
-        passwd: password,
+        passwd: encrypted,
         name: req.body.signUp_name,
         birth: signUp_birth,
         tel: req.body.signUp_phonenum,
@@ -58,10 +41,10 @@ exports.signupData = async (req, res) => {
       var datas = {
         professor_id: req.body.signUp_id,
         member_type: member_type,
-        college_id: req.body.signUp_college,
-        department_id: req.body.signUp_department,
+        college_id: college_id,
+        department_id: department_id,
         grade_semester_id: 1,
-        passwd: password,
+        passwd: encrypted,
         name: req.body.signUp_name,
         birth: signUp_birth,
         tel: req.body.signUp_phonenum,
@@ -79,6 +62,7 @@ exports.signupData = async (req, res) => {
       res.status(409).send();
     } else {
       // 서버 에러
+      console.log(err.message);
       res.status(500).send();
     }
   }
