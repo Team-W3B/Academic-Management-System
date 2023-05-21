@@ -5,6 +5,7 @@ import HeaderNav from "./../component/HeaderNav";
 import LecCard from "./../component/LecCard";
 import Footer from "../component/Footer";
 
+
 function MainPage() {
   return (
     <>
@@ -32,7 +33,6 @@ function MainPage() {
           <LecCard />
         </div>
         <Footer />
-        <div className="testBox">  </div>
       </div>
     </>
   );
