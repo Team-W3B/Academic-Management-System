@@ -9,6 +9,35 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Student_Lecture.belongsTo(models.Student, {
+        foreignKey: "student_id",
+        targetKey: "id",
+      });
+
+      Student_Lecture.belongsTo(models.Lecture, {
+        foreignKey: "lecture_id",
+        targetKey: "id",
+      });
+
+      Student_Lecture.belongsTo(models.Lecture, {
+        foreignKey: "lecture_day_of_week",
+        targetKey: "day_of_week",
+      });
+
+      Student_Lecture.belongsTo(models.Lecture, {
+        foreignKey: "lecture_period",
+        targetKey: "period",
+      });
+
+      Student_Lecture.belongsTo(models.Grade_Semester, {
+        foreignKey: "lecture_grade_semester_id",
+        targetKey: "id",
+      });
+
+      Student_Lecture.hasOne(models.Attendance, {
+        foreignKey: "student_lecture_student_id",
+        sourceKey: "student_id",
+      });
     }
   }
   Student_Lecture.init(

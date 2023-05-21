@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Board_Type.hasOne(models.Board, {
+        foreignKey: "board_type_id",
+        sourceKey: "id",
+      });
     }
   }
   Board_Type.init(

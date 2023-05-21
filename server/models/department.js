@@ -9,6 +9,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Department.belongsTo(models.Collge, {
+        foreignKey: "college_id",
+        targetKey: "id",
+      });
+
+      Department.hasMany(models.Professor, {
+        foreignKey: "department_id",
+        sourceKey: "id",
+      });
+
+      Department.hasMany(models.Student, {
+        foreignKey: "department_id",
+        sourceKey: "id",
+      });
     }
   }
   Department.init(
@@ -20,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
       },
       department_name: { type: DataTypes.STRING, allowNull: false },
-      collge_id: {
+      college_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: false,

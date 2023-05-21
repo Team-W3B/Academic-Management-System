@@ -47,6 +47,28 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
     });
+
+    await queryInterface.addConstraint("Professors", {
+      fields: ["department_id", "department_college_id"],
+      type: "foreign key",
+      references: {
+        table: "Departments",
+        fields: ["id", "college_id"],
+      },
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    });
+
+    await queryInterface.addConstraint("Professors", {
+      fields: ["grade_semester_id"],
+      type: "foreign key",
+      references: {
+        table: "Grade_Semesters",
+        field: "id",
+      },
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("Professors");

@@ -48,6 +48,31 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
     });
+
+    await queryInterface.addConstraint("Lectures", {
+      fields: ["grade_semester_id"],
+      type: "foreign key",
+      references: {
+        table: "Grade_Semesters",
+        field: "id",
+      },
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    });
+
+    await queryInterface.addConstraint("Lectures", {
+      fields: ["professor_id"],
+      type: "foreign key",
+      references: {
+        table: "Professors",
+        field: "id",
+      },
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    });
+
+    // const indexes = await queryInterface.showIndex("lectures");
+    // console.log(indexes);
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("Lectures");

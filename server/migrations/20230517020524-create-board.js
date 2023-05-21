@@ -60,6 +60,45 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
     });
+
+    await queryInterface.addConstraint("Boards", {
+      fields: ["board_type_id"],
+      type: "foreign key",
+      references: {
+        table: "Board_Types",
+        field: "id",
+      },
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    });
+
+    await queryInterface.addConstraint("Boards", {
+      fields: ["professor_id"],
+      type: "foreign key",
+      references: {
+        table: "Professors",
+        field: "id",
+      },
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    });
+
+    await queryInterface.addConstraint("Boards", {
+      name: "FK_Boards",
+      fields: [
+        "lecture_id",
+        "lecture_day_of_week",
+        "lecture_period",
+        "lecture_grade_semester_id",
+      ],
+      type: "foreign key",
+      references: {
+        table: "Lectures",
+        fields: ["id", "day_of_week", "period", "grade_semester_id"],
+      },
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("Boards");

@@ -18,6 +18,17 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
     });
+
+    await queryInterface.addConstraint("Attendances", {
+      fields: ["student_lecture_student_id"],
+      type: "foreign key",
+      references: {
+        table: "Student_Lectures",
+        field: "student_id",
+      },
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("Attendances");

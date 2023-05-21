@@ -9,6 +9,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Grade_Semester.hasMany(models.Student, {
+        foreignKey: "grade_semester_id",
+        sourceKey: "id",
+      });
+
+      Grade_Semester.hasMany(models.Professor, {
+        foreignKey: "grade_semester_id",
+        sourceKey: "id",
+      });
+
+      Grade_Semester.hasOne(models.Lecture, {
+        foreignKey: "grade_semester_id",
+        sourceKey: "id",
+      });
     }
   }
   Grade_Semester.init(
