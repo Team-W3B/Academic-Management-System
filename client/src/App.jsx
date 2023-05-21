@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
 //---
-import "./scss/App.module.scss";
+import styles from "./scss/App.module.scss";
 import SignUpComplete from "./pages/SignUpComplete";
 import MainPage from "./pages/MainPage";
 //---
@@ -13,7 +13,7 @@ import MainPage from "./pages/MainPage";
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className={styles.App}>
         <Routes>
           <Route exact path="/" element={<Login />} /> 
           <Route exact path="/Signup" element={<Signup />} />

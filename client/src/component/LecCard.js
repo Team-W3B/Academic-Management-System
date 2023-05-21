@@ -1,11 +1,9 @@
 /* eslint-disable */
 import React, { useState } from "react";
-// import './../scss/App.scss';
-// import styles from './../scss/MainPage.module.scss';
 import styles from './../scss/LecCard.module.scss';
 import { Col, Row } from "react-bootstrap";
 import axios from 'axios';
-import info from "../data";
+import info from "../temp_data/data";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function LecCard() {
