@@ -27,10 +27,10 @@ exports.homeForm = async (req, res) => {
       where: {
         student_id: userId,
       },
-      attributes: ["day_of_week", "period"],
+      attributes: ["lecture_day_of_week", "lecture_period"],
       order: [
-        ["day_of_week", "ASC"],
-        ["period", "ASC"],
+        ["lecture_day_of_week", "ASC"],
+        ["lecture_period", "ASC"],
       ],
     });
 
@@ -42,7 +42,7 @@ exports.homeForm = async (req, res) => {
             model: model.Professor,
             attributes: ["name"],
             where: {
-              professor_id: userId,
+              id: userId,
             },
           },
         ],
@@ -57,13 +57,13 @@ exports.homeForm = async (req, res) => {
       });
     }
 
-    const lectureData = {};
+    let lectureData = {};
     var id = 0;
 
     //시간표 요일별 정렬
     lectures.forEach((lecture) => {
-      const day_of_week = lecture.day_of_week;
-      const lectureInfo = {
+      let lecture_day_of_week = lecture.day_of_week;
+      let lectureInfo = {
         id: id++,
         lecture_name: lecture.lecture_name,
         lecture_room: lecture.lecture_room,
@@ -71,11 +71,11 @@ exports.homeForm = async (req, res) => {
         period: lecture.period,
       };
 
-      if (!lectureData[day_of_week]) {
-        lectureData[day_of_week] = [];
+      if (!lectureData[lecture_day_of_week]) {
+        lectureData[lecture_day_of_week] = [];
         id = 0;
       }
-      lectureData[day_of_week].push(lectureInfo);
+      lectureData[lecture_day_of_week].push(lectureInfo);
     });
 
     // 클라이언트에게 JSON 파일 Response

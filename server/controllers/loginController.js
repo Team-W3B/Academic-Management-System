@@ -9,7 +9,7 @@ exports.loginProcess = async (req, res) => {
 
     //학생 로그인 시도
     const student = await model.Student.findOne({
-      where: { student_id: id },
+      where: { id: id },
       attributes: ["passwd"],
     });
     if (student && (await bcrypt.compare(request_password, student.passwd))) {
@@ -21,7 +21,7 @@ exports.loginProcess = async (req, res) => {
 
     //교수 로그인 시도
     const professor = await model.Professor.findOne({
-      where: { professor_id: id },
+      where: { id: id },
       attributes: ["passwd"],
     });
     if (
