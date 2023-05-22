@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './../scss/MainPageLecDetail.module.scss';
-import MPLD_data from '../temp_data/MainPageLecDetail_data';
+import MPLD_data from '../data/MainPageLecDetail_data';
 import axios from 'axios';
 
 let MainPageLecDetail  = () => {
