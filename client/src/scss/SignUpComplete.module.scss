@@ -1,10 +1,26 @@
+$blue : rgba(0, 122, 255, 1);
+
+@mixin main-color {
+    background: linear-gradient(
+    135deg,
+    rgba(255, 120, 78, 1) 0%,
+    rgba(251, 52, 124, 1) 100%
+    );
+}
+
 @mixin sf-pro-display-16-medium {
     font-family: "SF Pro Display";
     font-size: 16px;
     font-weight: 500;
     line-height: 19px;
 }
-  @mixin sf-pro-display-32-bold {
+@mixin sf-pro-display-24-medium {
+    font-family: "SF Pro Display";
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+}
+@mixin sf-pro-display-32-bold {
     font-family: "SF Pro Display";
     font-size: 32px;
     font-weight: 700;
@@ -14,11 +30,7 @@
     display: grid;
     place-items: center;
     min-height: 100vh;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 120, 78, 1) 0%,
-      rgba(251, 52, 124, 1) 100%
-    );
+    @include main-color();
     
 }
 .container {
@@ -53,7 +65,7 @@
     @include sf-pro-display-32-bold;
 }
 .emphasis1 {
-    color: rgba(0, 122, 255, 1);
+    color: $blue;
     // color: $iosblue;
     @include sf-pro-display-32-bold;
 }
@@ -65,21 +77,14 @@
 }
 
 .button {
-    background: linear-gradient(
-        107deg,
-        rgba(255, 120, 78, 1) 0%,
-        rgba(251, 52, 124, 1) 100%
-    );
+    @include main-color();
     border-radius: 16px;
     padding: 18px 24px;
     display: flex;
     align-items: flex-start;
 }
 .text {
-    font-family: "SF Pro Display";
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 28px;
+    @include sf-pro-display-24-medium();
     color: rgba(255, 255, 255, 1);
     text-align: center;
 }

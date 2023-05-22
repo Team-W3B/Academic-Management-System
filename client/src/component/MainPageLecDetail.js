@@ -10,6 +10,7 @@ let MainPageLecDetail  = () => {
     let getMPLD = () => {
         axios.get('/api/home/detail')
             .then((res)=> {
+                console.log(res);
                 let copy = [...res.data]
                 setMpld(copy)
             })
