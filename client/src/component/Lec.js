@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
-import './../App.scss';
 import styles from "./../scss/Lec.module.scss";
 import { Col, Row } from "react-bootstrap";
 import axios from 'axios';

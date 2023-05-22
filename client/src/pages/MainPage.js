@@ -1,10 +1,11 @@
 /* eslint-disable */
 import React from "react";
 import hello from "./../imgs/hello.svg";
-
 import HeaderNav from "./../component/HeaderNav";
 import LecCard from "./../component/LecCard";
 import Footer from "../component/Footer";
+
+
 function MainPage() {
   return (
     <>
@@ -25,7 +26,7 @@ function MainPage() {
               height: "auto",
               zIndex: 2,
             }}
-            //className={styles.center}
+            // className={styles.center}
           />
         </div>
         <div>
@@ -37,10 +38,8 @@ function MainPage() {
   );
 }
 
-// const WhiteCard = () => {
-//   return <div className={styles.whiteCard} />;
-// };
-
-
+/* const WhiteCard = () => {
+  return <div className={styles.whiteCard} />;
+}; */
 
 export default MainPage;

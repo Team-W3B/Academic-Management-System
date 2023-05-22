@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React, { useState } from "react";
-import './../App.scss';
 import styles from './../scss/LecCard.module.scss';
 import { Col, Row } from "react-bootstrap";
 import axios from 'axios';

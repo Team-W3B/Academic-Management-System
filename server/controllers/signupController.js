@@ -70,7 +70,6 @@ exports.signupData = async (req, res) => {
 
       await model.Professor.create(datas);
     }
-   
 
     res.status(200).send();
     return;

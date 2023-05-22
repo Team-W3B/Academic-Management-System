@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState  } from "react";
 import {
   BrowserRouter,
@@ -8,6 +9,7 @@ import {
 } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+
 import { signupUser } from "../signup_store.js";
 import Dropdown from "react-bootstrap/Dropdown";
 import { DropdownButton, SplitButton } from "react-bootstrap";
@@ -38,7 +40,8 @@ export default function Signup() {
   //const signname = useSelector((state) => state.user.value)
 
   const dispatch = useDispatch();
-  
+
+
   const User = (e) => {
     let user = {
       signUp_id,
