@@ -16,9 +16,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import coll from "../college_data.js";
+import coll from "../data/college_data.js";
 import { setsignUpName } from "../store.js";
-
+import styles from "./../scss/Signup.module.scss"
 
 // const college_name = {
 // //college_name.fir
@@ -218,61 +218,66 @@ export default function Signup() {
   const handlecheck = (e) => {
     setCheck(e);
 
-
     //console.log(signUp_check);
   };
   
 
   return (
-    <div className="signup_page">
-      <div className="Frame8">
-        <div className="titleWrap">
-          <div className="namecolortitle">광운대학교</div>
-          학사정보 관리시스템
-        </div>
+    <div className={styles.login_signup}>
+      <div className={styles.whiteCard_signup}>
+        <div className={styles.wrapper}>
+        <div className={styles.loginTitle}>
+            <p style={{ margin: "0px" }} className={styles.signatureFontColor}>광운대학교</p>
+            <p>학사정보 관리시스템</p>
+          </div>
 
-        <div className="contentWrap">
-          <div className="inputTitle"></div>
-          <div className="inputWrap">
+        {/* 학번입력 */}
+        <div className={styles.loginContent}>
+            <div className={styles.inputWrap}>
             <input
-              className="input"
+              className={styles.input}
               type="text"
               placeholder="학번을 입력하세요"
               value={signUp_id}
               onChange={handleid}
             />
           </div>
-          <div className="errorMessageWrap">
+          {/* 학번오류 */}
+          <div className={styles.errorMessageWrap}>
             {!idValid && signUp_id.length > 0 && (
               <div>올바른 학번을 입력해주세요.</div>
             )}
           </div>
 
-          <div className="inputWrap">
-            <input
-              className="input"
+          {/* 비밀번호 입력 */}
+          <div className={styles.inputWrap}>
+              <input
+                className={styles.input}
               type="password"
               placeholder="비밀번호를 입력하세요"
               value={signUp_pw}
               onChange={handlePw}
             />
           </div>
-          <div className="errorMessageWrap">
+          {/* 비밀번호 오류 */}
+          <div className={styles.errorMessageWrap}>
             {!pwValid && signUp_pw.length > 0 && (
               <div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
             )}
           </div>
 
-          <div className="inputWrap">
-            <input
-              className="input"
+          {/* 이름 입력 */}
+          <div className={styles.inputWrap}>
+              <input
+                className={styles.input}
               type="name"
               placeholder="이름을 입력하세요"
               value={signUp_name}
               onChange={handleName}
             />
           </div>
-          <div className="errorMessageWrap">
+          {/* 이름 오류 */}
+          <div className={styles.errorMessageWrap}>
             {!nameValid && signUp_name.length > 0 && (
               <div>올바르지 않은 형식입니다.</div>
             )}
@@ -280,7 +285,7 @@ export default function Signup() {
           <Container>
             <Row>
               <Col sm={5}>                
-                <div className="inputTitle">
+                <div className={styles.inputTitle}>
                   단과대
                   <Dropdown>
                     <SplitButton
@@ -307,7 +312,7 @@ export default function Signup() {
                 </div>
               </Col>
               <Col sm={5}>
-                <div className="inputTitle">
+                <div className={styles.inputTitle}>
                   학부(과)
                   <Dropdown>
                     
@@ -371,66 +376,68 @@ export default function Signup() {
             </Row>
           </Container>
 
-          <div className="inputTitle">생년월일을 입력하세요</div>
-          <div className="inputWrap">
-            <input
-              className="input"
+          <div className={styles.inputTitle}>생년월일을 입력하세요</div>
+            <div className={styles.inputWrap}>
+              <input
+                className={styles.input}
               type="birth"
               placeholder="xxxx.xx.xx"
               value={signUp_birth}
               onChange={handleBirth}
             />
           </div>
-          <div className="errorMessageWrap">
+          <div className={styles.errorMessageWrap}>
             {!birthValid && signUp_birth.length > 0 && (
               <div>올바르지 않은 형식입니다.</div>
             )}
           </div>
 
-          <div className="inputTitle">핸드폰 번호를 입력하세요</div>
-          <div className="inputWrap">
-            <input
-              className="input"
+          <div className={styles.inputTitle}>핸드폰 번호를 입력하세요</div>
+            <div className={styles.inputWrap}>
+              <input
+                className={styles.input}
               type="phonenum"
               placeholder="010-1234-5678"
               value={signUp_phonenum}
               onChange={handlePhonenum}
             />
           </div>
-          <div className="errorMessageWrap">
+          <div className={styles.errorMessageWrap}>
             {!phonenumValid && signUp_phonenum.length > 0 && (
               <div>올바르지 않은 형식입니다.</div>
             )}
           </div>
 
-          <div className="inputTitle">E-mail 주소를 입력하세요</div>
-          <div className="inputWrap">
-            <input
-              className="input"
+          <div className={styles.inputTitle}>E-mail 주소를 입력하세요</div>
+            <div className={styles.inputWrap}>
+              <input
+                className={styles.input}
               type="email"
               placeholder="email@gmail.com"
               value={signUp_email}
               onChange={handleEmail}
             />
           </div>
-          <div className="errorMessageWrap">
+          <div className={styles.errorMessageWrap}>
             {!emailValid && signUp_email.length > 0 && (
               <div>올바르지 않은 형식입니다.</div>
             )}
           </div>
 
-          <button onClick={User} disabled={notAllow} className="bottomButton">
+          <button onClick={User} disabled={notAllow} className={styles.bottomButton}>
             나도 이제 대학생
 
           </button>
-          <div className="NaN_0010">
-            <div className="Klas">나 혹시 화석...?</div>
-            <div className="namecolor">
-              <Link to="/Login">뒤로가기</Link>
-            </div>
-          </div>
+          <Container className={styles.message}>
+              <Row>
+                <Col></Col>
+                <Col xs={6}> 나 혹시 화석...? </Col>
+                <Col className={styles.signatureFontColor} onClick={ () => {navigate( "/Login" ) } }>  뒤로가기 </Col>
+              </Row>
+            </Container>
         </div>
       </div>
+    </div>
     </div>
   );
 }

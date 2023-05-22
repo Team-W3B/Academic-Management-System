@@ -1,11 +1,11 @@
 /* eslint-disable */
 import React from "react";
 import Emoticon from "./../imgs/Emoji.svg";
-import "./../App.scss";
-import styles from "./../SignUpComplete.module.scss";
+//import "./../App.scss";
 import Signup from "./Signup";
 import { useDispatch, useSelector } from "react-redux";
 import { setsignUpName, signUpSlice } from "../store";
+import styles from "./../scss/SignUpComplete.module.scss";
 
 function SignUpComplete() {
   return (
@@ -31,7 +31,7 @@ const Emoji = () => {
 const TextBox = () => {   
   //----
   const signUpName = useSelector((state)=>state.signUp.name);
-  console.log(signUpName);
+  
   return (
     <div className={styles.textBox}>
       <p className={styles.mainText}>
@@ -47,8 +47,8 @@ const TextBox = () => {
 const LogInButton = () => {
   return (
     <div className={styles.button}>
-      <a href="/Login">
-        <p className={styles.text}>로그인 하러가기</p>
+      <a style={{ textDecorationLine : "none" }} href="/Login">
+        <p className={styles.text} onClick={ () => {navigate( "/Login" ) } }>로그인 하러가기</p>
       </a>
     </div>
   );

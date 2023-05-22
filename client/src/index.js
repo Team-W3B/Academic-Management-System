@@ -1,15 +1,16 @@
 import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+//import './index.css';
 import App from './App';
+
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 //import store from './login_store';
 import store from './store';
 //---
-import './App.scss';
-
+//import './App.scss';
+//import App from "./scss/App.module.scss";
 import { BrowserRouter } from 'react-router-dom';
 
 

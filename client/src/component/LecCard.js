@@ -1,10 +1,10 @@
 /* eslint-disable */
 import React, { useState } from "react";
 import './../App.scss';
-import styles from './../MainPage.module.scss';
+import styles from './../scss/LecCard.module.scss';
 import { Col, Row } from "react-bootstrap";
 import axios from 'axios';
-import info from "../data";
+import info from "./../data/data";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function LecCard() {
@@ -13,8 +13,7 @@ function LecCard() {
     // console.log(lecInfo['mon']);
     
     let getLecInfo = () => {
-        
-        axios.get('url.json')
+        axios.get('/api/home')
             .then((res)=> {
                 let copy = [...res.data]
                 setLecInfo(copy)
@@ -24,6 +23,7 @@ function LecCard() {
             })
     };
     getLecInfo();
+    
     
     
 

@@ -1,0 +1,17 @@
+@import "./App.module.scss";
+
+.Footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    opacity: 100%;
+    height: 12vh;
+    position : relative;
+    transform : translateY(0%);
+    font-family: "SF Pro Display";
+    font-size: 1vw;
+    // font-weight: 700;
+    line-height: normal;
+}

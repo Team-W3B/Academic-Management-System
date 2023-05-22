@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from "react";
-import './../App.scss';
-import styles from './../MainPage.module.scss';
+//import './../App.scss';
+import styles from './../scss/HeaderNav.module.scss';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
