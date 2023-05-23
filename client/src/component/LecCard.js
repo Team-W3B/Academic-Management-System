@@ -22,10 +22,10 @@ function LecCard() {
         console.log(error.data);
       });
   };
-  getLecInfo();
 
   return (
     <>
+      {getLecInfo()}
       <Row className={styles.Wrapper}>
         {["mon", "tue", "wed", "thur", "fri"].map(function (a, i) {
           console.log(a);
