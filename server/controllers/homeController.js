@@ -110,8 +110,25 @@ exports.homeForm = async (req, res) => {
     let sortedLectures = sortedData(lectures);
     res.status(200).json(mappingWithId(sortedLectures));
   } catch (error) {
-    console.log("hello here is home 500");
     console.error(error);
-    res.status(500).send();
+    if (!req.session.userID) res.status(401).send();
+    else res.status(500).send();
+  }
+};
+
+exports.homeDetail = async (req, res) => {
+  try {
+    // 로그인한 학번을 세션에서 가져옴
+    let userID = req.session.userID;
+
+    // DB에서 강의명, 강의 남은 개수, 총 강의 수, 강의 기간, 과제 남은 수, 총 과제 수, 과제 기간
+    let lectures = await model.Student_Lecture.findAll({
+      where: {},
+      attributes: {},
+      include: {},
+    });
+  } catch (error) {
+    if (!req.session.userID) res.status(401).send();
+    else res.status(500).send();
   }
 };

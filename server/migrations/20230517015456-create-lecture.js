@@ -45,6 +45,7 @@ module.exports = {
       },
       professor_id: {
         allowNull: false,
+        primaryKey: true,
         type: Sequelize.INTEGER,
       },
     });
