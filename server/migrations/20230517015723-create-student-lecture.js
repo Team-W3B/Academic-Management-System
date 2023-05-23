@@ -55,6 +55,78 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
     });
+
+    await queryInterface.addConstraint("Student_Lectures", {
+      fields: ["student_id"],
+      type: "foreign key",
+      references: {
+        table: "Students",
+        field: "id",
+      },
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    });
+
+    await queryInterface.addConstraint("Student_Lectures", {
+      name: "FK_StudentLectures",
+      fields: [
+        "lecture_id",
+        "lecture_day_of_week",
+        "lecture_period",
+        "lecture_grade_semester_id",
+      ],
+      type: "foreign key",
+      references: {
+        table: "Lectures",
+        fields: ["id", "day_of_week", "period", "grade_semester_id"],
+      },
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    });
+
+    // await queryInterface.addConstraint("Student_Lectures", {
+    //   fields: ["lecture_id"],
+    //   type: "foreign key",
+    //   references: {
+    //     table: "Lectures",
+    //     field: "id",
+    //   },
+    //   onDelete: "cascade",
+    //   onUpdate: "cascade",
+    // });
+
+    // await queryInterface.addConstraint("Student_Lectures", {
+    //   fields: ["lecture_day_of_week"],
+    //   type: "foreign key",
+    //   references: {
+    //     table: "Lectures",
+    //     field: "day_of_week",
+    //   },
+    //   onDelete: "cascade",
+    //   onUpdate: "cascade",
+    // });
+
+    // await queryInterface.addConstraint("Student_Lectures", {
+    //   fields: ["lecture_period"],
+    //   type: "foreign key",
+    //   references: {
+    //     table: "Lectures",
+    //     field: "period",
+    //   },
+    //   onDelete: "cascade",
+    //   onUpdate: "cascade",
+    // });
+
+    // await queryInterface.addConstraint("Student_Lectures", {
+    //   fields: ["lecture_grade_semester_id"],
+    //   type: "foreign key",
+    //   references: {
+    //     table: "Lectures",
+    //     field: "grade_semester_id",
+    //   },
+    //   onDelete: "cascade",
+    //   onUpdate: "cascade",
+    // });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("Student_Lectures");

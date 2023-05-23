@@ -9,6 +9,35 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Board.belongsTo(models.Board_Type, {
+        foreignKey: "board_type_id",
+        targetKey: "id",
+      });
+
+      Board.belongsTo(models.Professor, {
+        foreignKey: "professor_id",
+        targetKey: "id",
+      });
+
+      Board.belongsTo(models.Lecture, {
+        foreignKey: "lecture_id",
+        targetKey: "id",
+      });
+
+      Board.belongsTo(models.Lecture, {
+        foreignKey: "lecture_day_of_week",
+        targetKey: "day_of_week",
+      });
+
+      Board.belongsTo(models.Lecture, {
+        foreignKey: "lecture_period",
+        targetKey: "period",
+      });
+
+      Board.belongsTo(models.Lecture, {
+        foreignKey: "lecture_grade_semester_id",
+        targetKey: "grade_semester_id",
+      });
     }
   }
   Board.init(
