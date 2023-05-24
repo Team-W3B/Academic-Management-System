@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React from "react";
 import Emoticon from "./../imgs/Emoji.svg";
-//import "./../App.scss";
 import Signup from "./Signup";
 import { useDispatch, useSelector } from "react-redux";
 import { setsignUpName, signUpSlice } from "../store";
@@ -21,7 +20,6 @@ function SignUpComplete() {
     </>
   );
 }
-
 
 /* 이모지 */
 const Emoji = () => {
@@ -53,7 +51,6 @@ const LogInButton = () => {
     <div className={styles.button}>
       <a style={{ textDecorationLine : "none" }} href="/Login">
         <p className={styles.text} onClick={ () => {navigate( "/Login" ) } }>로그인 하러가기</p>
-
       </a>
     </div>
   );

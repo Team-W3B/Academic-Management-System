@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route, Link,useNavigate, } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useNavigate, } from 'react-router-dom';
 import axios from 'axios';
 import {useDispatch} from "react-redux";
 import { loginUser } from '../login_store.js';
@@ -83,7 +83,7 @@ export default function Login() {
       <div className={styles.login_signup}>
         <div className={styles.whiteCard_login}>
           <div className={styles.wrapper}>
-  
+
             <div className={styles.loginTitle}>
               <p style={{ margin: "0px" }} className={styles.signatureFontColor}>광운대학교</p>
               <p>학사정보 관리시스템</p>
