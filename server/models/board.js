@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class board extends Model {
+  class Board extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,28 +9,87 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Board.belongsTo(models.Board_Type, {
+        foreignKey: "board_type_id",
+        targetKey: "id",
+      });
+
+      Board.belongsTo(models.Professor, {
+        foreignKey: "professor_id",
+        targetKey: "id",
+      });
+
+      Board.belongsTo(models.Lecture, {
+        foreignKey: "lecture_id",
+        targetKey: "id",
+      });
+
+      Board.belongsTo(models.Lecture, {
+        foreignKey: "lecture_day_of_week",
+        targetKey: "day_of_week",
+      });
+
+      Board.belongsTo(models.Lecture, {
+        foreignKey: "lecture_period",
+        targetKey: "period",
+      });
+
+      Board.belongsTo(models.Lecture, {
+        foreignKey: "lecture_grade_semester_id",
+        targetKey: "grade_semester_id",
+      });
     }
   }
-  board.init(
+  Board.init(
     {
-      board_id: DataTypes.INTEGER,
-      board_type_id: DataTypes.INTEGER,
-      professor_id: DataTypes.INTEGER,
-      lecture_id: DataTypes.INTEGER,
-      grade_semester_id: DataTypes.INTEGER,
-      title: DataTypes.STRING,
-      write_date: DataTypes.STRING,
-      content: DataTypes.TEXT,
-      file_name: DataTypes.STRING,
-      file_size: DataTypes.INTEGER,
-      file: DataTypes.BLOB,
+      id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      title: { type: DataTypes.STRING, allowNull: false },
+      write_date: { type: DataTypes.DATE, allowNull: false },
+      content: { type: DataTypes.TEXT },
+      file_name: { type: DataTypes.STRING },
+      file_size: { type: DataTypes.INTEGER },
+      file: { type: DataTypes.BLOB },
+      board_type_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
+      professor_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
+      lecture_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
+      lecture_day_of_week: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        primaryKey: true,
+      },
+      lecture_period: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
+      lecture_grade_semester_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
     },
     {
       sequelize,
-      modelName: "board",
+      modelName: "Board",
       timestamps: false,
-      id: false,
     }
   );
-  return board;
+  return Board;
 };

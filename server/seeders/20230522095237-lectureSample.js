@@ -6,7 +6,7 @@ module.exports = {
     await queryInterface.bulkInsert("lectures", [
       {
         grade_semester_id: 1,
-        lecture_id: 1,
+        id: 1,
         day_of_week: "mon",
         period: 3,
         professor_id: 1,
@@ -17,7 +17,7 @@ module.exports = {
       },
       {
         grade_semester_id: 1,
-        lecture_id: 1,
+        id: 1,
         day_of_week: "wed",
         period: 4,
         professor_id: 1,
@@ -28,7 +28,7 @@ module.exports = {
       },
       {
         grade_semester_id: 1,
-        lecture_id: 2,
+        id: 2,
         day_of_week: "tue",
         period: 5,
         professor_id: 2,
@@ -39,7 +39,7 @@ module.exports = {
       },
       {
         grade_semester_id: 1,
-        lecture_id: 2,
+        id: 2,
         day_of_week: "thur",
         period: 6,
         professor_id: 2,

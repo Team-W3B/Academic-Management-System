@@ -8,19 +8,26 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      College.hasMany(models.Department, {
+        foreignKey: "college_id",
+        sourceKey: "id",
+      });
     }
   }
   College.init(
     {
-      college_id: DataTypes.INTEGER,
-      college_name: DataTypes.STRING,
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true,
+      },
+      college_name: { type: DataTypes.STRING, allowNull: false },
     },
     {
       sequelize,
       modelName: "College",
       timestamps: false,
-      id: false,
     }
   );
   return College;
