@@ -83,7 +83,7 @@ export default function Login() {
       <div className={styles.login_signup}>
         <div className={styles.whiteCard_login}>
           <div className={styles.wrapper}>
-  
+
             <div className={styles.loginTitle}>
               <p style={{ margin: "0px" }} className={styles.signatureFontColor}>광운대학교</p>
               <p>학사정보 관리시스템</p>
@@ -148,41 +148,6 @@ export default function Login() {
                 </Row>
               </Container>
             </div>
-
-            {/* 비밀번호를 입력하세요! */}
-            <div className={styles.inputTitle}>
-              <p>비밀번호를 입력하세요</p>
-              <p className={styles.signatureFontColor} style={{ marginLeft: "auto" }} >비밀번호를 잊었나요?</p>
-            </div>
-
-            <div className={styles.inputWrap}>
-              <input
-                className={styles.input}
-                type="password"
-                placeholder="**********"
-                value={logIn_pw}
-                onChange={handlePw}
-              />
-            </div>
-
-            <div className={styles.errorMessageWrap}>
-              {!pwValid && logIn_pw.length > 0 && (
-                <div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
-              )}
-            </div>
-
-            <button onClick={User} disabled={notAllow} className={styles.bottomButton}>
-              로그인
-            </button>
-
-            
-            <Container className={styles.message}>
-              <Row>
-                <Col></Col>
-                <Col xs={5}> KLAS가 처음이에요? </Col>
-                <Col className={styles.signatureFontColor} onClick={ () => {navigate( '/Signup' ) } }>  신입생만 누르셈. </Col>
-              </Row>
-            </Container>
           </div>
         </div>
       </div>

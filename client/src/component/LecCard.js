@@ -4,6 +4,7 @@ import styles from './../scss/LecCard.module.scss';
 import { Col, Row } from "react-bootstrap";
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import info from "../data/data";
 
 function LecCard() {
  
@@ -20,11 +21,8 @@ function LecCard() {
                 console.log(error.data)
             })
     };
-    getLecInfo();
+    getLecInfo()
     
-    
-    
-
     return (
         <>
         
