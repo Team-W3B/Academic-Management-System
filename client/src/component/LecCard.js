@@ -1,47 +1,44 @@
 /* eslint-disable */
 import React, { useState } from "react";
-import "./../App.scss";
-import styles from "./../MainPage.module.scss";
+import styles from './../scss/LecCard.module.scss';
 import { Col, Row } from "react-bootstrap";
-import axios from "axios";
-import info from "../data";
-import "bootstrap/dist/css/bootstrap.min.css";
+import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import info from "../data/data";
 
 function LecCard() {
-  let [lecInfo, setLecInfo] = useState(info);
-  // console.log(lecInfo['mon']);
-
-  let getLecInfo = () => {
-    axios
-      .get("/api/home")
-      .then((res) => {
-        let copy = [...res.data];
-        setLecInfo(copy);
-      })
-      .catch((error) => {
-        console.log(error.data);
-      });
-  };
-
-  return (
-    <>
-      {getLecInfo()}
-      <Row className={styles.Wrapper}>
-        {["mon", "tue", "wed", "thur", "fri"].map(function (a, i) {
-          console.log(a);
-          return (
-            <DayCard
-              key={i}
-              i={i}
-              lecInfo={lecInfo[a]}
-              day={["월요일", "화요일", "수요일", "목요일", "금요일"]}
-              color={["#4DA58B", "#FFB650", "#F55848", "#7F6BAF", "#6577C7"]}
-            />
-          );
-        })}
-      </Row>
-    </>
-  );
+ 
+    let [lecInfo, setLecInfo] = useState(info);
+    // console.log(lecInfo['mon']);
+    
+    let getLecInfo = () => {
+        axios.get('/api/home')
+            .then((res)=> {
+                let copy = [...res.data]
+                setLecInfo(copy)
+            })
+            .catch((error)=>{
+                console.log(error.data)
+            })
+    };
+    getLecInfo()
+    
+    return (
+        <>
+        
+        <Row className={styles.Wrapper} >
+            {
+                ['mon', 'tue', 'wed', 'thur', 'fri'].map(function(a, i) {
+                    console.log(a);
+                    
+                    return (
+                        <DayCard key={i} i={i} lecInfo={lecInfo[a]} day={['월요일', '화요일', '수요일', '목요일', '금요일']} color={['#4DA58B', '#FFB650', '#F55848', '#7F6BAF', '#6577C7' ]} />
+                    )
+                })
+            }
+        </Row>
+        </>
+    )
 }
 
 export default LecCard;

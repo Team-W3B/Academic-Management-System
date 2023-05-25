@@ -1,0 +1,57 @@
+@import "./App.module.scss";
+
+#headerStyle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    opacity: 100%;
+    height: 12vh;
+    // border-bottom: 9px solid #DDDDDD;
+    // box-shadow: 0vw 0.1vw 1vw 0.1vw rgba(50, 50, 50, 0.09);
+}
+#magic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin : 0;
+    padding: 0;
+}
+.img {
+    width: 70%;
+    height: auto;
+    object-fit: cover;
+}
+#nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: "SF Pro Display";
+  font-size: 1.8rem;
+  font-weight: 700;
+  // line-height: 2.4rem;
+  color: #333333;
+  display: flex;
+  letter-spacing: -0.018rem;
+  padding: 0 5rem;
+}
+#faceid {
+    display: flex;
+    flex-direction: row;
+    font-family: "SF Pro Display";
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: normal;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 120, 78, 1) 0%,
+      rgba(251, 52, 124, 1) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
