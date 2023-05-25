@@ -1,0 +1,96 @@
+@import "./App.module.scss";
+
+$black : #000000;
+
+.PwhiteCard {
+    padding: 2vh 1vw;
+    position: relative;
+    top: 12vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 12px;
+    box-shadow: 0.4vw 1.0vw 1vw 0.2vw rgba(0, 0, 0, 0.09);
+    z-index: 2;
+}
+
+.contents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .title {
+    // margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .test1{
+    height: 27px;
+    width: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    margin-bottom: 2vh;
+    font-family: "SF Pro Display";
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 14px;
+    color: rgba(51, 51, 51, 1);
+  }
+  .emphasis0 {
+    font-family: "SF Pro Display";
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 15px;
+    color: rgba(84, 196, 188, 1);
+  }
+  .emphasis1 {
+    font-family: "SF Pro Display";
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 12px;
+    color: rgba(51, 51, 51, 1);
+  }
+  .emphasis3 {
+    font-family: "SF Pro Display";
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 14px;
+    color: rgba(255, 255, 255, 1);
+    letter-spacing: 1px;
+  }
+  .detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .test2{
+    height: 12px;
+    width: 110px;
+    font-family: "SF Pro Display";
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 14px;
+    color: rgba(51, 51, 51, 1);
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    margin-bottom: 1.5vh;
+  }
+  .test3{
+    height: 12px;
+    width: 110px;
+    font-family: "SF Pro Display";
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 14px;
+    color: $black;
+    display: flex;
+    align-items: center;
+  }
