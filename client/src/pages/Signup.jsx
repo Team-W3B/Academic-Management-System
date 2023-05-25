@@ -302,7 +302,6 @@ export default function Signup() {
                       <Dropdown.Item eventKey="인문사회과학대학">인문사회과학대학</Dropdown.Item>
                       <Dropdown.Item eventKey="정책법학대학">정책법학대학</Dropdown.Item>
                       <Dropdown.Item eventKey="경영대학">경영대학</Dropdown.Item> */}
-
                     </SplitButton>
                   </Dropdown>
                 </div>
@@ -343,7 +342,6 @@ export default function Signup() {
               </Col>
               <Col sm={2}>
                 <Form>
-
                   <Form.Group>
                     <Form.Check
                       onChange={() => {
@@ -355,7 +353,6 @@ export default function Signup() {
                       type="radio"
                       id={`reverse-radio-1`}
                     />
-
                     <Form.Check
                       onChange={() => {
                         handlecheck("교수");

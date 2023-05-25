@@ -9,19 +9,37 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Grade_Semester.hasMany(models.Student, {
+        foreignKey: "grade_semester_id",
+        sourceKey: "id",
+      });
+
+      Grade_Semester.hasMany(models.Professor, {
+        foreignKey: "grade_semester_id",
+        sourceKey: "id",
+      });
+
+      Grade_Semester.hasOne(models.Lecture, {
+        foreignKey: "grade_semester_id",
+        sourceKey: "id",
+      });
     }
   }
   Grade_Semester.init(
     {
-      grade_semester_id: DataTypes.INTEGER,
-      grade: DataTypes.INTEGER,
-      semester: DataTypes.INTEGER,
+      id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      grade: { type: DataTypes.INTEGER, allowNull: false },
+      semester: { type: DataTypes.INTEGER, allowNull: false },
     },
     {
       sequelize,
       modelName: "Grade_Semester",
       timestamps: false,
-      id: false,
     }
   );
   return Grade_Semester;

@@ -9,26 +9,48 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Student.belongsTo(models.Department, {
+        foreignKey: "department_id",
+        targetKey: "id",
+      });
+      Student.belongsTo(models.Department, {
+        foreignKey: "department_college_id",
+        targetKey: "college_id",
+      });
+      Student.belongsTo(models.Grade_Semester, {
+        foreignKey: "grade_semester_id",
+        targetKey: "id",
+      });
+
+      Student.hasMany(models.Student_Lecture, {
+        foreignKey: "student_id",
+        sourceKey: "id",
+      });
     }
   }
   Student.init(
     {
-      student_id: { type: DataTypes.INTEGER, primaryKey: true },
-      member_type: DataTypes.STRING,
-      college_id: DataTypes.INTEGER,
-      department_id: DataTypes.INTEGER,
-      grade_semester_id: DataTypes.INTEGER,
-      passwd: DataTypes.STRING,
-      name: DataTypes.STRING,
-      birth: DataTypes.DATE,
-      tel: DataTypes.STRING,
-      email: DataTypes.STRING,
+      id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: false,
+        unique: true,
+        primaryKey: true,
+      },
+      passwd: { type: DataTypes.STRING, allowNull: false },
+      member_type: { type: DataTypes.STRING, allowNull: false },
+      name: { type: DataTypes.STRING, allowNull: false },
+      birth: { type: DataTypes.DATE, allowNull: false },
+      tel: { type: DataTypes.STRING, allowNull: false },
+      email: { type: DataTypes.STRING, allowNull: false },
+      department_id: { type: DataTypes.INTEGER, allowNull: false },
+      department_college_id: { type: DataTypes.INTEGER, allowNull: false },
+      grade_semester_id: { type: DataTypes.INTEGER, allowNull: false },
     },
     {
       sequelize,
       modelName: "Student",
       timestamps: false,
-      id: false,
     }
   );
   return Student;

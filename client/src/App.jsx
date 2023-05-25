@@ -13,13 +13,13 @@ function App() {
     <BrowserRouter>
     <div className="App" >
       <Routes>
-      <Route exact path="/" element={<Login />} />
-			<Route exact path="/Signup" element={<Signup/>}/>
-			<Route exact path="/Login" element={<Login/>}/>
-      <Route path="/SignUpComplete" element={ <SignUpComplete /> } />
-      <Route path="/MainPage" element={ <MainPage /> } />
-      <Route path="/LecPage" element={ <LecPage /> } />
-      <Route path="/LecPage_notice" element={ <LecPage_notice /> } />
+        <Route exact path="/" element={<Login />} />
+        <Route exact path="/Signup" element={<Signup/>}/>
+        <Route exact path="/Login" element={<Login/>}/>
+        <Route path="/SignUpComplete" element={ <SignUpComplete /> } />
+        <Route path="/MainPage" element={ <MainPage /> } />
+        <Route path="/LecPage" element={ <LecPage /> } />
+        <Route path="/LecPage_notice" element={ <LecPage_notice /> } />
       </Routes>
     </div>
     

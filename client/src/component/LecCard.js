@@ -41,47 +41,44 @@ function LecCard() {
     )
 }
 
-export default LecCard
+export default LecCard;
 
 let DayCard = (props) => {
+  let lecInfo = props.lecInfo;
+  let color = props.color;
+  let day = props.day[props.i];
 
-    let lecInfo = props.lecInfo;
-    let color = props.color;
-    let day = props.day[props.i];
-
-    return (
-        <>
-        <Col >
-            <div className={styles.whiteCard}>
-                <h2 className={styles.day} style={{ color: color[props.i] }} > {day} </h2>
-                {
-                    lecInfo.map(function(a, i) {
-                        return (
-                            <Lec key={i} lecInfo={a} />
-                        );
-                    })
-                }
-            </div>
-        </Col>
-        </>
-    )
-}
+  return (
+    <>
+      <Col>
+        <div className={styles.whiteCard}>
+          <h2 className={styles.day} style={{ color: color[props.i] }}>
+            {" "}
+            {day}{" "}
+          </h2>
+          {lecInfo.map(function (a, i) {
+            return <Lec key={i} lecInfo={a} />;
+          })}
+        </div>
+      </Col>
+    </>
+  );
+};
 
 let Lec = (props) => {
+  let lecInfo = props.lecInfo;
+  // console.log(lecInfo.home_lec_class);
 
-    let lecInfo = props.lecInfo;
-    // console.log(lecInfo.home_lec_class);
-
-    return (
-        <>
-        <div className={styles.Lec}>
-            <p className={styles.lec_name}> {lecInfo.home_lec} </p>
-            <div className={styles.lec_detail}>
-                <p className={styles.classroom}> {lecInfo.home_lec_class} </p>
-                <p className={styles.prof}> {lecInfo.home_prof} 교수님 </p>
-                <p className={styles.duration}> {lecInfo.home_lectime}교시 </p>
-            </div>
+  return (
+    <>
+      <div className={styles.Lec}>
+        <p className={styles.lec_name}> {lecInfo.home_lec} </p>
+        <div className={styles.lec_detail}>
+          <p className={styles.classroom}> {lecInfo.home_lec_class} </p>
+          <p className={styles.prof}> {lecInfo.home_prof} 교수님 </p>
+          <p className={styles.duration}> {lecInfo.home_lectime}교시 </p>
         </div>
-        </>
-    );
+      </div>
+    </>
+  );
 };

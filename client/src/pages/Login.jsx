@@ -12,7 +12,7 @@ import Col from 'react-bootstrap/Col';
 // const User = {/*
 //     id: '2017202060',
 //   pw: 'test2323@'*/
-// }
+//
 
 export default function Login() {
   let navigate = useNavigate();
