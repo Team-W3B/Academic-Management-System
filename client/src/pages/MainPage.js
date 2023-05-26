@@ -1,10 +1,10 @@
 /* eslint-disable */
 import React from "react";
 import hello from "./../imgs/hello.svg";
-import "./../App.scss";
-import styles from "./../MainPage.module.scss";
 import HeaderNav from "./../component/HeaderNav";
 import LecCard from "./../component/LecCard";
+import Footer from "../component/Footer";
+
 
 function MainPage() {
   return (
@@ -26,7 +26,7 @@ function MainPage() {
               height: "auto",
               zIndex: 2,
             }}
-            className={styles.center}
+            // className={styles.center}
           />
         </div>
         <div>
@@ -38,24 +38,8 @@ function MainPage() {
   );
 }
 
-const WhiteCard = () => {
+/* const WhiteCard = () => {
   return <div className={styles.whiteCard} />;
-};
-
-const Footer = () => {
-  return (
-    <>
-      <div className={styles.Footer}>
-        <p>
-          서울시 노원구 광운로 20 (월계동 447-1) 광운대학교(01897) 대표전화
-          02.940.5114
-        </p>
-        <p style={{ fontWeight: "700" }}>
-          COPYRIGHTⓒTEAM W3B. ALL RIGHTS RESERVED
-        </p>
-      </div>
-    </>
-  );
-};
+}; */
 
 export default MainPage;
