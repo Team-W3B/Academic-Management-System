@@ -3,7 +3,7 @@ let info = {
     mon : [
         {
             id : 0,
-            home_lec : '머신러닝',
+            home_lec : '과목',
             home_lec_class : '새빛관 203호',
             home_prof : '박철수',
             home_lectime : 3,

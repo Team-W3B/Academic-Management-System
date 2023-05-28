@@ -10,7 +10,7 @@ import LecPage from "./pages/LecPage";
 import LecPage_notice from "./pages/LecPage_notice";
 function App() {
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
     <div className="App" >
       <Routes>
         <Route exact path="/" element={<Login />} />
@@ -22,8 +22,7 @@ function App() {
         <Route path="/LecPage_notice" element={ <LecPage_notice /> } />
       </Routes>
     </div>
-    
-    </BrowserRouter>
+    // </BrowserRouter>
   );
 }
 
