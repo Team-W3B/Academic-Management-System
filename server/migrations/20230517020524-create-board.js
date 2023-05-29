@@ -17,6 +17,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      deadline: {
+        type: Sequelize.DATE,
+      },
       content: {
         type: Sequelize.TEXT,
       },
@@ -30,11 +33,6 @@ module.exports = {
         type: Sequelize.BLOB,
       },
       board_type_id: {
-        allowNull: false,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      professor_id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.INTEGER,
@@ -59,6 +57,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
+      sl_lecture_professor_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
     });
 
     await queryInterface.addConstraint("Boards", {
@@ -73,17 +75,6 @@ module.exports = {
     });
 
     await queryInterface.addConstraint("Boards", {
-      fields: ["professor_id"],
-      type: "foreign key",
-      references: {
-        table: "Professors",
-        field: "id",
-      },
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    });
-
-    await queryInterface.addConstraint("Boards", {
       name: "FK_Boards",
       fields: [
         "sl_student_id",
@@ -91,6 +82,7 @@ module.exports = {
         "sl_lecture_day_of_week",
         "sl_lecture_period",
         "sl_lecture_grade_semester_id",
+        "sl_lecture_professor_id",
       ],
       type: "foreign key",
       references: {
@@ -101,6 +93,7 @@ module.exports = {
           "lecture_day_of_week",
           "lecture_period",
           "lecture_grade_semester_id",
+          "lecture_professor_id",
         ],
       },
       onDelete: "cascade",

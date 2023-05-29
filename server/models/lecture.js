@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
       },
       day_of_week: {
@@ -78,6 +78,7 @@ module.exports = (sequelize, DataTypes) => {
       professor_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        autoIncrement: false,
         primaryKey: true,
       },
     },

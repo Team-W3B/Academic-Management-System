@@ -39,11 +39,6 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: "professor_id",
       });
 
-      Student_Lecture.hasOne(models.Lecture, {
-        foreignKey: "student_lecture_student_id",
-        sourceKey: "student_id",
-      });
-
       Student_Lecture.hasMany(models.Board, {
         foreignKey: "sl_student_id",
         sourceKey: "student_id",
@@ -67,6 +62,36 @@ module.exports = (sequelize, DataTypes) => {
       Student_Lecture.hasMany(models.Board, {
         foreignKey: "sl_lecture_grade_semester_id",
         sourceKey: "lecture_grade_semester_id",
+      });
+
+      Student_Lecture.hasOne(models.Attendance, {
+        foreignKey: "student_lecture_student_id",
+        sourceKey: "student_id",
+      });
+
+      Student_Lecture.hasOne(models.Attendance, {
+        foreignKey: "student_lecture_lecture_id",
+        sourceKey: "lecture_id",
+      });
+
+      Student_Lecture.hasOne(models.Attendance, {
+        foreignKey: "student_lecture_lecture_day_of_week",
+        sourceKey: "lecture_day_of_week",
+      });
+
+      Student_Lecture.hasOne(models.Attendance, {
+        foreignKey: "student_lecture_lecture_period",
+        sourceKey: "lecture_period",
+      });
+
+      Student_Lecture.hasOne(models.Attendance, {
+        foreignKey: "student_lecture_lecture_grade_semester_id",
+        sourceKey: "lecture_grade_semester_id",
+      });
+
+      Student_Lecture.hasOne(models.Attendance, {
+        foreignKey: "student_lecture_lecture_professor_id",
+        sourceKey: "lecture_professor_id",
       });
     }
   }

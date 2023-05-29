@@ -14,11 +14,6 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: "id",
       });
 
-      Board.belongsTo(models.Professor, {
-        foreignKey: "professor_id",
-        targetKey: "id",
-      });
-
       Board.belongsTo(models.Student_Lecture, {
         foreignKey: "sl_student_id",
         targetKey: "student_id",
@@ -43,6 +38,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "sl_lecture_grade_semester_id",
         targetKey: "lecture_grade_semester_id",
       });
+
+      Board.belongsTo(models.Student_Lecture, {
+        foreignKey: "sl_lecture_professor_id",
+        targetKey: "lecture_professor_id",
+      });
     }
   }
   Board.init(
@@ -55,16 +55,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       title: { type: DataTypes.STRING, allowNull: false },
       write_date: { type: DataTypes.DATE, allowNull: false },
+      deadline: { type: DataTypes.DATE },
       content: { type: DataTypes.TEXT },
       file_name: { type: DataTypes.STRING },
       file_size: { type: DataTypes.INTEGER },
       file: { type: DataTypes.BLOB },
       board_type_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-      },
-      professor_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
@@ -86,6 +82,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       sl_lecture_grade_semester_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      sl_lecture_professor_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
