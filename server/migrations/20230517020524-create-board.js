@@ -5,8 +5,8 @@ module.exports = {
     await queryInterface.createTable("Boards", {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
+        autoIncrement: true,
         type: Sequelize.INTEGER,
       },
       title: {
@@ -15,6 +15,9 @@ module.exports = {
       },
       write_date: {
         allowNull: false,
+        type: Sequelize.DATE,
+      },
+      deadline: {
         type: Sequelize.DATE,
       },
       content: {
@@ -34,29 +37,28 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      professor_id: {
+      sl_student_id: {
         allowNull: false,
-        primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      lecture_id: {
+      sl_lecture_id: {
         allowNull: false,
-        primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      lecture_day_of_week: {
+      sl_lecture_day_of_week: {
         allowNull: false,
-        primaryKey: true,
         type: Sequelize.STRING,
       },
-      lecture_period: {
+      sl_lecture_period: {
         allowNull: false,
-        primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      lecture_grade_semester_id: {
+      sl_lecture_grade_semester_id: {
         allowNull: false,
-        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      sl_lecture_professor_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
     });
@@ -73,28 +75,26 @@ module.exports = {
     });
 
     await queryInterface.addConstraint("Boards", {
-      fields: ["professor_id"],
-      type: "foreign key",
-      references: {
-        table: "Professors",
-        field: "id",
-      },
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    });
-
-    await queryInterface.addConstraint("Boards", {
       name: "FK_Boards",
       fields: [
-        "lecture_id",
-        "lecture_day_of_week",
-        "lecture_period",
-        "lecture_grade_semester_id",
+        "sl_student_id",
+        "sl_lecture_id",
+        "sl_lecture_day_of_week",
+        "sl_lecture_period",
+        "sl_lecture_grade_semester_id",
+        "sl_lecture_professor_id",
       ],
       type: "foreign key",
       references: {
-        table: "Lectures",
-        fields: ["id", "day_of_week", "period", "grade_semester_id"],
+        table: "Student_Lectures",
+        fields: [
+          "student_id",
+          "lecture_id",
+          "lecture_day_of_week",
+          "lecture_period",
+          "lecture_grade_semester_id",
+          "lecture_professor_id",
+        ],
       },
       onDelete: "cascade",
       onUpdate: "cascade",

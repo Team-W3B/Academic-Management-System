@@ -14,29 +14,34 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: "id",
       });
 
-      Board.belongsTo(models.Professor, {
-        foreignKey: "professor_id",
-        targetKey: "id",
+      Board.belongsTo(models.Student_Lecture, {
+        foreignKey: "sl_student_id",
+        targetKey: "student_id",
       });
 
-      Board.belongsTo(models.Lecture, {
-        foreignKey: "lecture_id",
-        targetKey: "id",
+      Board.belongsTo(models.Student_Lecture, {
+        foreignKey: "sl_lecture_id",
+        targetKey: "lecture_id",
       });
 
-      Board.belongsTo(models.Lecture, {
-        foreignKey: "lecture_day_of_week",
-        targetKey: "day_of_week",
+      Board.belongsTo(models.Student_Lecture, {
+        foreignKey: "sl_lecture_day_of_week",
+        targetKey: "lecture_day_of_week",
       });
 
-      Board.belongsTo(models.Lecture, {
-        foreignKey: "lecture_period",
-        targetKey: "period",
+      Board.belongsTo(models.Student_Lecture, {
+        foreignKey: "sl_lecture_period",
+        targetKey: "lecture_period",
       });
 
-      Board.belongsTo(models.Lecture, {
-        foreignKey: "lecture_grade_semester_id",
-        targetKey: "grade_semester_id",
+      Board.belongsTo(models.Student_Lecture, {
+        foreignKey: "sl_lecture_grade_semester_id",
+        targetKey: "lecture_grade_semester_id",
+      });
+
+      Board.belongsTo(models.Student_Lecture, {
+        foreignKey: "sl_lecture_professor_id",
+        targetKey: "lecture_professor_id",
       });
     }
   }
@@ -50,6 +55,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       title: { type: DataTypes.STRING, allowNull: false },
       write_date: { type: DataTypes.DATE, allowNull: false },
+      deadline: { type: DataTypes.DATE },
       content: { type: DataTypes.TEXT },
       file_name: { type: DataTypes.STRING },
       file_size: { type: DataTypes.INTEGER },
@@ -59,30 +65,29 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         primaryKey: true,
       },
-      professor_id: {
+      sl_student_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true,
       },
-      lecture_id: {
+      sl_lecture_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true,
       },
-      lecture_day_of_week: {
+      sl_lecture_day_of_week: {
         type: DataTypes.STRING,
         allowNull: false,
-        primaryKey: true,
       },
-      lecture_period: {
+      sl_lecture_period: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true,
       },
-      lecture_grade_semester_id: {
+      sl_lecture_grade_semester_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true,
+      },
+      sl_lecture_professor_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
       },
     },
     {

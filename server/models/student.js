@@ -34,7 +34,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: false,
-        unique: true,
         primaryKey: true,
       },
       passwd: { type: DataTypes.STRING, allowNull: false },
