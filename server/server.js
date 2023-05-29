@@ -24,7 +24,12 @@ const secret = crypto.randomBytes(64).toString("hex");
 //미들웨어
 app.use(logger("dev"));
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000", // 클라이언트쪽 URL
+    credentials: true,
+  })
+);
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "server")));
