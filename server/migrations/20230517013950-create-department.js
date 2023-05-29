@@ -13,23 +13,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      college_id: {
-        allowNull: false,
-        autoIncrement: false,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-    });
-
-    await queryInterface.addConstraint("Departments", {
-      fields: ["college_id"],
-      type: "foreign key",
-      references: {
-        table: "Colleges",
-        field: "id",
-      },
-      onDelete: "cascade",
-      onUpdate: "cascade",
     });
   },
   async down(queryInterface, Sequelize) {

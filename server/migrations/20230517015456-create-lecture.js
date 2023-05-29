@@ -9,18 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      day_of_week: {
-        allowNull: false,
-        autoIncrement: false,
-        primaryKey: true,
-        type: Sequelize.STRING,
-      },
-      period: {
-        allowNull: false,
-        autoIncrement: false,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
       lecture_name: {
         allowNull: false,
         type: Sequelize.STRING,
@@ -37,29 +25,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      grade_semester_id: {
+      grade_semester: {
         allowNull: false,
         autoIncrement: false,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       professor_id: {
         allowNull: false,
         autoIncrement: false,
-        primaryKey: true,
         type: Sequelize.INTEGER,
       },
-    });
-
-    await queryInterface.addConstraint("Lectures", {
-      fields: ["grade_semester_id"],
-      type: "foreign key",
-      references: {
-        table: "Grade_Semesters",
-        field: "id",
-      },
-      onDelete: "cascade",
-      onUpdate: "cascade",
     });
 
     await queryInterface.addConstraint("Lectures", {

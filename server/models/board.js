@@ -23,26 +23,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "sl_lecture_id",
         targetKey: "lecture_id",
       });
-
-      Board.belongsTo(models.Student_Lecture, {
-        foreignKey: "sl_lecture_day_of_week",
-        targetKey: "lecture_day_of_week",
-      });
-
-      Board.belongsTo(models.Student_Lecture, {
-        foreignKey: "sl_lecture_period",
-        targetKey: "lecture_period",
-      });
-
-      Board.belongsTo(models.Student_Lecture, {
-        foreignKey: "sl_lecture_grade_semester_id",
-        targetKey: "lecture_grade_semester_id",
-      });
-
-      Board.belongsTo(models.Student_Lecture, {
-        foreignKey: "sl_lecture_professor_id",
-        targetKey: "lecture_professor_id",
-      });
     }
   }
   Board.init(
@@ -70,22 +50,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       sl_lecture_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      sl_lecture_day_of_week: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      sl_lecture_period: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      sl_lecture_grade_semester_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      sl_lecture_professor_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
