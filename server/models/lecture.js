@@ -37,8 +37,8 @@ module.exports = (sequelize, DataTypes) => {
       lecture_room: { type: DataTypes.STRING, allowNull: false },
       is_major: { type: DataTypes.BOOLEAN, allowNull: false },
       credit_point: { type: DataTypes.INTEGER, allowNull: false },
-      grade_semester_id: {
-        type: DataTypes.INTEGER,
+      grade_semester: {
+        type: DataTypes.STRING,
         allowNull: false,
         autoIncrement: false,
       },
