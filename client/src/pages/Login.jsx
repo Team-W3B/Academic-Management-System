@@ -30,7 +30,7 @@ export default function Login() {
         if (res.status === 200) {
           console.log("로그인");
           console.log(res.data.userInfo);
-          // dispatch(changeUser(res.data.userInfo));
+          dispatch(changeUser(res.data.userInfo));
           alert("로그인에 성공하였습니다.");
           navigate("/MainPage");
         }
