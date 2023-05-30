@@ -63,6 +63,7 @@ export default HeaderNav
 let ProfileName = () => {
 
     let user = useSelector( (state) => state.user )
+    // console.log('user is ' + user);
 
     return (
         <div id={styles.faceid}>

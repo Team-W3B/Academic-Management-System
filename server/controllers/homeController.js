@@ -57,6 +57,7 @@ exports.homeForm = async (req, res) => {
   try {
     // 로그인한 학번을 세션에서 가져옴
     let userId = req.session.userID;
+    console.log(req.session.cookie);
     //let userId = 2018202043;
     console.log(userId);
 
