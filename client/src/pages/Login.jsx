@@ -91,7 +91,7 @@ export default function Login() {
             </div>
   
             <div className={styles.loginContent}>
-  
+
               {/* 학번을 입력하세요! */}
               <div className={styles.inputTitle}>학번을 입력하세요</div>
               <div className={styles.inputWrap}>
