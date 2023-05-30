@@ -4,8 +4,9 @@ const { Sequelize } = require("sequelize");
 exports.homeForm = async (req, res) => {
   try {
     // 로그인한 학번을 세션에서 가져옴
-    let userId = req.session.userID;
-    //let userId = 2018202043;
+    // let userId = req.session.userID;
+    let userId = 2018202043;
+    console.log(userId);
 
     // ID 값을 사용하여 학생이 수강하고 있는 모든 강의 정보를 조회
     let lectures = await model.Student_Lecture.findAll({
