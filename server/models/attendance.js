@@ -24,13 +24,13 @@ module.exports = (sequelize, DataTypes) => {
     {
       week: { type: DataTypes.INTEGER, allowNull: false },
       round: { type: DataTypes.INTEGER, allowNull: false },
-      student_lecture_student_id: {
+      sl_student_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
       },
-      student_lecture_lecture_id: {
+      sl_lecture_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: false,

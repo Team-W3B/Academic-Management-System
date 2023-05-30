@@ -71,12 +71,6 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: false,
         primaryKey: true,
       },
-      lecture_professor_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        autoIncrement: false,
-        primaryKey: true,
-      },
     },
     {
       sequelize,
