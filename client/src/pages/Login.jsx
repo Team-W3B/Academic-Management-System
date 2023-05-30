@@ -24,7 +24,7 @@ export default function Login() {
     };
 
     axios
-      .post("/api/login", user)
+      .post("/api/login", user, {withCredentials : true})
       .then((res) => {
         console.log(res.status);
         if (res.status === 200) {
