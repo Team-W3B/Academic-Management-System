@@ -23,6 +23,36 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      student_lecture_lecture_id: {
+        allowNull: false,
+        autoIncrement: false,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      student_lecture_lecture_day_of_week: {
+        allowNull: false,
+        autoIncrement: false,
+        primaryKey: true,
+        type: Sequelize.STRING,
+      },
+      student_lecture_lecture_period: {
+        allowNull: false,
+        autoIncrement: false,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      student_lecture_lecture_grade_semester_id: {
+        allowNull: false,
+        autoIncrement: false,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      student_lecture_lecture_professor_id: {
+        allowNull: false,
+        autoIncrement: false,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
     });
 
     await queryInterface.addConstraint("Attendances", {

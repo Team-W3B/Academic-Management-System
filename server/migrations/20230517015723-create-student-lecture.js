@@ -41,6 +41,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      lecture_professor_id: {
+        allowNull: false,
+        autoIncrement: false,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
     });
 
     await queryInterface.addConstraint("Student_Lectures", {
