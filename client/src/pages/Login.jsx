@@ -29,7 +29,9 @@ export default function Login() {
         console.log(res.status);
         if (res.status === 200) {
           console.log("로그인");
-          console.log(res.data.userInfo);
+          console.log(res);
+          console.log(res.data);
+          console.log(res.config);
           dispatch(changeUser(res.data.userInfo));
           alert("로그인에 성공하였습니다.");
           navigate("/MainPage");
