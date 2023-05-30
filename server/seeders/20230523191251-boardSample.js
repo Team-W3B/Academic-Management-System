@@ -14,10 +14,6 @@ module.exports = {
         board_type_id: 1,
         sl_student_id: 2018202043,
         sl_lecture_id: 1,
-        sl_lecture_day_of_week: "mon",
-        sl_lecture_period: 3,
-        sl_lecture_grade_semester_id: 1,
-        sl_lecture_professor_id: 1,
       },
       {
         id: 2,
@@ -28,10 +24,6 @@ module.exports = {
         board_type_id: 1,
         sl_student_id: 2018202043,
         sl_lecture_id: 1,
-        sl_lecture_day_of_week: "mon",
-        sl_lecture_period: 3,
-        sl_lecture_grade_semester_id: 1,
-        sl_lecture_professor_id: 1,
       },
       //자료실 게시판
       {
@@ -43,10 +35,6 @@ module.exports = {
         board_type_id: 2,
         sl_student_id: 2018202043,
         sl_lecture_id: 1,
-        sl_lecture_day_of_week: "mon",
-        sl_lecture_period: 3,
-        sl_lecture_grade_semester_id: 1,
-        sl_lecture_professor_id: 1,
       },
       {
         id: 4,
@@ -56,10 +44,6 @@ module.exports = {
         board_type_id: 2,
         sl_student_id: 2018202043,
         sl_lecture_id: 1,
-        sl_lecture_day_of_week: "mon",
-        sl_lecture_period: 3,
-        sl_lecture_grade_semester_id: 1,
-        sl_lecture_professor_id: 1,
       },
       //강의 게시판
       {
@@ -70,10 +54,6 @@ module.exports = {
         board_type_id: 3,
         sl_student_id: 2018202043,
         sl_lecture_id: 1,
-        sl_lecture_day_of_week: "mon",
-        sl_lecture_period: 3,
-        sl_lecture_grade_semester_id: 1,
-        sl_lecture_professor_id: 1,
       },
       {
         id: 6,
@@ -83,10 +63,6 @@ module.exports = {
         board_type_id: 3,
         sl_student_id: 2018202043,
         sl_lecture_id: 1,
-        sl_lecture_day_of_week: "mon",
-        sl_lecture_period: 3,
-        sl_lecture_grade_semester_id: 1,
-        sl_lecture_professor_id: 1,
       },
       //과제 게시판
       {
@@ -98,10 +74,6 @@ module.exports = {
         board_type_id: 4,
         sl_student_id: 2018202043,
         sl_lecture_id: 1,
-        sl_lecture_day_of_week: "mon",
-        sl_lecture_period: 3,
-        sl_lecture_grade_semester_id: 1,
-        sl_lecture_professor_id: 1,
       },
       {
         id: 8,
@@ -112,10 +84,6 @@ module.exports = {
         board_type_id: 4,
         sl_student_id: 2018202043,
         sl_lecture_id: 1,
-        sl_lecture_day_of_week: "mon",
-        sl_lecture_period: 3,
-        sl_lecture_grade_semester_id: 1,
-        sl_lecture_professor_id: 1,
       },
       {
         id: 9,
@@ -126,10 +94,6 @@ module.exports = {
         board_type_id: 4,
         sl_student_id: 2018202043,
         sl_lecture_id: 1,
-        sl_lecture_day_of_week: "mon",
-        sl_lecture_period: 3,
-        sl_lecture_grade_semester_id: 1,
-        sl_lecture_professor_id: 1,
       },
     ]);
   },

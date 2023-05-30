@@ -45,22 +45,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      sl_lecture_day_of_week: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      sl_lecture_period: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      sl_lecture_grade_semester_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      sl_lecture_professor_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
     });
 
     await queryInterface.addConstraint("Boards", {
@@ -76,25 +60,11 @@ module.exports = {
 
     await queryInterface.addConstraint("Boards", {
       name: "FK_Boards",
-      fields: [
-        "sl_student_id",
-        "sl_lecture_id",
-        "sl_lecture_day_of_week",
-        "sl_lecture_period",
-        "sl_lecture_grade_semester_id",
-        "sl_lecture_professor_id",
-      ],
+      fields: ["sl_student_id", "sl_lecture_id"],
       type: "foreign key",
       references: {
         table: "Student_Lectures",
-        fields: [
-          "student_id",
-          "lecture_id",
-          "lecture_day_of_week",
-          "lecture_period",
-          "lecture_grade_semester_id",
-          "lecture_professor_id",
-        ],
+        fields: ["student_id", "lecture_id"],
       },
       onDelete: "cascade",
       onUpdate: "cascade",

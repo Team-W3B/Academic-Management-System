@@ -11,37 +11,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      student_lecture_student_id: {
+      sl_student_id: {
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      student_lecture_lecture_id: {
-        allowNull: false,
-        autoIncrement: false,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      student_lecture_lecture_day_of_week: {
-        allowNull: false,
-        autoIncrement: false,
-        primaryKey: true,
-        type: Sequelize.STRING,
-      },
-      student_lecture_lecture_period: {
-        allowNull: false,
-        autoIncrement: false,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      student_lecture_lecture_grade_semester_id: {
-        allowNull: false,
-        autoIncrement: false,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      student_lecture_lecture_professor_id: {
+      sl_lecture_id: {
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
@@ -51,25 +27,11 @@ module.exports = {
 
     await queryInterface.addConstraint("Attendances", {
       name: "FK_Attendances",
-      fields: [
-        "student_lecture_student_id",
-        "student_lecture_lecture_id",
-        "student_lecture_lecture_day_of_week",
-        "student_lecture_lecture_period",
-        "student_lecture_lecture_grade_semester_id",
-        "student_lecture_lecture_professor_id",
-      ],
+      fields: ["sl_student_id", "sl_lecture_id"],
       type: "foreign key",
       references: {
         table: "Student_Lectures",
-        fields: [
-          "student_id",
-          "lecture_id",
-          "lecture_day_of_week",
-          "lecture_period",
-          "lecture_grade_semester_id",
-          "lecture_professor_id",
-        ],
+        fields: ["student_id", "lecture_id"],
       },
       onDelete: "cascade",
       onUpdate: "cascade",
