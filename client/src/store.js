@@ -4,17 +4,17 @@ let user = createSlice({
     name : "user",
     initialState : "임태헌",
     reducers : {
-        changUser(state, action) {
+        changeUser(state, action) {
             return action.payload
         }
     }
 });
-export let { changUser } = user.actions
+export let { changeUser } = user.actions
 
 export let signUpSlice =createSlice({
-    name:"signUp",
-    initialState:{name:""},
-    reducers:{
+    name : "signUp",
+    initialState : {name:""},
+    reducers : {
         setsignUpName: (state, action)=>{
             state.name = action.payload
         }

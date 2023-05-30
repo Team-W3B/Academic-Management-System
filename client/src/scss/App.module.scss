@@ -1,8 +1,49 @@
+*{margin:0;padding:0;box-sizing:border-box;font:inherit;color:inherit;flex-shrink:0;}
+
 html {
   font-size: 50%;
 }
 .App {
   text-align: center;
+}
+@mixin main-color {
+  background: linear-gradient(
+  135deg,
+  rgba(255, 120, 78, 1) 0%,
+  rgba(251, 52, 124, 1) 100%
+  );
+}
+
+@mixin sf-pro-display-16-medium {
+  font-family: "SF Pro Display";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+}
+@mixin sf-pro-display-24-medium {
+  font-family: "SF Pro Display";
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+}
+@mixin sf-pro-display-32-bold {
+  font-family: "SF Pro Display";
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 38px;
+}
+@mixin sf-pro-display-64-bold {
+  font-family: "SF Pro Display";
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 38px;
+}
+@mixin short-button {
+  border: none;
+  border-radius: 16px;
+  padding: 12px 24px;
+  display: flex;
+  align-items: flex-start;
 }
 
 // .image { width: 12rem; } //120px

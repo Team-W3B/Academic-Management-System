@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, Link, useNavigate, } from 'react-router-dom';
 import axios from 'axios';
 import {useDispatch} from "react-redux";
-import { loginUser } from '../login_store.js';
-import MainPage from './MainPage.js';
+import { changeUser } from './../store'
 import styles from "./../scss/Login.module.scss";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useSelector } from "react-redux";
 
 // const User = {/*
 //     id: '2017202060',
@@ -16,7 +16,7 @@ import Col from 'react-bootstrap/Col';
 
 export default function Login() {
   let navigate = useNavigate();
-  const dispatch = useDispatch();
+  let dispatch = useDispatch();
   const User = (e) => {
     let user = {
       logIn_id,
@@ -24,12 +24,15 @@ export default function Login() {
     };
 
     axios
-      .post("/api/login", user)
+      .post("/api/login", user, {withCredentials : true})
       .then((res) => {
         console.log(res.status);
         if (res.status === 200) {
           console.log("로그인");
-          dispatch(loginUser(res.data.userInfo));
+          console.log(res);
+          console.log(res.data);
+          console.log(res.config);
+          dispatch(changeUser(res.data.userInfo));
           alert("로그인에 성공하였습니다.");
           navigate("/MainPage");
         }
@@ -90,7 +93,7 @@ export default function Login() {
             </div>
   
             <div className={styles.loginContent}>
-  
+
               {/* 학번을 입력하세요! */}
               <div className={styles.inputTitle}>학번을 입력하세요</div>
               <div className={styles.inputWrap}>

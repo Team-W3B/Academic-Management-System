@@ -24,8 +24,8 @@ let User = createSlice({
     }
 })
 export default configureStore({
-    reducer:{
-        User:User.reducer
+    reducer : {
+        User : User.reducer
     }
 });
 

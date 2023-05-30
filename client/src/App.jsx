@@ -8,9 +8,10 @@ import MainPage from "./pages/MainPage";
 //---
 import LecPage from "./pages/LecPage";
 import LecPage_notice from "./pages/LecPage_notice";
+import PlanSearch from "./pages/PlanSearch";
 function App() {
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
     <div className="App" >
       <Routes>
         <Route exact path="/" element={<Login />} />
@@ -20,10 +21,10 @@ function App() {
         <Route path="/MainPage" element={ <MainPage /> } />
         <Route path="/LecPage" element={ <LecPage /> } />
         <Route path="/LecPage_notice" element={ <LecPage_notice /> } />
+        <Route path="/PlanSearch" element={ <PlanSearch /> } />
       </Routes>
     </div>
-    
-    </BrowserRouter>
+    // </BrowserRouter>
   );
 }
 

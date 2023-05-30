@@ -1,0 +1,111 @@
+@import "./App.module.scss";
+$input_BG : rgba(249, 249, 249, 0.8);
+
+input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+select {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+form {
+    display : flex;
+    flex-direction: column;
+    gap : 12px;
+}
+.hbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.lecName {
+    /* 강의계획서 조회 */
+    // position: absolute;
+    width: 639px;
+    height: 113px;
+    // left: 482px;
+    // top: 0px;
+
+    /* font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 1000;
+    font-size: 72px; */
+    // line-height: 117.2%;
+
+    @include sf-pro-display-64-bold;
+    /* identical to box height, or 113px */
+    padding-left: 96px;
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.cardWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    padding-top: 50px;
+
+    /* Auto layout */
+    display: flex;
+    padding: 17px 32px;
+    gap: 8px;
+
+    // position: absolute;
+    width: 720px;
+    height: 360px;
+    /* left: 469px;
+    top: 226px; */
+
+    /* White */
+    background: #FFFFFF;
+    box-shadow: 4px 12px 40px 6px rgba(0, 0, 0, 0.09);
+    border-radius: 48px;
+}
+
+.input {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 16px;
+
+    width: 256px;
+    height: 32px;
+
+    /* ios:BG */
+    background: $input_BG;
+    
+    /* ios_almost_white */
+    border: 1px solid #EEEEEE;
+    border-radius: 12px;
+
+    margin : 0;
+}
+.disabledButton {
+    background: $input_BG;
+    border: 1px solid #EEEEEE;
+    @include sf-pro-display-16-medium;
+    @include short-button;
+    // color : white;
+}
+.searchButton {
+    @include main-color;
+    @include sf-pro-display-16-medium;
+    @include short-button;
+    color : white;
+}
