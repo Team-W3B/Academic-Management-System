@@ -5,4 +5,6 @@ var homeController = require("../controllers/homeController");
 /* 홈 화면에 대한 라우팅 */
 router.get("/", homeController.homeForm);
 
+router.get("/detail", homeController.homeDetail);
+
 module.exports = router;

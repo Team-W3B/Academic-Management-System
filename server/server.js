@@ -13,6 +13,7 @@ const crypto = require("crypto");
 const loginRouter = require("./routes/login");
 const signupRouter = require("./routes/signup");
 const homeRouter = require("./routes/home");
+const lecRouter = require("./routes/lecpage");
 
 //상수
 const db = require("./models");
@@ -25,14 +26,20 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
-// app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "server")));
 /* app.use(
   session({
+    name: "loginSession",
     secret: secret, // 암호화하는 데 쓰일 키
     resave: false, // 세션을 언제나 저장할지 설정함
-    saveUninitialized: true, // 세션에 저장할 내역이 없더라도 처음부터 세션을 생성할지 설정
+    saveUninitialized: false, // 세션에 저장할 내역이 없더라도 처음부터 세션을 생성할지 설정
     store: new FileStore(),
+    cookie: {
+      maxAge: 60 * 60 * 1000,
+    },
+    rolling: true,
+    proxy: true,
   })
 ); */
 app.use(
@@ -54,6 +61,7 @@ app.use(
 app.use("/api/login", loginRouter);
 app.use("/api/signup", signupRouter);
 app.use("/api/home", homeRouter);
+app.use("/api/lecpage", lecRouter);
 
 //app.use("/api", loginRouter);
 

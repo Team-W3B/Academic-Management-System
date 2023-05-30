@@ -22,11 +22,6 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: "id",
       });
 
-      Professor.hasMany(models.Board, {
-        foreignKey: "professor_id",
-        sourceKey: "id",
-      });
-
       Professor.hasMany(models.Lecture, {
         foreignKey: "professor_id",
         sourceKey: "id",
@@ -39,7 +34,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: false,
-        unique: true,
         primaryKey: true,
       },
       passwd: {
