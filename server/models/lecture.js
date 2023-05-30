@@ -23,16 +23,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "lecture_id",
         sourceKey: "id",
       });
-
-      Lecture.hasOne(models.Student_Lecture, {
-        foreignKey: "lecture_grade_semester_id",
-        sourceKey: "grade_semester_id",
-      });
-
-      Lecture.hasOne(models.Student_Lecture, {
-        foreignKey: "lecture_professor_id",
-        sourceKey: "professor_id",
-      });
     }
   }
   Lecture.init(
