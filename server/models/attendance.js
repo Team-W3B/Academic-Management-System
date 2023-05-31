@@ -22,8 +22,16 @@ module.exports = (sequelize, DataTypes) => {
   }
   Attendance.init(
     {
-      week: { type: DataTypes.INTEGER, allowNull: false },
-      round: { type: DataTypes.INTEGER, allowNull: false },
+      week: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
+      round: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
       sl_student_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -35,6 +43,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
+      },
+      check: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
     },
     {

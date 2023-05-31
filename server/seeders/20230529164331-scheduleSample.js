@@ -11,6 +11,11 @@ module.exports = {
       },
       {
         lecture_id: 1,
+        day_of_week: "mon",
+        period: 4,
+      },
+      {
+        lecture_id: 1,
         day_of_week: "wed",
         period: 4,
       },
