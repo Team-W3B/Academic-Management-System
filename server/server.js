@@ -27,26 +27,14 @@ app.use(express.json());
 app.use(
   cors({
     origin: "http://localhost:3000", // 클라이언트쪽 URL
+    methods: ["GET", "POST"],
     credentials: true,
   })
 );
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "server")));
-/* app.use(
-  session({
-    name: "loginSession",
-    secret: secret, // 암호화하는 데 쓰일 키
-    resave: false, // 세션을 언제나 저장할지 설정함
-    saveUninitialized: false, // 세션에 저장할 내역이 없더라도 처음부터 세션을 생성할지 설정
-    store: new FileStore(),
-    cookie: {
-      maxAge: 60 * 60 * 1000,
-    },
-    rolling: true,
-    proxy: true,
-  })
-); */
+
 app.use(
   session({
     name: "loginSession",

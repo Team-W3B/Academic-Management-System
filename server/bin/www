@@ -15,17 +15,30 @@ var http = require("http");
 var port = normalizePort(process.env.PORT || "5000");
 app.set("port", port);
 
+// CORS 설정 추가
+function setCorsHeaders(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", req.headers.origin || "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+}
+
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app, function (request, response) {
-  response.setHeader("Access-Control-Allow-origin", "*"); // 모든 출처(orogin)을 허용
-  response.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  ); // 모든 HTTP 메서드 허용
-  response.setHeader("Access-Control-Allow-Credentials", "true"); // 클라이언트와 서버 간에 쿠키 주고받기 허용
+var server = http.createServer(function (request, response) {
+  // CORS 설정 적용
+  setCorsHeaders(request, response);
+
+  // app을 처리하도록 함
+  app(request, response);
 });
 
 /**

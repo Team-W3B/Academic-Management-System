@@ -5,10 +5,12 @@ module.exports = {
     await queryInterface.createTable("Attendances", {
       week: {
         allowNull: false,
+        primaryKey: true,
         type: Sequelize.INTEGER,
       },
       round: {
         allowNull: false,
+        primaryKey: true,
         type: Sequelize.INTEGER,
       },
       sl_student_id: {
@@ -22,6 +24,11 @@ module.exports = {
         autoIncrement: false,
         primaryKey: true,
         type: Sequelize.INTEGER,
+      },
+
+      check: {
+        allowNull: false,
+        type: Sequelize.STRING,
       },
     });
 
