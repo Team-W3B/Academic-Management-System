@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setsignUpName, signUpSlice } from "../store";
 
 import styles from "./../scss/SignUpComplete.module.scss";
+import { useNavigate } from "react-router-dom";
 
 function SignUpComplete() {
   return (
@@ -47,11 +48,14 @@ const TextBox = () => {
 
 /* 로그인 버튼 */
 const LogInButton = () => {
+
+  let navigate = useNavigate();
+
   return (
     <div className={styles.button}>
-      <a style={{ textDecorationLine : "none" }} href="/Login">
+      {/* <a style={{ textDecorationLine : "none" }} href="/Login"> */}
         <p className={styles.text} onClick={ () => {navigate( "/Login" ) } }>로그인 하러가기</p>
-      </a>
+      {/* </a> */}
     </div>
   );
 };
