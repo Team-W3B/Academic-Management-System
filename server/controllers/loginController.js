@@ -14,11 +14,12 @@ exports.loginProcess = async (req, res) => {
     });
     if (student && (await bcrypt.compare(request_password, student.passwd))) {
       // 학생 로그인 성공
-      console.log('id는' + id);
-      req.session.userID = id;
-      console.log('id는' + req.session.userID);
-      req.session.save();
-      res.status(200).send({ userInfo: student.name });
+      req.session.save(function () {
+        req.session.userID = id;
+        res.status(200).send({ userInfo: student.name });
+        console.log(req.session);
+      });
+
       return;
     }
 

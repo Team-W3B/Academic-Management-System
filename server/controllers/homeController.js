@@ -57,9 +57,9 @@ exports.homeForm = async (req, res) => {
   try {
     // 로그인한 학번을 세션에서 가져옴
     let userId = req.session.userID;
-    console.log(req.session.cookie);
     //let userId = 2018202043;
     console.log(userId);
+    console.log(req.session);
 
     // ID 값을 사용하여 학생이 수강하고 있는 모든 강의 정보를 조회하는 쿼리문
     const query = `
@@ -68,7 +68,7 @@ exports.homeForm = async (req, res) => {
       Lectures.lecture_name,
       Lectures.lecture_room,
       Schedules.day_of_week,
-      Schedules.period
+      GROUP_CONCAT(Schedules.period ORDER BY Schedules.period SEPARATOR ', ') AS period
     FROM
       Student_Lectures
     LEFT JOIN
@@ -79,13 +79,17 @@ exports.homeForm = async (req, res) => {
       Schedules ON Schedules.lecture_id = Lectures.id
     WHERE
       Student_Lectures.student_id = :studentId
+    GROUP BY
+      Professors.name, Lectures.lecture_name, Lectures.lecture_room, Schedules.day_of_week;
     `;
+
     // 쿼리 실행
     const lectures = await sequelize.query(query, {
       type: QueryTypes.SELECT,
       replacements: { studentId: userId },
     });
 
+    console.log(lectures);
     let sortedLectures = sortedData(lectures);
     res.status(200).json(mappingWithId(sortedLectures));
   } catch (error) {
