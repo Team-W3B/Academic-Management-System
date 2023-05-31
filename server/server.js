@@ -43,7 +43,7 @@ app.use(
     saveUninitialized: false, // 세션에 저장할 내역이 없더라도 처음부터 세션을 생성할지 설정
     store: new FileStore(),
     cookie: {
-      maxAge: 60 * 60 * 1000,
+      maxAge: 2 * 60 * 60 * 1000, //새로 갱신하지 않으면 2시간 뒤에 만료
     },
     rolling: true,
     proxy: true,
@@ -71,7 +71,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+  //res.render("error");
 });
 
 module.exports = app;
