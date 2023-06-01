@@ -8,7 +8,8 @@ import MainPage from "./pages/MainPage";
 //---
 import LecPage from "./pages/LecPage";
 import LecPage_notice from "./pages/LecPage_notice";
-import PlanSearch from "./pages/PlanSearch";
+import Plan from "./pages/Plan";
+import PlanSearch from "./component/PlanSearch";
 function App() {
   return (
     // <BrowserRouter>
@@ -21,7 +22,11 @@ function App() {
         <Route path="/MainPage" element={ <MainPage /> } />
         <Route path="/LecPage" element={ <LecPage /> } />
         <Route path="/LecPage_notice" element={ <LecPage_notice /> } />
-        <Route path="/PlanSearch" element={ <PlanSearch /> } />
+        <Route path="/Plan" element={ <Plan /> } >
+          <Route path="Search" element={ <PlanSearch /> } />
+          <Route path="Output" element={ <div></div> } />
+          <Route path="Detail" element={ <div></div> } />
+        </Route>
       </Routes>
     </div>
     // </BrowserRouter>
