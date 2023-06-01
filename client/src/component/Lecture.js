@@ -7,13 +7,13 @@ import info from "../data/leclecture";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-export default function Lec_lecture() {
+export default function Lecture() {
     let [lecInfo, setLecInfo] = useState(info);
     useEffect(() => {
         getLecInfo();
     }, []);
     let getLecInfo = () => {
-        axios.get('/api/lecpage/lec_lecture')
+        axios.get('/api/lecpage/lecture')
         .then((res) => {
             if(res.data===200){
                 let copy = {...res.data};

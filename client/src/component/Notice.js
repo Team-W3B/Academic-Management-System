@@ -6,13 +6,13 @@ import axios from 'axios';
 import info from "../data/lecnotice";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Lec_notice() {
+export default function Notice() {
     let [lecInfo, setLecInfo] = useState(info);
     useEffect(() => {
         getLecInfo();
     }, []);
     let getLecInfo = () => {
-        axios.get('/api/lecpage/lec_notice')
+        axios.get('/api/lecpage/notice')
             .then((res) => {
                 if (res.data === 200) {
                     let copy = { ...res.data };
@@ -29,13 +29,11 @@ export default function Lec_notice() {
                 }
             })
     };
-    //getLecInfo();
-    // console.log(lec_notice[0].lecPage_title);
 
     return (
         <div className={styles.whiteCard}>
 
-                <div className={styles.class_name} onClick={ () => {navigate( '/LecPage_notice' ) }}>
+            <div className={styles.class_name}>
                 공지사항</div>
             {lecInfo.map(function (a, i) {
                 //console.log(lec_notice[0]);

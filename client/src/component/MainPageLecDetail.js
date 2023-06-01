@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import styles from './../scss/MainPageLecDetail.module.scss';
 import MPLD_data from '../data/MainPageLecDetail_data';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setlecure } from '../store';
+import {  Link, Navigate } from "react-router-dom";
 
 let MainPageLecDetail  = () => {
 
@@ -11,7 +14,7 @@ let MainPageLecDetail  = () => {
         axios.get('/api/home/detail')
             .then((res)=> {
                 console.log(res);
-                let copy = [...res.data]
+                let copy = {...res.data};
                 setMpld(copy)
             })
             .catch((error)=>{
@@ -19,7 +22,13 @@ let MainPageLecDetail  = () => {
             })
     };
     getMPLD();
-
+    const dispatch = useDispatch();
+    
+    let handleOn = (name) => {
+        dispatch(setlecure(name));
+        console.log(name);
+    }
+    
     return (
         <div className={styles.Dcard}>
             {/* 제목 행 */}
@@ -28,7 +37,7 @@ let MainPageLecDetail  = () => {
             {
                 mpld.map(function(a, i) {
                     return (
-                        <SubjectDetail
+                        <SubjectDetail onClick={handleOn(a.name)}
                             key = {i}
                             i = {i} 
                             subject = {a.name}

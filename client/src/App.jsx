@@ -5,9 +5,11 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import SignUpComplete from './pages/SignUpComplete';
 import MainPage from "./pages/MainPage";
-//---
 import LecPage from "./pages/LecPage";
 import LecPage_notice from "./pages/LecPage_notice";
+import LecPage_ass from "./pages/LecPage_ass";
+import LecPage_file from "./pages/LecPage_file";
+import LecPage_lecture from "./pages/LecPage_lecture";
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +22,9 @@ function App() {
         <Route path="/MainPage" element={ <MainPage /> } />
         <Route path="/LecPage" element={ <LecPage /> } />
         <Route path="/LecPage_notice" element={ <LecPage_notice /> } />
+        <Route path="/LecPage_ass" element={ <LecPage_ass /> } />
+        <Route path="/LecPage_file" element={ <LecPage_file /> } />
+        <Route path="/LecPage_lecture" element={ <LecPage_lecture /> } />
       </Routes>
     </div>
     

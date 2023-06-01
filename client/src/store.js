@@ -22,10 +22,22 @@ export let signUpSlice =createSlice({
 });
 export const {setsignUpName} = signUpSlice.actions
 
+export let lecNameSlice = createSlice({
+    name:"lecture",
+    initialState:{lecture:""},
+    reducers:{
+        setlecure:(state, action)=>{
+            state.lecture = action.payload
+        }
+    }
+});
+export const {setlecure} = lecNameSlice.actions
+
 const store = configureStore({
     reducer: {
         user : user.reducer,
-        signUp : signUpSlice.reducer
+        signUp : signUpSlice.reducer,
+        lecture : lecNameSlice.reducer
     }
 
 });

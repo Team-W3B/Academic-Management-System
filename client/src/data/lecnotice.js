@@ -16,4 +16,5 @@ let lec_notice = [
     }
 ];
 
+
 export default lec_notice;

@@ -3,16 +3,16 @@ import React, { useEffect, useState } from "react";
 import styles from "./../scss/Lec_detail.module.scss";
 import { Col, Row } from "react-bootstrap";
 import axios from 'axios';
-import info from "../data/lecnotice";
+import info from "../data/lecfile";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Lec_notice() {
+export default function File() {
     let [lecInfo, setLecInfo] = useState(info);
     useEffect(() => {
         getLecInfo();
     }, []);
     let getLecInfo = () => {
-        axios.get('/api/lecpage/lec_notice')
+        axios.get('/api/lecpage/file')
             .then((res) => {
                 if (res.data === 200) {
                     let copy = { ...res.data };
@@ -29,31 +29,27 @@ export default function Lec_notice() {
                 }
             })
     };
-    //getLecInfo();
-    // console.log(lec_notice[0].lecPage_title);
 
     return (
         <div className={styles.whiteCard}>
 
-                <div className={styles.class_name} onClick={ () => {navigate( '/LecPage_notice' ) }}>
-                공지사항</div>
+            <div className={styles.class_name}>
+                자료실</div>
             {lecInfo.map(function (a, i) {
                 //console.log(lec_notice[0]);
                 return (
-                    <div key={i} i={i} lecInfo={a} >
+                    <div key={i} i={i} lecInfo={a}>
                         <Row style={{
-                            //width: "100%",
+                            // width: "100%",
                             // textAlign: "center",
                             borderBottom: "1px solid #aaa",
                             margin: "3px"
                         }} className={styles.contain}>
-
                             <Col>
                                 {a.lecPage_title}
                             </Col>
                             <Col style={{ textAlign: "right" }}>
-                                {a.lecPage_date}
-                            </Col>
+                                {a.lecPage_date}</Col>
                         </Row>
                     </div>
                 );

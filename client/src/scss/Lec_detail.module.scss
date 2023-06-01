@@ -256,7 +256,12 @@
   p  {
     margin: 0px;
   }
-
+  .contain{
+    //text-align: justify;
+    display: flex;
+    justify-content: space-between;
+  }
+  
   .Wrapper {
     width: 100%;
     padding: 0rem 10vw;
@@ -279,6 +284,7 @@
     box-shadow: 0.4vw 1.0vw 1vw 0.2vw rgba(0, 0, 0, 0.09);
     z-index: -1;
     padding:3%;
+    margin:10px;
   }
 
   /* .footer {

@@ -13,16 +13,16 @@ import {
 import HeaderNav from "./../component/HeaderNav";
 import Lec from "./../component/Lec";
 import Footer from "./../component/Footer";
-import Notice from "./../component/Notice";
+import Ass from "./../component/Ass";
 
-export default function LecPage_notice() {
+export default function LecPage_ass() {
     return (
         <>
             <HeaderNav />
             <div>
                 <Lec />
                 <div className={style.detail_wrapp}>
-                    <Notice />
+                   <Ass />
                 </div>
             </div>
             <Footer />

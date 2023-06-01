@@ -7,7 +7,7 @@ import info from "../data/lecass";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-export default function Lec() {
+export default function Lec_ass() {
     let [lecInfo, setLecInfo] = useState(info);
     useEffect(() => {
         getLecInfo();
@@ -16,17 +16,17 @@ export default function Lec() {
     let getLecInfo = () => {
         axios.get('/api/lecpage/lec_ass')
         .then((res) => {
-            if(res.status===200){
-                let copy = [...res.status];
+            if(res.data===200){
+                let copy = {...res.data};
                 setLecInfo(copy);
             }
         })
         .catch((error) => {
             console.log(error.data)
-            if (error.response.status === 401) {
+            if (error.response.data === 401) {
                 alert("권한없음(강의페이지");
             }
-            if (error.response.status === 500) {
+            if (error.response.data === 500) {
                 alert("서버 오류 발생!(강의페이지)");
             }
         })
@@ -42,18 +42,18 @@ export default function Lec() {
             {lecInfo.map(function(a,i){
                 //console.log(lec_notice[0]);
                 return(
-                    <div key={i} i={i} lecInfo={lecInfo[i]}>
+                    <div key={i} i={i} lecInfo={a}>
                         <Row style={{
-                            width: "100%",
-                            textAlign: "center",
+                            // width: "100%",
+                            // textAlign: "center",
                             borderBottom: "1px solid #aaa",
                             margin:"3px"
-                        }}>
+                        }} className={styles.contain}>
                             <Col>
-                                {lecInfo[i].lecPage_title}
+                                {a.lecPage_title}
                             </Col>
-                            <Col>
-                                {lecInfo[i].lecPage_date}</Col>
+                            <Col style={{ textAlign: "right" }}>
+                                {a.lecPage_date}</Col>
                         </Row>
                     </div>
                 );
