@@ -43,6 +43,16 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "sl_lecture_id",
         sourceKey: "lecture_id",
       });
+
+      Student_Lecture.hasMany(models.Assignment, {
+        foreignKey: "ass_student_id",
+        sourceKey: "student_id",
+      });
+
+      Student_Lecture.hasMany(models.Assignment, {
+        foreignKey: "ass_lecture_id",
+        sourceKey: "lecture_id",
+      });
     }
   }
   Student_Lecture.init(

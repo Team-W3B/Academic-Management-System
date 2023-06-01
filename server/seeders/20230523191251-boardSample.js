@@ -27,7 +27,7 @@ module.exports = {
       },
       //자료실 게시판
       {
-        id: 3,
+        id: 1,
         title: "Python Tutorial",
         write_date: "2023-03-24",
         content:
@@ -37,7 +37,7 @@ module.exports = {
         sl_lecture_id: 1,
       },
       {
-        id: 4,
+        id: 2,
         title: "1주차 강의자료",
         write_date: "2023-03-05",
         content: "1주차 강의자료 입니다.",
@@ -47,7 +47,7 @@ module.exports = {
       },
       //강의 게시판
       {
-        id: 5,
+        id: 1,
         title: "1주차 강의",
         write_date: "2023-03-05",
         deadline: "2023-06-20",
@@ -56,7 +56,7 @@ module.exports = {
         sl_lecture_id: 1,
       },
       {
-        id: 6,
+        id: 2,
         title: "2주차 강의",
         write_date: "2023-03-12",
         deadline: "2023-06-20",
@@ -66,7 +66,7 @@ module.exports = {
       },
       //과제 게시판
       {
-        id: 7,
+        id: 1,
         title: "머신러닝과제01",
         write_date: "2023-03-05",
         deadline: "2023-06-16",
@@ -76,7 +76,7 @@ module.exports = {
         sl_lecture_id: 1,
       },
       {
-        id: 8,
+        id: 2,
         title: "머신러닝과제02",
         write_date: "2023-03-24",
         deadline: "2023-06-18",
@@ -86,7 +86,7 @@ module.exports = {
         sl_lecture_id: 1,
       },
       {
-        id: 9,
+        id: 3,
         title: "머신러닝과제03",
         write_date: "2023-03-25",
         deadline: "2023-06-18",

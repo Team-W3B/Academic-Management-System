@@ -34,7 +34,11 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
       },
       title: { type: DataTypes.STRING, allowNull: false },
-      write_date: { type: DataTypes.DATE, allowNull: false },
+      write_date: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+      },
       deadline: { type: DataTypes.DATE },
       content: { type: DataTypes.TEXT },
       file_name: { type: DataTypes.STRING },

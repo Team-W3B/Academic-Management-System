@@ -23,4 +23,14 @@ router.get("/lecture", lecpageController.lecture);
 
 router.get("/ass", lecpageController.assignment);
 
+router.get("/notice/detail_not", lecpageController.noticeDetail);
+
+router.get("/file/detail_file", lecpageController.fileDetail);
+
+router.get("/lecture.detail_lec", lecpageController.lectureDetail);
+
+router.get("/ass/detail_ass", lecpageController.assignmentDetail);
+
+router.post("/ass/detail_ass_snt", lecpageController.assignmentSent);
+
 module.exports = router;

@@ -2,76 +2,68 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Boards", {
+    await queryInterface.createTable("Assignments", {
       id: {
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true,
         type: Sequelize.INTEGER,
       },
-      title: {
+      ass_student_id: {
         allowNull: false,
-        type: Sequelize.STRING,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      ass_lecture_id: {
+        allowNull: false,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
       },
       write_date: {
         allowNull: false,
         defaultValue: Sequelize.fn("NOW"),
         type: Sequelize.DATE,
       },
-      deadline: {
-        type: Sequelize.DATE,
-      },
       content: {
+        allowNull: true,
         type: Sequelize.TEXT,
       },
       file_name: {
+        allowNull: true,
         type: Sequelize.STRING,
       },
       file_size: {
+        allowNull: true,
         type: Sequelize.INTEGER,
       },
       file: {
+        allowNull: true,
         type: Sequelize.BLOB,
-      },
-      board_type_id: {
-        allowNull: false,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      sl_student_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      sl_lecture_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
       },
     });
 
-    await queryInterface.addConstraint("Boards", {
-      fields: ["board_type_id"],
+    await queryInterface.addConstraint("Assignments", {
+      fields: ["ass_student_id"],
       type: "foreign key",
       references: {
-        table: "Board_Types",
-        field: "id",
+        table: "Student_Lectures",
+        field: "student_id",
       },
       onDelete: "cascade",
       onUpdate: "cascade",
     });
 
-    await queryInterface.addConstraint("Boards", {
-      name: "FK_Boards",
-      fields: ["sl_student_id", "sl_lecture_id"],
+    await queryInterface.addConstraint("Assignments", {
+      fields: ["ass_lecture_id"],
       type: "foreign key",
       references: {
         table: "Student_Lectures",
-        fields: ["student_id", "lecture_id"],
+        field: "lecture_id",
       },
       onDelete: "cascade",
       onUpdate: "cascade",
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Boards");
+    await queryInterface.dropTable("Assignments");
   },
 };
