@@ -10,12 +10,12 @@ form {
 
 /* 강의계획서 조회 */
 .lecName {
-    @include flex_container($direction: flex, $align: center );
+    @include flex_container($direction: column, $align: flex-start );
     @include sf-pro-display-64-bold;
     color: #000000;
     width: 639px;
     height: 113px;
-    padding-left: 96px;
+    padding-left: 108px;
 }
 
 .cardWrapper {
@@ -47,8 +47,8 @@ form {
     margin : 0;
 }
 .disabledButton {
-    background: white;
     @include short-button;
+    background: white;
     width: 64px;
     height: 36px;
     opacity: 0.5;
@@ -66,11 +66,13 @@ form {
     color : $disabled_color;
     opacity: 0.5;
     transition: 0.5s;
+    margin: 0;
 }
 .abled_text {
     @include sf-pro-display-16-bold;
     @include text_gradient($mainColor);
     transition: 0.5s;
+    margin: 0;
 }
 
 .searchButton {

@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 
 function PlanSearch() {
 
+    
+
     let navigate = useNavigate();
     let dispatch = useDispatch();
     let [semester, setSemester] = useState();
@@ -21,24 +23,27 @@ function PlanSearch() {
         planSearch_lec : lecName
     }
 
+    // dispatch(setPlanOutput(plan_info));
+
     let clickSearch = () => {
         console.log(plan_search);
-        axios.post('/api/plan/search', plan_search, {withCredentials : true})
+        axios.get('/api/plan/search', {params : plan_search}, {withCredentials : true})
         .then( (res) => {
             console.log(res.status);
             if (res.status === 200) {
-                // dispatch(changeUser(res.data.userInfo));
+                console.log(res.data);
+                dispatch(setPlanOutput(res.data));
                 alert("검색 성공!");
                 navigate("/Plan/Output");
             }
         })
         .catch((error) => {
             console.log(error.response.status);
-            if (error.response.status === 401) {
-                alert("존재하지 않는 사용자입니다");
+            if (error.response.status === 404) {
+                alert("요청받은 리소스를 찾을 수 없습니다.");
             }
             if (error.response.status === 500) {
-                alert("서버 오류 발생!(로그인)");
+                alert("서버가 처리 방법을 모르는 상황이 발생했습니다. 서버는 아직 처리 방법을 알 수 없습니다.");
             }
         })
     }
@@ -71,7 +76,7 @@ function PlanSearch() {
                             }}
                             className={styles[`${buttonState}Button`]}
                         >
-                        <p className={styles[`${buttonState}_text`]}>수강중</p>
+                            <p className={styles[`${buttonState}_text`]}>수강중</p>
                         </button>
                     </div>
                 </div>

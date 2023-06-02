@@ -1,0 +1,30 @@
+@import "./App.module.scss";
+
+.cardWrapper {
+    @include flex_container(column, flex-start, center);
+
+    /* 크기 설정 */
+    width: 960px;
+    height: 400px;
+    padding: 48px;
+
+    /* card 설정 */
+    @include Card(white, 48px );
+}
+
+.Container {
+    @include flex_container(column, null, null);
+    gap: 12px;
+}
+.titleText {
+    @include sf-pro-display-16-bold;
+}
+.contentText {
+    @include sf-pro-display-12-medium;
+}
+.mainColorText {
+    @include text_gradient($mainColor);
+}
+.greenColorText {
+    @include text_gradient($green_gradient);
+}

@@ -1,9 +1,18 @@
+/* The following line can be included in a src/App.scss */
+@import '~bootstrap/scss/bootstrap';
+
 *{margin:0;padding:0;box-sizing:border-box;font:inherit;color:inherit;flex-shrink:0;}
 
 $mainColor : linear-gradient(
   135deg,
   rgba(255, 120, 78, 1) 0%,
   rgba(251, 52, 124, 1) 100%
+);
+$green_gradient : linear-gradient(
+  23.96deg,
+  #76C38F 0%,
+  #60CF8C 48.44%,
+  #A7C12C 100%
 );
 $disabled_color : #86868b;
 $input_BG : rgba(249, 249, 249, 0.8);
@@ -45,6 +54,12 @@ html {
   justify-content: space-between;
 }
 
+@mixin sf-pro-display-12-medium {
+  font-family: "SF Pro Display";
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 19px;
+}
 @mixin sf-pro-display-16-medium {
   font-family: "SF Pro Display";
   font-size: 16px;
@@ -73,7 +88,7 @@ html {
   font-family: "SF Pro Display";
   font-size: 64px;
   font-weight: 700;
-  line-height: 38px;
+  // line-height: 38px;
 }
 @mixin short-button {
   border: 1px solid $disabled_color;
@@ -103,6 +118,7 @@ html {
     flex-direction: $direction;
     justify-content: $justify;
     align-items: $align;
+    margin : 0;
 }
 @mixin Card($bg : white, $rad : 12px) {
     background: $bg;

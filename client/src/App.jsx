@@ -10,6 +10,7 @@ import LecPage from "./pages/LecPage";
 import LecPage_notice from "./pages/LecPage_notice";
 import Plan from "./pages/Plan";
 import PlanSearch from "./component/PlanSearch";
+import PlanOutput from "./component/PlanOutput";
 function App() {
   return (
     // <BrowserRouter>
@@ -24,8 +25,8 @@ function App() {
         <Route path="/LecPage_notice" element={ <LecPage_notice /> } />
         <Route path="/Plan" element={ <Plan /> } >
           <Route path="Search" element={ <PlanSearch /> } />
-          <Route path="Output" element={ <div></div> } />
-          <Route path="Detail" element={ <div></div> } />
+          <Route path="Output" element={ <PlanOutput /> } />
+          <Route path="Detail/:id" element={ <div></div> } />
         </Route>
       </Routes>
     </div>
