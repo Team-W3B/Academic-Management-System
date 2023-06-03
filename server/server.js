@@ -14,6 +14,7 @@ const loginRouter = require("./routes/login");
 const signupRouter = require("./routes/signup");
 const homeRouter = require("./routes/home");
 const lecRouter = require("./routes/lecpage");
+const planRouter = require("./routes/plan");
 
 //상수
 const db = require("./models");
@@ -55,6 +56,7 @@ app.use("/api/login", loginRouter);
 app.use("/api/signup", signupRouter);
 app.use("/api/home", homeRouter);
 app.use("/api/lecpage", lecRouter);
+app.use("/api/plan", planRouter);
 
 //app.use("/api", loginRouter);
 

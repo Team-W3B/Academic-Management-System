@@ -16,7 +16,7 @@ module.exports = {
       ass_lecture_id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       write_date: {
         allowNull: false,
@@ -42,22 +42,12 @@ module.exports = {
     });
 
     await queryInterface.addConstraint("Assignments", {
-      fields: ["ass_student_id"],
+      name: "FK_Assignment",
+      fields: ["ass_student_id", "ass_lecture_id"],
       type: "foreign key",
       references: {
         table: "Student_Lectures",
-        field: "student_id",
-      },
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    });
-
-    await queryInterface.addConstraint("Assignments", {
-      fields: ["ass_lecture_id"],
-      type: "foreign key",
-      references: {
-        table: "Student_Lectures",
-        field: "lecture_id",
+        fields: ["student_id", "lecture_id"],
       },
       onDelete: "cascade",
       onUpdate: "cascade",

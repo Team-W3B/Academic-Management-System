@@ -64,8 +64,8 @@ async function queryPost(userID, lecName, boardType, index) {
       Boards.content AS lecDetail_content,
       CONCAT(DATE_FORMAT(Boards.write_date, "%Y-%m-%d"), ' ~ ', DATE_FORMAT(Boards.deadline, "%Y-%m-%d")) AS lecDetail_duration,
       Boards.file_name AS lecDetail_fileName,
-      Boards.file AS lecDetail_contentfile,
-      Boards.file_size AS lecDetail_contentfilesize
+      Boards.file AS lecDetail_file,
+      Boards.file_size AS lecDetail_fileSize
     FROM
       Student_Lectures
       LEFT JOIN Lectures ON Student_Lectures.lecture_id = Lectures.id
@@ -89,10 +89,10 @@ async function queryPost(userID, lecName, boardType, index) {
 
 // 과제 제출에 대한 쿼리문 함수
 async function queryAssSent(body, userID, lecName, index) {
-  let fileName = body.lecDetail_fileName;
-  let file = body.lecDetail_contentfile;
-  let fileSize = body.lecDetail_contentfilesize;
   let content = body.lecDetail_content;
+  let fileName = body.lecDetail_fileName;
+  let file = body.lecDetail_file;
+  let fileSize = body.lecDetail_fileSize;
 
   // DB에서 강의명으로 강의 아이디를 가져옴
   const lecture = await model.Lecture.findOne({

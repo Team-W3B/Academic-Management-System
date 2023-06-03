@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       sl_lecture_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
       },
     },

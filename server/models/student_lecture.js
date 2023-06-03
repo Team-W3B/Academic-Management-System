@@ -76,7 +76,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: false,
       },
       lecture_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,

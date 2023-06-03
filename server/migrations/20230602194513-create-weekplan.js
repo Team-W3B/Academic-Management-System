@@ -2,37 +2,36 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Schedules", {
-      day_of_week: {
-        allowNull: false,
+    await queryInterface.createTable("Weekplans", {
+      plan_lecture_id: {
+        type: Sequelize.STRING,
         primaryKey: true,
+      },
+      week: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+      },
+      content: {
         type: Sequelize.STRING,
       },
-      period: {
-        allowNull: false,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      lecture_id: {
-        allowNull: false,
-        primaryKey: true,
+      operation: {
         type: Sequelize.STRING,
       },
     });
 
-    await queryInterface.addConstraint("Schedules", {
-      fields: ["lecture_id"],
+    await queryInterface.addConstraint("Weekplans", {
+      fields: ["plan_lecture_id"],
       type: "foreign key",
       references: {
-        table: "lectures",
-        field: "id",
+        table: "Plans",
+        field: "lecture_id",
       },
       onDelete: "cascade",
       onUpdate: "cascade",
     });
   },
-
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Schedules");
+    await queryInterface.dropTable("Weekplans");
   },
 };

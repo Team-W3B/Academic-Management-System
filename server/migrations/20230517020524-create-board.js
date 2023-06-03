@@ -44,7 +44,7 @@ module.exports = {
       },
       sl_lecture_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
     });
 

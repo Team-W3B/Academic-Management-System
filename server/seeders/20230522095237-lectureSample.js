@@ -5,21 +5,21 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert("lectures", [
       {
-        id: 1,
+        id: "H020-4-8483-01",
         lecture_name: "머신러닝",
         lecture_room: "새빛관 203호",
-        is_major: true,
+        major: "전공",
         credit_point: 3,
-        grade_semester: "1학년 1학기",
+        grade_semester: "202301",
         professor_id: 1,
       },
       {
-        id: 2,
+        id: "H020-3-1654-01",
         lecture_name: "컴퓨터 네트워크",
         lecture_room: "새빛관 102호",
-        is_major: true,
+        major: "전공",
         credit_point: 3,
-        grade_semester: "1학년 1학기",
+        grade_semester: "202301",
         professor_id: 2,
       },
     ]);

@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
       },
       ass_lecture_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         primaryKey: true,
       },

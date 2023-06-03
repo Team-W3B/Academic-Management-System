@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Schedule extends Model {
+  class Weekplan extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,34 +9,28 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Schedule.belongsTo(models.Lecture, {
-        foreignKey: "lecture_id",
-        targetKey: "id",
+      Weekplan.belongsTo(models.Plan, {
+        foreignKey: "plan_lecture_id",
+        targetKey: "lecture_id",
       });
     }
   }
-  Schedule.init(
+  Weekplan.init(
     {
-      day_of_week: {
+      plan_lecture_id: {
         type: DataTypes.STRING,
-        allowNull: false,
         primaryKey: true,
       },
-      period: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-      },
-      lecture_id: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        primaryKey: true,
-      },
+      week: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true },
+      content: DataTypes.STRING,
+      operation: DataTypes.STRING,
     },
     {
       sequelize,
-      modelName: "Schedule",
+      modelName: "Weekplan",
+      id: false,
+      timestamps: false,
     }
   );
-  return Schedule;
+  return Weekplan;
 };

@@ -49,6 +49,25 @@ function sortedData(lectures) {
   return lectures;
 }
 
+function mappingToKor(day_of_week) {
+  switch (day_of_week) {
+    case "월":
+      return "mon";
+    case "화":
+      return "tue";
+    case "수":
+      return "wed";
+    case "목":
+      return "thur";
+    case "금":
+      return "fri";
+    case "토":
+      return "sat";
+    case "일":
+      return "sun";
+  }
+}
+
 function mappingWithId(sortedLectures) {
   var id = 0;
 
@@ -62,7 +81,7 @@ function mappingWithId(sortedLectures) {
 
   //정렬한 데이터를 기반으로 Json 배열 생성
   sortedLectures.forEach((lecture) => {
-    let lecture_day_of_week = lecture.day_of_week;
+    let lecture_day_of_week = mappingToKor(lecture.day_of_week);
 
     let lectureInfo = {
       id: 0,
