@@ -4,10 +4,9 @@ import styles from './../scss/PlanSearch.module.scss';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import qs from "qs";
 
 function PlanSearch() {
-
-    
 
     let navigate = useNavigate();
     let dispatch = useDispatch();
@@ -21,6 +20,10 @@ function PlanSearch() {
         planSearch_semester : semester,
         planSearch_check_lec : checkLec,
         planSearch_lec : lecName
+    }
+    /* params 형식은 단순한 형태로는 잘 동작하지만, 객체가 중첩되기 시작하는 순간 제대로 stringify 처리를 하지 못한다. */
+    axios.defaults.paramsSerializer = params => {
+        return qs.stringify(params);
     }
 
     // dispatch(setPlanOutput(plan_info));

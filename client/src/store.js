@@ -1,32 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-
-
-let plan_info = [
-    {
-        idx : 0,
-        planOut_classifier : '전공',
-        planOut_reg_num : 'H020-4-0846-01',
-        planOut_lec : '소프트웨어공학',
-        planOut_credit : 3,
-        planOut_prof : '이기훈',
-        planOut_lectime : '월5, 수6',
-        planOut_type : '영어 50%',
-        planOut_left : 16
-    },
-    {
-        idx : 1,
-        planOut_classifier : '전공',
-        planOut_reg_num : 'H020-4-8483-01',
-        planOut_lec : '머신러닝',
-        planOut_credit : 3,
-        planOut_prof : '박철수',
-        planOut_lectime : '월3, 수4',
-        planOut_type : '영어 50%',
-        planOut_left : 12
-    },
-]
-
-
+import plan_info from "./data/planInfo_data";
+import planDetail from "./data/planDetail_data";
 
 /* user 이름 */
 let user = createSlice({
@@ -63,6 +37,20 @@ let plan_output = createSlice({
     }
 });
 export let { setPlanOutput } = plan_output.actions
+
+/* 강의계획서 조회 세부 */
+let plan_detail = createSlice({
+    name : 'plan_detail',
+    initialState : planDetail,
+    reducers : {
+        setPlanDetail(state, action) {
+            return action.payload
+        }
+    }
+});
+export let { setPlanDetail } = plan_detail.actions
+
+
 
 const store = configureStore({
     reducer: {

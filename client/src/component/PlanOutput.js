@@ -4,43 +4,14 @@ import { Container, Col, Row } from "react-bootstrap";
 import styles from './../scss/PlanOutput.module.scss';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setPlanOutput } from "./../store"
-
-
+import { setPlanDetail } from "./../store"
+import axios from "axios";
+import qs from "qs";
 
 function PlanOutput() {
 
-    // let dispatch = useDispatch();
-
-    /* let plan_info = [
-        {
-            idx : 0,
-            planOut_classifier : '전공',
-            planOut_reg_num : 'H020-4-0846-01',
-            planOut_lec : '소프트웨어공학',
-            planOut_credit : 3,
-            planOut_prof : '이기훈',
-            planOut_lectime : '월5, 수6',
-            planOut_type : '영어 50%',
-            planOut_left : 16
-        },
-        {
-            idx : 1,
-            planOut_classifier : '전공',
-            planOut_reg_num : 'H020-4-8483-01',
-            planOut_lec : '머신러닝',
-            planOut_credit : 3,
-            planOut_prof : '박철수',
-            planOut_lectime : '월3, 수4',
-            planOut_type : '영어 50%',
-            planOut_left : 12
-        },
-    ] */
-    // dispatch(setPlanOutput(plan_info));
-
     let info = useSelector( (state) => {return state.plan_output} )
     console.log(info);
-    
 
     return (
         <>
@@ -75,10 +46,38 @@ let InfoRow = (props) => {
 
     let info = props.info;
     let navigate = useNavigate();
+    let dispatch = useDispatch();
     
+    /* params 형식은 단순한 형태로는 잘 동작하지만, 객체가 중첩되기 시작하는 순간 제대로 stringify 처리를 하지 못한다. */
+    axios.defaults.paramsSerializer = params => {
+        return qs.stringify(params);
+    }
 
+    let clickLec = () => {
+        // navigate("/Plan/Output/" + `${info.planOut_reg_num}`);
+        axios.get('/api/plan/detail', {params : info.planOut_reg_num}, {withCredentials : true})
+        .then( (res) => {
+            console.log(res.status);
+            if (res.status === 200) {
+                console.log(res.data);
+                dispatch(setPlanDetail(res.data));
+                alert("검색 성공!");
+                navigate("/Plan/Output/" + `${info.planOut_reg_num}`);
+            }
+        })
+        .catch((error) => {
+            console.log(error.response.status);
+            if (error.response.status === 404) {
+                alert("요청받은 리소스를 찾을 수 없습니다.");
+            }
+            if (error.response.status === 500) {
+                alert("서버가 처리 방법을 모르는 상황이 발생했습니다. 서버는 아직 처리 방법을 알 수 없습니다.");
+            }
+        })
+    }
+    
     return (
-        <Row onClick={()=> { navigate("/Plan/Output/:id"); }}>
+        <Row className={styles.row_lec} onClick={()=> { clickLec() }}>
             <Col className={`${styles.contentText} ${styles.mainColorText}`} > {info.planOut_classifier} </Col>
             <Col lg={2} className={styles.contentText} > {info.planOut_reg_num} </Col>
             <Col lg={2} className={`${styles.contentText} ${styles.mainColorText}`} > {info.planOut_lec} </Col>

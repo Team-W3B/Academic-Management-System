@@ -10,11 +10,26 @@
 
     /* card 설정 */
     @include Card(white, 48px );
+    overflow-y: auto;
+    z-index: 2;
+}
+.cardWrapper::-webkit-scrollbar {
+    width: 5px;  
+    padding : 0 20px;
+}
+
+.cardWrapper::-webkit-scrollbar-thumb {
+    background: rgb(220, 20, 60); /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 둥근 테두리 */
+}
+
+.cardWrapper::-webkit-scrollbar-track {
+    background: rgba(220, 20, 60, .1);  /*스크롤바 뒷 배경 색상*/
 }
 
 .Container {
     @include flex_container(column, null, null);
-    gap: 12px;
+    gap: 4px;
 }
 .titleText {
     @include sf-pro-display-16-bold;
@@ -27,4 +42,12 @@
 }
 .greenColorText {
     @include text_gradient($green_gradient);
+}
+.row_lec {
+    padding: 6px 0;
+}
+
+.row_lec:hover {
+    @include hoverShadow();
+    transition: 100ms;
 }
