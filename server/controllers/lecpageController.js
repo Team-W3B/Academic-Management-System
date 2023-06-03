@@ -133,8 +133,6 @@ exports.lecHeader = async (req, res) => {
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-    //let lecName = "머신러닝";
-    //let lecName = "컴퓨터 네트워크";
 
     // DB에서 강의 제목, 강의실 이름, 교수님 이름, 강의 시간을 꺼내줌
     const query = `
@@ -158,9 +156,9 @@ exports.lecHeader = async (req, res) => {
       replacements: { studentId: userID, lectureName: lecName },
     });
 
-    //console.log(lecHead);
     res.status(200).send(lecHead);
   } catch (error) {
+    console.error(error);
     if (!userID) res.status(401).send();
     else res.status(500).send();
   }
@@ -172,15 +170,13 @@ exports.lecNotice = async (req, res) => {
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-    //let lecName = "머신러닝";
-    //let lecName = "컴퓨터 네트워크";
 
     //공지사항 5개를 DB에서 추출
     let lecNotice = queryBoard(userID, lecName, 1, true);
 
-    //console.log(lecNotice);
     res.status(200).send(lecNotice);
   } catch (error) {
+    console.error(error);
     if (!userID) res.status(401).send();
     else res.status(500).send();
   }
@@ -201,6 +197,7 @@ exports.lecFile = async (req, res) => {
     //console.log(lecFile);
     res.status(200).send(lecFile);
   } catch (error) {
+    console.error(error);
     if (!userID) res.status(401).send();
     else res.status(500).send();
   }
@@ -213,15 +210,13 @@ exports.lecLecture = async (req, res) => {
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-    //let lecName = "머신러닝";
-    //let lecName = "컴퓨터 네트워크";
 
     //강의실 글 5개를 DB에서 추출
     let lecLec = queryBoard(userID, lecName, 3, true);
 
-    //console.log(lecLec);
     res.status(200).send(lecLec);
   } catch (error) {
+    console.error(error);
     if (!userID) res.status(401).send();
     else res.status(500).send();
   }
@@ -233,15 +228,13 @@ exports.lecAssignment = async (req, res) => {
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-    //let lecName = "머신러닝";
-    //let lecName = "컴퓨터 네트워크";
 
     //과제 글 5개를 DB에서 추출
     let lecAss = queryBoard(userID, lecName, 4, true);
 
-    //console.log(lecAss);
     res.status(200).send(lecAss);
   } catch (error) {
+    console.error(error);
     if (!userID) res.status(401).send();
     else res.status(500).send();
   }
@@ -253,8 +246,6 @@ exports.attendence = async (req, res) => {
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-    //let lecName = "머신러닝";
-    //let lecName = "컴퓨터 네트워크";
 
     // DB에서 강의 제목, 강의실 이름, 교수님 이름, 강의 시간을 꺼내줌
     const query = `
@@ -301,9 +292,9 @@ exports.attendence = async (req, res) => {
       return acc;
     }, []);
 
-    //console.log(lecDetail);
     res.status(200).send(data);
   } catch (error) {
+    console.error(error);
     if (!userID) res.status(401).send();
     else res.status(500).send();
   }
@@ -315,15 +306,13 @@ exports.notice = async (req, res) => {
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-    //let lecName = "머신러닝";
-    //let lecName = "컴퓨터 네트워크";
 
     //공지사항 5개를 DB에서 추출
     let lecNotice = queryBoard(userID, lecName, 1, false);
 
-    //console.log(lecNotice);
     res.status(200).send(lecNotice);
   } catch (error) {
+    console.error(error);
     if (!userID) res.status(401).send();
     else res.status(500).send();
   }
@@ -335,15 +324,13 @@ exports.file = async (req, res) => {
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-    //let lecName = "머신러닝";
-    //let lecName = "컴퓨터 네트워크";
 
     //자료실 글 5개를 DB에서 추출
     let lecFile = queryBoard(userID, lecName, 2, false);
 
-    //console.log(lecFile);
     res.status(200).send(lecFile);
   } catch (error) {
+    console.error(error);
     if (!userID) res.status(401).send();
     else res.status(500).send();
   }
@@ -355,15 +342,13 @@ exports.lecture = async (req, res) => {
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-    //let lecName = "머신러닝";
-    //let lecName = "컴퓨터 네트워크";
 
     //강의실 글 5개를 DB에서 추출
     let lecLec = queryBoard(userID, lecName, 3, false);
 
-    //console.log(lecLec);
     res.status(200).send(lecLec);
   } catch (error) {
+    console.error(error);
     if (!userID) res.status(401).send();
     else res.status(500).send();
   }
@@ -375,15 +360,13 @@ exports.assignment = async (req, res) => {
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-    //let lecName = "머신러닝";
-    //let lecName = "컴퓨터 네트워크";
 
     //과제 글 5개를 DB에서 추출
     let lecAss = queryBoard(userID, lecName, 4, false);
 
-    //console.log(lecAss);
     res.status(200).send(lecAss);
   } catch (error) {
+    console.error(error);
     if (!userID) res.status(401).send();
     else res.status(500).send();
   }
@@ -395,13 +378,12 @@ exports.noticeDetail = async (req, res) => {
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-    //let lecName = "머신러닝";
-    //let lecName = "컴퓨터 네트워크";
 
     let index = req.query.index;
 
     res.status(200).send(queryPost(userID, lecName, 1, index));
-  } catch (err) {
+  } catch (error) {
+    console.error(error);
     if (!userID) res.status(401).send();
     else res.status(500).send();
   }
@@ -413,13 +395,12 @@ exports.fileDetail = async (req, res) => {
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-    //let lecName = "머신러닝";
-    //let lecName = "컴퓨터 네트워크";
 
     let index = req.query.index;
 
     res.status(200).send(queryPost(userID, lecName, 2, index));
-  } catch (err) {
+  } catch (error) {
+    console.error(error);
     if (!userID) res.status(401).send();
     else res.status(500).send();
   }
@@ -431,13 +412,12 @@ exports.lectureDetail = async (req, res) => {
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-    //let lecName = "머신러닝";
-    //let lecName = "컴퓨터 네트워크";
 
     let index = req.query.index;
 
     res.status(200).send(queryPost(userID, lecName, 3, index));
-  } catch (err) {
+  } catch (error) {
+    console.error(error);
     if (!userID) res.status(401).send();
     else res.status(500).send();
   }
@@ -449,13 +429,12 @@ exports.assignmentDetail = async (req, res) => {
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-    //let lecName = "머신러닝";
-    //let lecName = "컴퓨터 네트워크";
 
     let index = req.query.index;
 
     res.status(200).send(queryPost(userID, lecName, 4, index));
-  } catch (err) {
+  } catch (error) {
+    console.error(error);
     if (!userID) res.status(401).send();
     else res.status(500).send();
   }
@@ -467,15 +446,14 @@ exports.assignmentSent = async (req, res) => {
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-    //let lecName = "머신러닝";
-    //let lecName = "컴퓨터 네트워크";
 
     let index = req.query.index;
 
-    queryAssSent(req.body, userID, lecName, index);
+    await queryAssSent(req.body, userID, lecName, index);
 
     res.status(200).send();
-  } catch (err) {
+  } catch (error) {
+    console.error(error);
     if (!userID) res.status(401).send();
     else res.status(500).send();
   }

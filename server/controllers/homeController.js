@@ -173,6 +173,7 @@ exports.homeDetail = async (req, res) => {
 
     res.status(200).send(lecDetail);
   } catch (error) {
+    console.error(error);
     if (!userID) res.status(401).send();
     else res.status(500).send();
   }

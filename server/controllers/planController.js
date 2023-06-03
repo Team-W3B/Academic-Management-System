@@ -285,6 +285,7 @@ exports.planDetail = async (req, res) => {
 
     res.status(200).send(planDetail);
   } catch (error) {
+    console.error(error);
     if (!userID) res.status(401).send();
     else res.status(500).send();
   }
