@@ -15,6 +15,7 @@ module.exports = {
       },
       write_date: {
         allowNull: false,
+        defaultValue: Sequelize.fn("NOW"),
         type: Sequelize.DATE,
       },
       deadline: {
@@ -43,7 +44,7 @@ module.exports = {
       },
       sl_lecture_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
     });
 

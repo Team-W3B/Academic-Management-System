@@ -7,7 +7,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       lecture_name: {
         allowNull: false,
@@ -17,9 +17,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      is_major: {
+      major: {
         allowNull: false,
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.STRING,
       },
       credit_point: {
         allowNull: false,

@@ -44,7 +44,7 @@ exports.signupData = async (req, res) => {
       res.status(409).send();
     } else {
       // 서버 에러
-      console.log(err.message);
+      console.error(error);
       res.status(500).send();
     }
   }

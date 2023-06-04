@@ -17,9 +17,7 @@ exports.loginProcess = async (req, res) => {
       req.session.save(function () {
         req.session.userID = id;
         res.status(200).send({ userInfo: student.name });
-        console.log(req.session);
       });
-
       return;
     }
 
@@ -33,9 +31,10 @@ exports.loginProcess = async (req, res) => {
       (await bcrypt.compare(request_password, professor.passwd))
     ) {
       // 교수 로그인 성공
-      req.session.userID = id;
-      req.session.save();
-      res.status(200).send({ userInfo: professor.name });
+      req.session.save(function () {
+        req.session.userID = id;
+        res.status(200).send({ userInfo: professor.name });
+      });
       return;
     }
 

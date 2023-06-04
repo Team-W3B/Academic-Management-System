@@ -28,14 +28,14 @@ module.exports = (sequelize, DataTypes) => {
   Lecture.init(
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
       },
       lecture_name: { type: DataTypes.STRING, allowNull: false },
       lecture_room: { type: DataTypes.STRING, allowNull: false },
-      is_major: { type: DataTypes.BOOLEAN, allowNull: false },
+      major: { type: DataTypes.STRING, allowNull: false },
       credit_point: { type: DataTypes.INTEGER, allowNull: false },
       grade_semester: {
         type: DataTypes.STRING,

@@ -1,6 +1,34 @@
 const model = require("../models");
 const { QueryTypes } = require("sequelize");
 const { sequelize } = require("../models/index");
+const fsPromises = require("fs").promises;
+const path = require("path");
+
+async function getUserID(req) {
+  // request 헤더에서 sessionID 가져오기
+  const sessionID = req.headers.cookie.split("=")[1];
+
+  const tmp = sessionID.substring(sessionID.indexOf("s%3A") + 4);
+  const replacedSessionID = tmp.substring(0, tmp.indexOf("."));
+
+  // 세션 파일 경로 생성
+  const sessionFilePath = path.join(
+    __dirname,
+    "../",
+    "sessions",
+    `${replacedSessionID}.json`
+  );
+
+  // 세션 파일 읽기 및 처리 로직 작성
+  try {
+    const data = await fsPromises.readFile(sessionFilePath, "utf8");
+    const session = JSON.parse(data);
+    return session.userID;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
 
 function sortedData(lectures) {
   lectures.sort((a, b) => {
@@ -21,6 +49,25 @@ function sortedData(lectures) {
   return lectures;
 }
 
+function mappingToKor(day_of_week) {
+  switch (day_of_week) {
+    case "월":
+      return "mon";
+    case "화":
+      return "tue";
+    case "수":
+      return "wed";
+    case "목":
+      return "thur";
+    case "금":
+      return "fri";
+    case "토":
+      return "sat";
+    case "일":
+      return "sun";
+  }
+}
+
 function mappingWithId(sortedLectures) {
   var id = 0;
 
@@ -34,7 +81,7 @@ function mappingWithId(sortedLectures) {
 
   //정렬한 데이터를 기반으로 Json 배열 생성
   sortedLectures.forEach((lecture) => {
-    let lecture_day_of_week = lecture.day_of_week;
+    let lecture_day_of_week = mappingToKor(lecture.day_of_week);
 
     let lectureInfo = {
       id: 0,
@@ -54,13 +101,9 @@ function mappingWithId(sortedLectures) {
 }
 
 exports.homeForm = async (req, res) => {
+  // 로그인한 학번을 세션에서 가져옴
+  let userID = await getUserID(req);
   try {
-    // 로그인한 학번을 세션에서 가져옴
-    let userId = req.session.userID;
-    //let userId = 2018202043;
-    console.log(userId);
-    console.log(req.session);
-
     // ID 값을 사용하여 학생이 수강하고 있는 모든 강의 정보를 조회하는 쿼리문
     const query = `
     SELECT
@@ -86,25 +129,22 @@ exports.homeForm = async (req, res) => {
     // 쿼리 실행
     const lectures = await sequelize.query(query, {
       type: QueryTypes.SELECT,
-      replacements: { studentId: userId },
+      replacements: { studentId: userID },
     });
 
-    console.log(lectures);
     let sortedLectures = sortedData(lectures);
     res.status(200).json(mappingWithId(sortedLectures));
   } catch (error) {
     console.error(error);
-    if (!req.session.userID) res.status(401).send();
+    if (!userID) res.status(401).send();
     else res.status(500).send();
   }
 };
 
 exports.homeDetail = async (req, res) => {
+  // 로그인한 학번을 세션에서 가져옴
+  let userID = await getUserID(req);
   try {
-    // 로그인한 학번을 세션에서 가져옴
-    let userID = req.session.userID;
-    //let userID = 2018202043;
-
     // DB에서 강의명, 강의 남은 개수, 총 강의 수, 강의 기간, 과제 남은 수, 총 과제 수, 과제 기간
     const query = `
     SELECT
@@ -131,10 +171,10 @@ exports.homeDetail = async (req, res) => {
       replacements: { studentId: userID },
     });
 
-    console.log(lecDetail);
     res.status(200).send(lecDetail);
   } catch (error) {
-    if (!req.session.userID) res.status(401).send();
+    console.error(error);
+    if (!userID) res.status(401).send();
     else res.status(500).send();
   }
 };

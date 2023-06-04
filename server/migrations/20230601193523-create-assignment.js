@@ -2,39 +2,48 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Attendances", {
-      week: {
+    await queryInterface.createTable("Assignments", {
+      id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      round: {
+      ass_student_id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      sl_student_id: {
+      ass_lecture_id: {
         allowNull: false,
-        autoIncrement: false,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      sl_lecture_id: {
-        allowNull: false,
-        autoIncrement: false,
         primaryKey: true,
         type: Sequelize.STRING,
       },
-
-      check: {
+      write_date: {
         allowNull: false,
+        defaultValue: Sequelize.fn("NOW"),
+        type: Sequelize.DATE,
+      },
+      content: {
+        allowNull: true,
+        type: Sequelize.TEXT,
+      },
+      file_name: {
+        allowNull: true,
         type: Sequelize.STRING,
+      },
+      file_size: {
+        allowNull: true,
+        type: Sequelize.INTEGER,
+      },
+      file: {
+        allowNull: true,
+        type: Sequelize.BLOB,
       },
     });
 
-    await queryInterface.addConstraint("Attendances", {
-      name: "FK_Attendances",
-      fields: ["sl_student_id", "sl_lecture_id"],
+    await queryInterface.addConstraint("Assignments", {
+      name: "FK_Assignment",
+      fields: ["ass_student_id", "ass_lecture_id"],
       type: "foreign key",
       references: {
         table: "Student_Lectures",
@@ -45,6 +54,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Attendances");
+    await queryInterface.dropTable("Assignments");
   },
 };
