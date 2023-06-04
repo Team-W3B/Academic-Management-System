@@ -24,32 +24,28 @@ export default function LecPage() {
     return (
         <>
             <HeaderNav />
+
             <div>
-                <Lec_check/>
-                <Col sm={6}>
-                    <Lec />
-                    
-                </Col>
-                
-                <Row style={{padding:"1%"}}>
-                    <Col sm={5}>
-                        <Lec_notice />
-                    </Col>
-                    <Col sm={5}>
-                        <Lec_file />
-                    </Col>
-                </Row>
-                <Row style={{padding:"1%"}}>
-                    <Col sm={5}>
-                        <Lec_lecture />
-                    </Col>
-                    <Col sm={5}>
-                        <Lec_ass />
-                    </Col>
-                </Row>
+                <div className={style.hbox}>
+                    <div className={style.wrapp}>
+                        <Lec />
+
+                        <div className={style.lecbox}>
+                            <Lec_notice />
+                            <Lec_file />
+                        </div>
+                        <div className={style.lecbox}>
+                            <Lec_lecture />
+                            <Lec_ass />
+                        </div>
+                    </div>
+                    <div style={{ paddingLeft: "5%" }}>
+                        <Lec_check />
+                    </div>
+                </div>
+
             </div>
             <Footer />
-
         </>
     );
 };

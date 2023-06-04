@@ -51,6 +51,27 @@ let plan_detail = createSlice({
 export let { setPlanDetail } = plan_detail.actions
 
 
+export let lecNameSlice = createSlice({
+    name:"lecture",
+    initialState:{lecture:""},
+    reducers:{
+        setlecure:(state, action)=>{
+            state.lecture = action.payload
+        }
+    }
+});
+export const {setlecure} = lecNameSlice.actions
+
+export let lecIndexSlice = createSlice({
+    name:"index",
+    initialState:{index:""},
+    reducers:{
+        setIndex:(state, action)=>{
+            state.index = action.payload
+        }
+    }
+});
+export const {setIndex} = lecIndexSlice.actions
 
 const store = configureStore({
     reducer: {
@@ -58,6 +79,8 @@ const store = configureStore({
         signUp : signUpSlice.reducer,
         plan_output : plan_output.reducer,
         plan_detail : plan_detail.reducer,
+        lecture : lecNameSlice.reducer,
+        index : lecIndexSlice.reducer
     }
 
 });
