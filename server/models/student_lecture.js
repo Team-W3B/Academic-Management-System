@@ -19,24 +19,29 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: "id",
       });
 
-      Student_Lecture.belongsTo(models.Lecture, {
-        foreignKey: "lecture_day_of_week",
-        targetKey: "day_of_week",
-      });
-
-      Student_Lecture.belongsTo(models.Lecture, {
-        foreignKey: "lecture_period",
-        targetKey: "period",
-      });
-
-      Student_Lecture.belongsTo(models.Grade_Semester, {
-        foreignKey: "lecture_grade_semester_id",
+      Student_Lecture.belongsTo(models.Professor, {
+        foreignKey: "professor_id",
         targetKey: "id",
       });
 
-      Student_Lecture.hasOne(models.Attendance, {
-        foreignKey: "student_lecture_student_id",
+      Student_Lecture.hasMany(models.Board, {
+        foreignKey: "sl_student_id",
         sourceKey: "student_id",
+      });
+
+      Student_Lecture.hasMany(models.Board, {
+        foreignKey: "sl_lecture_id",
+        sourceKey: "lecture_id",
+      });
+
+      Student_Lecture.hasOne(models.Attendance, {
+        foreignKey: "sl_student_id",
+        sourceKey: "student_id",
+      });
+
+      Student_Lecture.hasOne(models.Attendance, {
+        foreignKey: "sl_lecture_id",
+        sourceKey: "lecture_id",
       });
     }
   }
@@ -55,25 +60,12 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: false,
         primaryKey: true,
       },
+      professor_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: false,
+      },
       lecture_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        autoIncrement: false,
-        primaryKey: true,
-      },
-      lecture_day_of_week: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        autoIncrement: false,
-        primaryKey: true,
-      },
-      lecture_period: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        autoIncrement: false,
-        primaryKey: true,
-      },
-      lecture_grade_semester_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: false,

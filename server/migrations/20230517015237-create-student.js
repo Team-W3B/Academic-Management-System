@@ -6,15 +6,10 @@ module.exports = {
       id: {
         allowNull: false,
         autoIncrement: false,
-        unique: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
       passwd: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      member_type: {
         allowNull: false,
         type: Sequelize.STRING,
       },
@@ -38,32 +33,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      department_college_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      grade_semester_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
     });
 
     await queryInterface.addConstraint("Students", {
-      fields: ["department_id", "department_college_id"],
+      fields: ["department_id"],
       type: "foreign key",
       references: {
         table: "Departments",
-        fields: ["id", "college_id"],
-      },
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    });
-
-    await queryInterface.addConstraint("Students", {
-      fields: ["grade_semester_id"],
-      type: "foreign key",
-      references: {
-        table: "Grade_Semesters",
         field: "id",
       },
       onDelete: "cascade",

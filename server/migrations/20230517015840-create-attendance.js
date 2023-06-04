@@ -5,26 +5,40 @@ module.exports = {
     await queryInterface.createTable("Attendances", {
       week: {
         allowNull: false,
+        primaryKey: true,
         type: Sequelize.INTEGER,
       },
       round: {
         allowNull: false,
+        primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      student_lecture_student_id: {
+      sl_student_id: {
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      sl_lecture_id: {
+        allowNull: false,
+        autoIncrement: false,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+
+      check: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
     });
 
     await queryInterface.addConstraint("Attendances", {
-      fields: ["student_lecture_student_id"],
+      name: "FK_Attendances",
+      fields: ["sl_student_id", "sl_lecture_id"],
       type: "foreign key",
       references: {
         table: "Student_Lectures",
-        field: "student_id",
+        fields: ["student_id", "lecture_id"],
       },
       onDelete: "cascade",
       onUpdate: "cascade",

@@ -3,27 +3,27 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert("departments", [
+    await queryInterface.bulkInsert("board_types", [
       {
         id: 1,
-        department_name: "컴퓨터정보공학부",
+        board_type: "공지사항",
       },
       {
         id: 2,
-        department_name: "소프트웨어학부",
+        board_type: "자료실",
       },
       {
         id: 3,
-        department_name: "정보융합학부",
+        board_type: "온라인 강의 리스트",
       },
       {
         id: 4,
-        department_name: "전자공학과",
+        board_type: "과제",
       },
     ]);
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete("departments");
+    await queryInterface.bulkDelete("board_types");
   },
 };

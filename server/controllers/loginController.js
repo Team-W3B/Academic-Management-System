@@ -10,19 +10,23 @@ exports.loginProcess = async (req, res) => {
     //학생 로그인 시도
     const student = await model.Student.findOne({
       where: { id: id },
-      attributes: ["passwd"],
+      attributes: ["passwd", "name"],
     });
     if (student && (await bcrypt.compare(request_password, student.passwd))) {
       // 학생 로그인 성공
-      req.session.userID = id;
-      res.status(200).send();
+      req.session.save(function () {
+        req.session.userID = id;
+        res.status(200).send({ userInfo: student.name });
+        console.log(req.session);
+      });
+
       return;
     }
 
     //교수 로그인 시도
     const professor = await model.Professor.findOne({
       where: { id: id },
-      attributes: ["passwd"],
+      attributes: ["passwd", "name"],
     });
     if (
       professor &&
@@ -30,7 +34,8 @@ exports.loginProcess = async (req, res) => {
     ) {
       // 교수 로그인 성공
       req.session.userID = id;
-      res.status(200).send();
+      req.session.save();
+      res.status(200).send({ userInfo: professor.name });
       return;
     }
 

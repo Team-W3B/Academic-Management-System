@@ -13,14 +13,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "department_id",
         targetKey: "id",
       });
-      Student.belongsTo(models.Department, {
-        foreignKey: "department_college_id",
-        targetKey: "college_id",
-      });
-      Student.belongsTo(models.Grade_Semester, {
-        foreignKey: "grade_semester_id",
-        targetKey: "id",
-      });
 
       Student.hasMany(models.Student_Lecture, {
         foreignKey: "student_id",
@@ -34,18 +26,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: false,
-        unique: true,
         primaryKey: true,
       },
       passwd: { type: DataTypes.STRING, allowNull: false },
-      member_type: { type: DataTypes.STRING, allowNull: false },
       name: { type: DataTypes.STRING, allowNull: false },
       birth: { type: DataTypes.DATE, allowNull: false },
       tel: { type: DataTypes.STRING, allowNull: false },
       email: { type: DataTypes.STRING, allowNull: false },
       department_id: { type: DataTypes.INTEGER, allowNull: false },
-      department_college_id: { type: DataTypes.INTEGER, allowNull: false },
-      grade_semester_id: { type: DataTypes.INTEGER, allowNull: false },
     },
     {
       sequelize,

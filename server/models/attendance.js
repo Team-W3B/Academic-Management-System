@@ -10,20 +10,43 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Attendance.belongsTo(models.Student_Lecture, {
-        foreignKey: "student_lecture_student_id",
+        foreignKey: "sl_student_id",
         targetKey: "student_id",
+      });
+
+      Attendance.belongsTo(models.Student_Lecture, {
+        foreignKey: "sl_lecture_id",
+        targetKey: "lecture_id",
       });
     }
   }
   Attendance.init(
     {
-      week: { type: DataTypes.INTEGER, allowNull: false },
-      round: { type: DataTypes.INTEGER, allowNull: false },
-      student_lecture_student_id: {
+      week: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
+      round: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
+      sl_student_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
+      },
+      sl_lecture_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: false,
+        primaryKey: true,
+      },
+      check: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
     },
     {

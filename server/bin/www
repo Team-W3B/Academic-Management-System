@@ -15,11 +15,31 @@ var http = require("http");
 var port = normalizePort(process.env.PORT || "5000");
 app.set("port", port);
 
+// CORS 설정 추가
+function setCorsHeaders(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", req.headers.origin || "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+}
+
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+var server = http.createServer(function (request, response) {
+  // CORS 설정 적용
+  setCorsHeaders(request, response);
+
+  // app을 처리하도록 함
+  app(request, response);
+});
 
 /**
  * Listen on provided port, on all network interfaces.
