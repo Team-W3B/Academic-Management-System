@@ -102,7 +102,8 @@ function mappingWithId(sortedLectures) {
 
 exports.homeForm = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  //let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     // ID 값을 사용하여 학생이 수강하고 있는 모든 강의 정보를 조회하는 쿼리문
     const query = `
@@ -143,7 +144,8 @@ exports.homeForm = async (req, res) => {
 
 exports.homeDetail = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  //let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     // DB에서 강의명, 강의 남은 개수, 총 강의 수, 강의 기간, 과제 남은 수, 총 과제 수, 과제 기간
     const query = `
@@ -178,3 +180,4 @@ exports.homeDetail = async (req, res) => {
     else res.status(500).send();
   }
 };
+

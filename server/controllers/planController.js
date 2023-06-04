@@ -255,7 +255,7 @@ async function querydetailINFO(lectureID) {
 
 exports.planSearch = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     const grade_semester = req.query.planSearch_semester;
     const isMyLecture = req.query.planSearch_check_lec;
@@ -272,7 +272,7 @@ exports.planSearch = async (req, res) => {
 
 exports.planDetail = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     const lectureID = req.query.planDetail_regNum;
 
