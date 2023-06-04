@@ -1,4 +1,5 @@
 const model = require("../models");
+const { sequelize } = require("../models/index");
 const fsPromises = require("fs").promises;
 const path = require("path");
 
@@ -129,7 +130,7 @@ function createObj(id) {
 
 exports.lecHeader = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
@@ -166,7 +167,7 @@ exports.lecHeader = async (req, res) => {
 
 exports.lecNotice = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
@@ -184,7 +185,7 @@ exports.lecNotice = async (req, res) => {
 
 exports.lecFile = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
@@ -205,7 +206,7 @@ exports.lecFile = async (req, res) => {
 
 exports.lecLecture = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  let userID = 2018202043;
 
   try {
     // 강의명을 쿼리스트링에서 가져옴
@@ -224,7 +225,7 @@ exports.lecLecture = async (req, res) => {
 
 exports.lecAssignment = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
@@ -242,7 +243,7 @@ exports.lecAssignment = async (req, res) => {
 
 exports.attendence = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
@@ -302,7 +303,7 @@ exports.attendence = async (req, res) => {
 
 exports.notice = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
@@ -320,7 +321,7 @@ exports.notice = async (req, res) => {
 
 exports.file = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
@@ -338,7 +339,7 @@ exports.file = async (req, res) => {
 
 exports.lecture = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
@@ -356,7 +357,7 @@ exports.lecture = async (req, res) => {
 
 exports.assignment = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
@@ -374,7 +375,7 @@ exports.assignment = async (req, res) => {
 
 exports.noticeDetail = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
@@ -391,7 +392,7 @@ exports.noticeDetail = async (req, res) => {
 
 exports.fileDetail = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
@@ -408,7 +409,7 @@ exports.fileDetail = async (req, res) => {
 
 exports.lectureDetail = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
@@ -425,7 +426,7 @@ exports.lectureDetail = async (req, res) => {
 
 exports.assignmentDetail = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
@@ -442,7 +443,7 @@ exports.assignmentDetail = async (req, res) => {
 
 exports.assignmentSent = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = await getUserID(req);
+  let userID = 2018202043;
   try {
     // 강의명을 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
@@ -458,3 +459,4 @@ exports.assignmentSent = async (req, res) => {
     else res.status(500).send();
   }
 };
+
