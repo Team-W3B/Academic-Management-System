@@ -6,17 +6,18 @@ import axios from 'axios';
 import info from "../data/lecnotice";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {setIndex} from '../store';
+import {  Link, useNavigate  } from "react-router-dom";
 
-export default function Lec_notice() {
+export default function Notice() {
     const lecture_name = useSelector((state)=>state.lecture.lecture); //querystring 전달인자
-    let navigate = useNavigate();
-    let [lecinfo, setLecInfo] = useState(info);
+    const dispatch = useDispatch();
+    let [lecInfo, setLecInfo] = useState(info);
     useEffect(() => {
         getLecInfo();
     }, []);
     let getLecInfo = () => {
-        axios.get('/api/lecpage/lec_notice', {
+        axios.get('/api/lecpage/notice', {
             params: {
                 lecture: lecture_name
             }
@@ -37,20 +38,22 @@ export default function Lec_notice() {
                 }
             })
     };
-    const handleCheck = (e) => {
-        console.log(e.target.value);
-        console.log('afsfd');
-        navigate('/LecPage_notice');
+    const navigate = useNavigate();
+
+    const handleIndex = (index) => {
+        dispatch(setIndex(index));
+        //console.log(index);
+        navigate('/LecPage_not_detail');
     }
     return (
-        <div onClick={handleCheck}>
-        <div className={styles.whiteCard}>
-            <div className={styles.class_name} >
-                공지사항
-            </div>
-            {lecinfo.map(function (a, i) {
+        <div className={styles.whiteCard_big}>
+
+            <div className={styles.class_name}>
+                공지사항</div>
+            {lecInfo.map(function (a, i) {
+                //console.log(lec_notice[0]);
                 return (
-                    <div key={i} i={i} lecinfo={a}>
+                    <div key={i} i={i} lecInfo={a} >
                         <Row style={{
                             //width: "100%",
                             // textAlign: "center",
@@ -58,7 +61,7 @@ export default function Lec_notice() {
                             margin: "3px"
                         }} className={styles.contain}>
 
-                            <Col >
+                            <Col onClick={ () => handleIndex(a.lecPage_index)}>
                                 {a.lecPage_title}
                             </Col>
                             <Col style={{ textAlign: "right" }}>
@@ -69,7 +72,7 @@ export default function Lec_notice() {
                 );
             })
             }
-</div>
+
         </div>
     );
 }

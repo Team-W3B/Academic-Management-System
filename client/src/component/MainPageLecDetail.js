@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import styles from './../scss/MainPageLecDetail.module.scss';
 import MPLD_data from '../data/MainPageLecDetail_data';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setlecure } from '../store';
+import {  Link, useNavigate  } from "react-router-dom";
 
 let MainPageLecDetail  = () => {
 
     let [mpld, setMpld] = useState(MPLD_data);
-
+    
     let getMPLD = () => {
         axios.get('/api/home/detail')
             .then((res)=> {
                 console.log(res);
-                let copy = [...res.data]
+                let copy = {...res.data};
                 setMpld(copy)
             })
             .catch((error)=>{
@@ -19,7 +22,9 @@ let MainPageLecDetail  = () => {
             })
     };
     getMPLD();
-
+    
+   
+    
     return (
         <div className={styles.Dcard}>
             {/* 제목 행 */}
@@ -28,7 +33,7 @@ let MainPageLecDetail  = () => {
             {
                 mpld.map(function(a, i) {
                     return (
-                        <SubjectDetail
+                        <SubjectDetail 
                             key = {i}
                             i = {i} 
                             subject = {a.name}
@@ -49,9 +54,10 @@ let MainPageLecDetail  = () => {
 export default MainPageLecDetail;
 
 let SubjectLine = (props) => {
+    
     return (
         <div className={styles.subjectLine}>
-            <div className={styles.sub}>
+            <div className={styles.sub} >
                 <p className={styles.font}>{props.subject}</p>
             </div>
             <div className={styles.sub}>
@@ -64,10 +70,17 @@ let SubjectLine = (props) => {
     )
 }
 let SubjectDetail = (props) => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const handleOn = (name) => {
+        dispatch(setlecure(name));
+        //console.log(name);
+        navigate( '/LecPage' );
+    };
     return (
         <div className={styles.subjectLine}>
             <div className={styles.sub}>
-                <p className={styles.font}> {props.subject} </p>
+                <p className={styles.font} onClick={ () => handleOn(props.subject) }> {props.subject} </p>
             </div>
             <div className={styles.sub}>
                 {

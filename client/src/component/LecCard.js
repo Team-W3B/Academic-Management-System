@@ -15,9 +15,11 @@ function LecCard() {
     let getLecInfo = () => {
         axios.get('/api/home', {withCredentials : true})
             .then((res)=> {
+
               console.log('성공~!')
               let copy = {...res.data}
               setLecInfo(copy)
+
             })
             .catch((error)=>{
               console.log('실패!')

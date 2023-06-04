@@ -1,55 +1,142 @@
+/* The following line can be included in a src/App.scss */
+@import '~bootstrap/scss/bootstrap';
+
 *{margin:0;padding:0;box-sizing:border-box;font:inherit;color:inherit;flex-shrink:0;}
+
+$mainColor : linear-gradient(
+  135deg,
+  rgba(255, 120, 78, 1) 0%,
+  rgba(251, 52, 124, 1) 100%
+);
+$green_gradient : linear-gradient(
+  23.96deg,
+  #76C38F 0%,
+  #60CF8C 48.44%,
+  #A7C12C 100%
+);
+$disabled_color : #86868b;
+$input_BG : rgba(249, 249, 249, 0.8);
+$almost-white : #EEEEEE;
 
 html {
   font-size: 50%;
 }
+
 .App {
   text-align: center;
 }
-@mixin main-color {
-  background: linear-gradient(
-  135deg,
-  rgba(255, 120, 78, 1) 0%,
-  rgba(251, 52, 124, 1) 100%
-  );
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
+.content {
+  flex: 1;
+  overflow-y: scroll; /* 스크롤이 필요한 경우 */
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 79px;
+  // background-color: #f1f1f1;
+}
+
+.hbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.space_between {
+  justify-content: space-between;
+}
+@mixin sf-pro-display-12-medium {
+  font-family: "SF Pro Display";
+  font-size: 12px;
+  font-weight: 500;
+  // line-height: 19px;
+}
+@mixin sf-pro-display-12-bold {
+  font-family: "SF Pro Display";
+  font-size: 12px;
+  font-weight: 700;
+  // line-height: 19px;
+}
 @mixin sf-pro-display-16-medium {
   font-family: "SF Pro Display";
   font-size: 16px;
   font-weight: 500;
-  line-height: 19px;
+  // line-height: 19px;
+}
+@mixin sf-pro-display-16-bold {
+  font-family: "SF Pro Display";
+  font-size: 16px;
+  font-weight: 700;
+  // line-height: 19px;
 }
 @mixin sf-pro-display-24-medium {
   font-family: "SF Pro Display";
   font-size: 24px;
-  font-weight: 700;
-  line-height: 28px;
+  font-weight: 500;
+  // line-height: 28px;
 }
 @mixin sf-pro-display-32-bold {
   font-family: "SF Pro Display";
   font-size: 32px;
   font-weight: 700;
-  line-height: 38px;
+  // line-height: 38px;
 }
 @mixin sf-pro-display-64-bold {
   font-family: "SF Pro Display";
   font-size: 64px;
   font-weight: 700;
-  line-height: 38px;
+  // line-height: 38px;
 }
 @mixin short-button {
-  border: none;
-  border-radius: 16px;
-  padding: 12px 24px;
+  border: 1px solid $disabled_color;
+  border-radius: 12px;
+  // padding: 12px 24px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
 }
 
-// .image { width: 12rem; } //120px
-// .item { font-size: 1.6rem; } //16px
-// .copyright { margin-top: 5rem; } //50px
- 
+@mixin border_gradient {
+  border: 2px solid transparent;
+  background-image:linear-gradient(#fff, #fff),$mainColor;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+@mixin text_gradient($grad) {
+  background: $grad;
+  background-clip: text;
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin flex_container($direction : row, $justify : center, $align : center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  margin : 0;
+}
+@mixin Card($bg : white, $rad : 12px) {
+  background: $bg;
+  box-shadow: 4px 12px 40px 6px rgba(0, 0, 0, 0.09);
+  border-radius: $rad;
+}
+@mixin hoverShadow {
+  border-radius: 8px;
+  padding: 6px 0px 6px 4px;
+  box-shadow: 1px 2px 12px 2px rgba(0, 0, 0, 0.09);
+}
+
 /* @media (max-width: 1028px) {
   html { font-size: 100vw; } // 이제 문서 내 모든 rem 단위가 영향을 받습니다.
 } */

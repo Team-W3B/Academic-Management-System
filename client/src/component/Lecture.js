@@ -6,18 +6,19 @@ import axios from 'axios';
 import info from "../data/leclecture";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {setIndex} from '../store';
+import {  Link, useNavigate  } from "react-router-dom";
 
-export default function Lec_lecture() {
+export default function Lecture() {
     const lecture_name = useSelector((state)=>state.lecture.lecture); //querystring 전달인자
-    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    let [lecinfo, setLecInfo] = useState(info);
+    let [lecInfo, setLecInfo] = useState(info);
     useEffect(() => {
         getLecInfo();
     }, []);
     let getLecInfo = () => {
-        axios.get('/api/lecpage/lec_lecture', {
+        axios.get('/api/lecpage/lecture', {
             params: {
                 lecture: lecture_name
             }
@@ -38,20 +39,24 @@ export default function Lec_lecture() {
             }
         })
     };
-   // getLecInfo();
-   // console.log(lec_notice[0].lecPage_title);
+    const navigate = useNavigate();
+
+    const handleIndex = (index) => {
+        dispatch(setIndex(index));
+        //console.log(index);
+        navigate('/LecPage_lec_detail');
+    }
     
     return (
-        <div onClick={() => navigate('/LecPage_lecture')}>
-        <div className={styles.whiteCard}>
+        <div className={styles.whiteCard_big}>
 
         <div className={styles.class_name}>
         온라인 강의 리스트</div>
-            {lecinfo.map(function(a,i){
+            {lecInfo.map(function(a,i){
                 //console.log(lec_notice[0]);
                 return(
                    
-                    <div key={i} i={i} lecinfo={a}>
+                    <div key={i} i={i} lecInfo={a}>
                         <Row style={{
                         // width: "100%",
                         // textAlign: "center",
@@ -59,7 +64,7 @@ export default function Lec_lecture() {
                         margin:"3px"
                       }} className={styles.contain}>
                             
-                            <Col>
+                            <Col onClick={ () => handleIndex(a.lecPage_index)}>
                                 {a.lecPage_title}
                             </Col>
                             <Col style={{ textAlign: "right" }}>
@@ -71,7 +76,6 @@ export default function Lec_lecture() {
                 );
             })
         }
-        </div>
         </div>
     );
 }

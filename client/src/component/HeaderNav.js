@@ -30,7 +30,7 @@ let HeaderNav = () => {
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="me-auto nav">
                                 <Nav.Link style={{ padding: "0 1rem" }} id={styles.nav} onClick={ () => {navigate( '/schedule' ) } } > 전체일정 </Nav.Link>
-                                <Nav.Link style={{ padding: "0 1rem" }} id={styles.nav} onClick={ () => { navigate('/lecturePlan') } } > 강의계획서 </Nav.Link>
+                                <Nav.Link style={{ padding: "0 1rem" }} id={styles.nav} onClick={ () => { navigate('/Plan/Search') } } > 강의계획서 </Nav.Link>
                                 <Nav.Link style={{ padding: "0 1rem" }} id={styles.nav} onClick={ () => {navigate( '/scores' ) } } > 성적/석차 </Nav.Link>
                             </Nav>
                             <div

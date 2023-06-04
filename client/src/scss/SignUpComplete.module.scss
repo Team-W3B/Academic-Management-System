@@ -6,7 +6,7 @@ $blue : rgba(0, 122, 255, 1);
     display: grid;
     place-items: center;
     min-height: 100vh;
-    @include main-color();
+    background: $mainColor;
     
 }
 .container {
@@ -53,7 +53,7 @@ $blue : rgba(0, 122, 255, 1);
 }
 
 .button {
-    @include main-color();
+    background: $mainColor;
     border-radius: 16px;
     padding: 18px 24px;
     display: flex;

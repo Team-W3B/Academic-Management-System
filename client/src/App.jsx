@@ -5,10 +5,20 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import SignUpComplete from './pages/SignUpComplete';
 import MainPage from "./pages/MainPage";
-//---
 import LecPage from "./pages/LecPage";
 import LecPage_notice from "./pages/LecPage_notice";
-import PlanSearch from "./pages/PlanSearch";
+import Plan from "./pages/Plan";
+import PlanSearch from "./component/PlanSearch";
+import PlanOutput from "./component/PlanOutput";
+import PlanDetail from "./component/PlanDetail";
+import LecPage_ass from "./pages/LecPage_ass";
+import LecPage_file from "./pages/LecPage_file";
+import LecPage_lecture from "./pages/LecPage_lecture";
+import LecPage_not_detail from "./pages/LecPage_not_detail";
+import LecPage_file_detail from "./pages/LecPage_file_detail";
+import LecPage_ass_detail from "./pages/LecPage_ass_detail";
+import LecPage_lec_detail from "./pages/LecPage_lec_detail";
+
 function App() {
   return (
     // <BrowserRouter>
@@ -21,7 +31,19 @@ function App() {
         <Route path="/MainPage" element={ <MainPage /> } />
         <Route path="/LecPage" element={ <LecPage /> } />
         <Route path="/LecPage_notice" element={ <LecPage_notice /> } />
-        <Route path="/PlanSearch" element={ <PlanSearch /> } />
+        <Route path="/Plan" element={ <Plan /> } >
+          <Route path="Search" element={ <PlanSearch /> } />
+          <Route path="Output" element={ <PlanOutput /> } />
+          <Route path="Detail/:id" element={ <PlanDetail /> } />
+        </Route>
+        <Route path="/LecPage_ass" element={ <LecPage_ass /> } />
+        <Route path="/LecPage_file" element={ <LecPage_file /> } />
+        <Route path="/LecPage_lecture" element={ <LecPage_lecture /> } />
+
+        <Route path="/LecPage_not_detail" element={ <LecPage_not_detail /> } />
+        <Route path="/LecPage_file_detail" element={ <LecPage_file_detail /> } />
+        <Route path="/LecPage_ass_detail" element={ <LecPage_ass_detail /> } />
+        <Route path="/LecPage_lec_detail" element={ <LecPage_lec_detail /> } />
       </Routes>
     </div>
     // </BrowserRouter>
