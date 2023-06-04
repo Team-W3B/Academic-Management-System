@@ -1,0 +1,166 @@
+@import "./App.module.scss";
+
+Link {
+    text-decoration-line: none;
+}
+p {
+    margin: 0px;
+}
+
+.login_signup {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(-225deg, rgb(255, 120, 78), rgb(251, 52, 124));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.whiteCard_login {
+    /* 카드의 크기 */
+    width: 40vw;
+    height: 40vw;
+    /* width: 500px; */
+    /* height: 500px; */
+
+    /* 카드의 하위 요소들의 정렬 방식 정의 */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    /* 카드의 백그라운드 색 및 border 정의 */
+    background-color: white;
+    border: solid 1px white;
+    border-radius: 48px;
+    box-shadow: 0px 2px 20px 4px rgba(0, 0, 0, 0.12);
+}
+.whiteCard_signup {
+    /* 카드의 크기 */
+    width: 40vw;
+    height: 90vh;
+    /* width: 500px; */
+    /* height: 500px; */
+
+    /* 카드의 하위 요소들의 정렬 방식 정의 */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    /* 카드의 백그라운드 색 및 border 정의 */
+    background-color: white;
+    border: solid 1px white;
+    border-radius: 48px;
+    box-shadow: 0px 2px 20px 4px rgba(0, 0, 0, 0.12);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+    
+}
+
+.loginTitle {
+    font-size: 2.8vw;
+    font-weight: bold;
+    color: #262626;
+    line-height: 117%;
+}
+
+.loginContent {
+    width: 28vw;
+    font-size: 1vw;
+}
+
+.inputTitle {
+width: 28vw;
+font-weight: 600;
+color: #262626;
+text-align: left;
+display: flex;
+flex-direction: row;
+}
+.message {
+    /* width: 28vw; */
+    font-weight: 600;
+    color: #262626;
+    /* text-align: left; */
+    /* display: flex; */
+    /* flex-direction: row; */
+    }
+
+.inputWrap {
+    display: flex;
+    width: 28vw;
+    height: 6vh;
+    border-radius: 8px;
+    padding: 1vh 1.5vw;
+    margin-top: 8px;
+    background-color: white;
+    border: 1px solid #e2e0e0;
+}
+.inputWrap:focus-within {
+    border: 1px solid rgba(255, 120, 78, 1);//#9e30f4;
+}
+
+.input {
+    width: 100%;
+    outline: none;
+    border: none;
+    /* height: 17px; */
+    font-size: 1.2vw;
+    font-weight: 400;
+}
+
+.input::placeholder {
+    color: #dadada;
+}
+
+.bottomButton {
+    /* width: 100%; */
+    width: 28vw;
+    height: 6vh;
+    border: none;
+    font-size: 1.5vw;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 12px;
+    //background-color:linear-gradient(98.5deg, #FF784E 0%, #FB347C 99.75%);;//#9e30f4;
+    background: linear-gradient(98.5deg, #FF784E 0%, #FB347C 99.75%);
+    border-radius: 16px;
+    color: white;
+    /* cursor: pointer; */
+}
+
+.bottomButton:disabled {
+    background-color: #dadada;
+    color: white;
+}
+
+.errorMessageWrap {
+    margin-top: 8px;
+    color: #ef0000;
+    font-size: 12px;
+}
+.NaN_0010{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+}
+
+.signatureFontColor{
+    background: linear-gradient(-225deg, rgb(255, 120, 78), rgb(251, 52, 124));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+.namecolortitle{
+    background: linear-gradient(-225deg, rgb(255, 120, 78), rgb(251, 52, 124));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
