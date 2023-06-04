@@ -47,14 +47,14 @@ let InfoRow = (props) => {
     let info = props.info;
     let navigate = useNavigate();
     let dispatch = useDispatch();
-    
+
     /* params 형식은 단순한 형태로는 잘 동작하지만, 객체가 중첩되기 시작하는 순간 제대로 stringify 처리를 하지 못한다. */
     axios.defaults.paramsSerializer = params => {
         return qs.stringify(params);
     }
 
     let clickLec = () => {
-        // navigate("/Plan/Output/" + `${info.planOut_reg_num}`);
+        // navigate("/Plan/Detail/" + `${info.planOut_reg_num}`);
         axios.get('/api/plan/detail', {params : info.planOut_reg_num}, {withCredentials : true})
         .then( (res) => {
             console.log(res.status);
@@ -62,7 +62,7 @@ let InfoRow = (props) => {
                 console.log(res.data);
                 dispatch(setPlanDetail(res.data));
                 alert("검색 성공!");
-                navigate("/Plan/Output/" + `${info.planOut_reg_num}`);
+                navigate("/Plan/Detail/" + `${info.planOut_reg_num}`);
             }
         })
         .catch((error) => {

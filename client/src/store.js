@@ -57,6 +57,7 @@ const store = configureStore({
         user : user.reducer,
         signUp : signUpSlice.reducer,
         plan_output : plan_output.reducer,
+        plan_detail : plan_detail.reducer,
     }
 
 });

@@ -11,6 +11,7 @@ import LecPage_notice from "./pages/LecPage_notice";
 import Plan from "./pages/Plan";
 import PlanSearch from "./component/PlanSearch";
 import PlanOutput from "./component/PlanOutput";
+import PlanDetail from "./component/PlanDetail";
 function App() {
   return (
     // <BrowserRouter>
@@ -26,7 +27,7 @@ function App() {
         <Route path="/Plan" element={ <Plan /> } >
           <Route path="Search" element={ <PlanSearch /> } />
           <Route path="Output" element={ <PlanOutput /> } />
-          <Route path="Detail/:id" element={ <div></div> } />
+          <Route path="Detail/:id" element={ <PlanDetail /> } />
         </Route>
       </Routes>
     </div>

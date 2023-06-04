@@ -54,36 +54,41 @@ html {
 .space_between {
   justify-content: space-between;
 }
-
 @mixin sf-pro-display-12-medium {
   font-family: "SF Pro Display";
   font-size: 12px;
   font-weight: 500;
-  line-height: 19px;
+  // line-height: 19px;
+}
+@mixin sf-pro-display-12-bold {
+  font-family: "SF Pro Display";
+  font-size: 12px;
+  font-weight: 700;
+  // line-height: 19px;
 }
 @mixin sf-pro-display-16-medium {
   font-family: "SF Pro Display";
   font-size: 16px;
   font-weight: 500;
-  line-height: 19px;
+  // line-height: 19px;
 }
 @mixin sf-pro-display-16-bold {
   font-family: "SF Pro Display";
   font-size: 16px;
   font-weight: 700;
-  line-height: 19px;
+  // line-height: 19px;
 }
 @mixin sf-pro-display-24-medium {
   font-family: "SF Pro Display";
   font-size: 24px;
-  font-weight: 700;
-  line-height: 28px;
+  font-weight: 500;
+  // line-height: 28px;
 }
 @mixin sf-pro-display-32-bold {
   font-family: "SF Pro Display";
   font-size: 32px;
   font-weight: 700;
-  line-height: 38px;
+  // line-height: 38px;
 }
 @mixin sf-pro-display-64-bold {
   font-family: "SF Pro Display";
