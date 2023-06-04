@@ -1,0 +1,60 @@
+[33mcommit 3fb633fc8482c7bb92f02e9d76111af3c9f43c1e[m[33m ([m[1;36mHEAD -> [m[1;32mfrontend[m[33m, [m[1;32mmain[m[33m)[m
+Author: QWEST <icecoffee2500@gmail.com>
+Date:   Tue Apr 18 02:57:16 2023 +0900
+
+    README fix
+
+[33mcommit 93ffa0e8a163367a03c243db97d7254155d1bf81[m
+Author: QWEST <icecoffee2500@gmail.com>
+Date:   Mon Apr 17 21:24:59 2023 +0900
+
+    1
+
+[33mcommit 7b4a482926b65ce78c6ccffc87235db7b5394db9[m
+Author: QWEST <icecoffee2500@gmail.com>
+Date:   Mon Apr 17 21:22:22 2023 +0900
+
+    react
+
+[33mcommit 2969f54f241e11288c9f90c7aaaefcaa206763d2[m
+Merge: eb16555 2e768f1
+Author: doyeon.kim <danny817@naver.com>
+Date:   Mon Apr 17 21:14:53 2023 +0900
+
+    aa
+
+[33mcommit 2e768f196f108a40165393f0cd81125c2040f827[m
+Author: KKGB <69628911+KKGB@users.noreply.github.com>
+Date:   Mon Apr 17 21:10:12 2023 +0900
+
+    KKGB
+
+[33mcommit 345624bcaed41e1f3396357e0f7c5e605527f67c[m
+Author: QWEST <icecoffee2500@gmail.com>
+Date:   Mon Apr 17 20:50:05 2023 +0900
+
+    server folder created
+
+[33mcommit 81270b9b48c97b8c9a2b056ca59bbd58a2df740c[m
+Author: QWEST <icecoffee2500@gmail.com>
+Date:   Mon Apr 17 20:46:25 2023 +0900
+
+    client folder created
+
+[33mcommit 899a09d7c9c10240def7d21d3607a02bec4430e5[m
+Author: QWEST <icecoffee2500@gmail.com>
+Date:   Mon Apr 17 20:32:55 2023 +0900
+
+    first commit
+
+[33mcommit eb16555ec423beaf914856450f7b33e5156d6857[m
+Author: doyeon.kim <danny817@naver.com>
+Date:   Mon Apr 17 20:24:36 2023 +0900
+
+    client created
+
+[33mcommit beb6fb2107ed69f3a2fd57f7c5eb0657184fcb2b[m
+Author: Icecoffee2500 <90626501+Icecoffee2500@users.noreply.github.com>
+Date:   Mon Apr 17 19:56:42 2023 +0900
+
+    Initial commit
