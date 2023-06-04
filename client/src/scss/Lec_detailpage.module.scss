@@ -20,20 +20,6 @@
 	// width: 639px;
 	// height: 157px;
   // }
-  .whiteCard_big{
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    height: 400px;
-    //width: 600px;
-	//height: 300px;
-    background-color: rgba(255, 255, 255, 1);
-    border-radius: 12px;
-    box-shadow: 0.4vw 1.0vw 1vw 0.2vw rgba(0, 0, 0, 0.09);
-    //z-index: -1;
-    padding:3%;
-    //margin:10px;
-  }
   .class_name{
     //color: black;
     background: linear-gradient(
@@ -51,8 +37,14 @@
     font-weight: initial;
     line-height: 117%;
     text-align: left;
-    width: 100%;
-    padding: 5%
+   // width: 600px;
+    //padding: 5%
+  }
+  .line { // 선을 구성하는 css 코드
+    display: flex;
+    border-left: thick solid #32a1ce; // 왼쪽 선만 나오도록 하기
+    height: 80%; // 자동으로 조절하기 위해서는 % 단위를 써야 한다.
+    
   }
   .frame24 {
     display: flex;
@@ -202,19 +194,29 @@
     align-items: flex-start;
     justify-content: center;
   }
+  .parent {
+    display: flex;
+  }
+  .child {
+    align-self: flex-end;
+    color: gray;
+  }
   .lec_name {
     height: 24px;
-    width: 100%;
+    //width: 100%;
     font-family: "SF Pro Display";
-    font-size: 1.3vw;
+    font-size: 2.5vw;
+    line-height: 117.2%;
+    //font-size: 30px;
     font-weight: 700;
     line-height: 2.4rem;
     color: rgba(25, 20, 20, 1);
-    display: flex;
-    align-items: center;
-    margin-left: 5%;
-    margin-bottom: 0.2vw;
-    letter-spacing: -0.018rem;
+   // display: flex;
+    align-items: left;
+    //margin: 1%;
+    //margin-left: 5%;
+    margin-bottom: 0.5vw;
+    //letter-spacing: -0.018rem;
   }
   .lec_detail {
     display: flex;
@@ -287,18 +289,17 @@
   .whiteCard {
     display: flex;
     flex-direction: column;
-    //align-items: center;
-   // text-align: center;
-    // width: 100%;
-    // height: auto;
-    width: 400px;
-	height: 200px;
+    width: 80%;
+    height: 400px;
+    //width: 600px;
+	//height: 300px;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 12px;
     box-shadow: 0.4vw 1.0vw 1vw 0.2vw rgba(0, 0, 0, 0.09);
-    z-index: -1;
+    //z-index: -1;
     padding:3%;
-    margin:10px;
+    //margin:10px;
+
   }
 
   /* .footer {
@@ -308,12 +309,6 @@
   a {
     text-decoration-line: none;
   }
-
-
-
-
-
-
 
 
 
@@ -346,56 +341,8 @@
   justify-content: left;
 }
 
-.grid-container {
-  display: grid;
-  margin: 0px 24px 0px 24px;
-  grid-template-columns: 1fr 1fr 1fr;
-  /* grid-area: "a b c"; */
-  align-items: center;
-  justify-content: center;
-  /* grid-auto-flow: row; */
-  place-items: center;
-}
-.item1 {
-  grid-area: a;
-}
-.item2 {
-  grid-area: b;
-}
-.item3 {
-  grid-area: c;
-}
-.card1 {
-  /* grid-area: a; */
-  /* margin: 12px; */
-  display: grid;
-  /* flex-direction: column; */
-  grid-template-columns: 1fr 2fr;
-  grid-auto-flow: row;
-  align-items: center;
-  justify-content: center;
-}
-.card2 {
-  /* grid-area: b; */
-  /* margin: 12px; */
-  display: grid;
-  /* flex-direction: column; */
-  grid-template-columns: 1fr 2fr;
-  grid-auto-flow: row;
-  align-items: center;
-  justify-content: center;
-  /* z-index: -1; */
-}
-.card3 {
-  /* grid-area: c; */
-  /* margin: 12px; */
-  display: grid;
-  /* flex-direction: column; */
-  grid-template-columns: 1fr 2fr;
-  grid-auto-flow: row;
-  align-items: center;
-  justify-content: center;
-}
+
+
 .image{
   margin: 12px;
   padding: 16px;

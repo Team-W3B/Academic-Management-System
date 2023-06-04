@@ -9,11 +9,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useSelector } from "react-redux";
 
-// const User = {/*
-//     id: '2017202060',
-//   pw: 'test2323@'*/
-//
-
 export default function Login() {
   let navigate = useNavigate();
   let dispatch = useDispatch();

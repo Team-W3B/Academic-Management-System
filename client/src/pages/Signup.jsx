@@ -34,7 +34,6 @@ export default function Signup() {
 
   const dispatch = useDispatch();
 
-
   const User = (e) => {
     let user = {
       signUp_id,
@@ -99,21 +98,21 @@ export default function Signup() {
   //     <li key={i} i={i} collegemajor_list={collegemajor_list[a]}></li>
   //   )
   // })
-  let [i,a] = useState(0);
+  // let [i,a] = useState(0);
    
-   useEffect(() =>{
+  //  useEffect(() =>{
     
-    if(signUp_college==collegemajor_list.colleg[0].a){
-      valu=collegemajor_list.maj[0];
-      a(i=0);
-      //i=0;
-    }
-    else{
-      valu=collegemajor_list.maj[1];
-      a(i=1);
-      //console.log(i);
-    }
-  },[collegemajor_list,signUp_college,i]);
+  //   if(signUp_college==collegemajor_list.colleg[0].a){
+  //     valu=collegemajor_list.maj[0];
+  //     a(i=0);
+  //     //i=0;
+  //   }
+  //   else{
+  //     valu=collegemajor_list.maj[1];
+  //     a(i=1);
+  //     //console.log(i);
+  //   }
+  // },[collegemajor_list,signUp_college,i]);
 
   useEffect(() => {
     if (
@@ -191,21 +190,10 @@ export default function Signup() {
     //console.log(signUp_email);
   };
 
-  const handlecollege = (e) => {
-    setCollege(e);
-    //console.log(signUp_collge);
+  // const handlecollege = (e) => {
+  //   setCollege(e);
     
-  //  // useEffect(() =>{
-  //     if(signUp_college==collegemajor_list.colleg[0].a){
-  //       valu=collegemajor_list.maj[0];
-  //     }
-  //     else{
-  //       valu=collegemajor_list.maj[1];
-  //     }
-  //  // });
-    //console.log(valu);
-    
-  };
+  // };
   const handlemajor = (e) => {
     setMajor(e);
     //console.log(signUp_major);
@@ -280,7 +268,7 @@ export default function Signup() {
           </div>
           <Container>
             <Row>
-              <Col sm={5}>                
+              {/* <Col sm={5}>                
                 <div className={styles.inputTitle}>
                   단과대
                   <Dropdown>
@@ -297,16 +285,12 @@ export default function Signup() {
                       <Dropdown.Item eventKey={collegemajor_list.colleg[0].b}>
                         {collegemajor_list.colleg[0].b}
                       </Dropdown.Item>
-                      {/* <Dropdown.Item eventKey="공과대학">공과대학</Dropdown.Item>
-                      <Dropdown.Item eventKey="자연과학대학">자연과학대학</Dropdown.Item>
-                      <Dropdown.Item eventKey="인문사회과학대학">인문사회과학대학</Dropdown.Item>
-                      <Dropdown.Item eventKey="정책법학대학">정책법학대학</Dropdown.Item>
-                      <Dropdown.Item eventKey="경영대학">경영대학</Dropdown.Item> */}
+                      
                     </SplitButton>
                   </Dropdown>
                 </div>
-              </Col>
-              <Col sm={5}>
+              </Col> */}
+              <Col sm={6}>
                 <div className={styles.inputTitle}>
                   학부(과)
                   <Dropdown>
@@ -318,14 +302,17 @@ export default function Signup() {
                       onSelect={handlemajor}
                       value={signUp_major}
                     >
-                        <Dropdown.Item  eventKey={valu.maj[i].a} >
-                          {valu.maj[i].a}
+                        <Dropdown.Item  eventKey={coll.a} >
+                          {coll.a}
                         </Dropdown.Item>
-                        <Dropdown.Item  eventKey={valu.maj[i].b} >
-                          {valu.maj[i].b}
+                        <Dropdown.Item  eventKey={coll.b} >
+                          {coll.b}
                         </Dropdown.Item>
-                        <Dropdown.Item  eventKey={valu.maj[i].c} >
-                          {valu.maj[i].c}
+                        <Dropdown.Item  eventKey={coll.c} >
+                          {coll.c}
+                        </Dropdown.Item>
+                        <Dropdown.Item  eventKey={coll.d} >
+                          {coll.d}
                         </Dropdown.Item>
                       {/* <Dropdown.Item eventKey={collegemajor_list.sec[0].signUp_major}>
                         {collegemajor_list.sec[0].signUp_major}
@@ -340,7 +327,7 @@ export default function Signup() {
                   </Dropdown>
                 </div>
               </Col>
-              <Col sm={2}>
+              <Col sm={6}>
                 <Form>
                   <Form.Group>
                     <Form.Check

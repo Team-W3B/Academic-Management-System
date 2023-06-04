@@ -24,7 +24,7 @@ export default function LecPage() {
     return (
         <>
             <HeaderNav />
-            
+
             <div>
                 <div className={style.hbox}>
                     <div className={style.wrapp}>
@@ -46,7 +46,6 @@ export default function LecPage() {
 
             </div>
             <Footer />
-
         </>
     );
 };

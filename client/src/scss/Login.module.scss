@@ -103,7 +103,7 @@ flex-direction: row;
     border: 1px solid #e2e0e0;
 }
 .inputWrap:focus-within {
-    border: 1px solid #9e30f4;
+    border: 1px solid rgba(255, 120, 78, 1);//#9e30f4;
 }
 
 .input {
@@ -128,7 +128,9 @@ flex-direction: row;
     font-weight: bold;
     text-align: center;
     border-radius: 12px;
-    background-color:#9e30f4;// linear-gradient(-225deg, rgb(255, 120, 78), rgb(251, 52, 124));
+    //background-color:linear-gradient(98.5deg, #FF784E 0%, #FB347C 99.75%);;//#9e30f4;
+    background: linear-gradient(98.5deg, #FF784E 0%, #FB347C 99.75%);
+    border-radius: 16px;
     color: white;
     /* cursor: pointer; */
 }

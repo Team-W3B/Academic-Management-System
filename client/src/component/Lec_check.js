@@ -5,15 +5,22 @@ import { Col, Row } from "react-bootstrap";
 import axios from 'axios';
 import info from "./../data/leccheck";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Lec_check() {
-    let [lecInfo, setLecInfo] = useState(info);
+    const lecture_name = useSelector((state)=>state.lecture.lecture); //querystring 전달인자
+
+    let [lecinfo, setLecInfo] = useState(info);
 
     useEffect(() => {
         getLecInfo();
     }, []);
     let getLecInfo = () => {
-        axios.get('/api/lecpage/lec_check')
+        axios.get('/api/lecpage/lec_check', {
+            params: {
+                lecture: lecture_name
+            }
+        })
             .then((res) => {
                 if (res.data === 200) {
                     let copy = {...res.data};
@@ -37,13 +44,10 @@ export default function Lec_check() {
         <div className={styles.whiteCard} style={{ float: "right" }}>
             <div className={styles.class_name} >
                 출석</div>
-            {lecInfo.map(function (a, i) {
-                //console.log(a, i);
-                //console.log(lecInfo[i].lecPage_check[0]);
-                //console.log(lecInfo[i].lecPage_check[1]);
+            {lecinfo.map(function (a, i) {
                 return (
-                    <>
-                        <div key={i} lecInfo={a} style={{ textAlign: "left", padding: "5%" }}>
+                    
+                        <div key={i} i={i} lecinfo={a} style={{ textAlign: "left", padding: "5%" }}>
                             <Row>
                                 <Col>
                                     {a.lecPage_check_id}
@@ -103,7 +107,7 @@ export default function Lec_check() {
                                 </Col>
                             </Row>
                         </div>
-                    </>
+                
                 );
             })
             }

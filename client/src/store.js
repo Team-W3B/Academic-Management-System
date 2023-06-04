@@ -4,17 +4,17 @@ let user = createSlice({
     name : "user",
     initialState : "임태헌",
     reducers : {
-        changUser(state, action) {
+        changeUser(state, action) {
             return action.payload
         }
     }
 });
-export let { changUser } = user.actions
+export let { changeUser } = user.actions
 
 export let signUpSlice =createSlice({
-    name:"signUp",
-    initialState:{name:""},
-    reducers:{
+    name : "signUp",
+    initialState : {name:""},
+    reducers : {
         setsignUpName: (state, action)=>{
             state.name = action.payload
         }
@@ -33,11 +33,23 @@ export let lecNameSlice = createSlice({
 });
 export const {setlecure} = lecNameSlice.actions
 
+export let lecIndexSlice = createSlice({
+    name:"index",
+    initialState:{index:""},
+    reducers:{
+        setIndex:(state, action)=>{
+            state.index = action.payload
+        }
+    }
+});
+export const {setIndex} = lecIndexSlice.actions
+
 const store = configureStore({
     reducer: {
         user : user.reducer,
         signUp : signUpSlice.reducer,
-        lecture : lecNameSlice.reducer
+        lecture : lecNameSlice.reducer,
+        index : lecIndexSlice.reducer
     }
 
 });

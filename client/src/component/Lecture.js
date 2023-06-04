@@ -5,15 +5,24 @@ import { Col, Row } from "react-bootstrap";
 import axios from 'axios';
 import info from "../data/leclecture";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { useDispatch, useSelector } from "react-redux";
+import {setIndex} from '../store';
+import {  Link, useNavigate  } from "react-router-dom";
 
 export default function Lecture() {
+    const lecture_name = useSelector((state)=>state.lecture.lecture); //querystring 전달인자
+    const dispatch = useDispatch();
+
     let [lecInfo, setLecInfo] = useState(info);
     useEffect(() => {
         getLecInfo();
     }, []);
     let getLecInfo = () => {
-        axios.get('/api/lecpage/lecture')
+        axios.get('/api/lecpage/lecture', {
+            params: {
+                lecture: lecture_name
+            }
+        })
         .then((res) => {
             if(res.data===200){
                 let copy = {...res.data};
@@ -30,11 +39,16 @@ export default function Lecture() {
             }
         })
     };
-   // getLecInfo();
-   // console.log(lec_notice[0].lecPage_title);
+    const navigate = useNavigate();
+
+    const handleIndex = (index) => {
+        dispatch(setIndex(index));
+        //console.log(index);
+        navigate('/LecPage_lec_detail');
+    }
     
     return (
-        <div className={styles.whiteCard}>
+        <div className={styles.whiteCard_big}>
 
         <div className={styles.class_name}>
         온라인 강의 리스트</div>
@@ -46,11 +60,11 @@ export default function Lecture() {
                         <Row style={{
                         // width: "100%",
                         // textAlign: "center",
-                        borderBottom: "1px solid #aaa",
+                        borderBottom: "1px solid #D6D6D6",
                         margin:"3px"
                       }} className={styles.contain}>
                             
-                            <Col>
+                            <Col onClick={ () => handleIndex(a.lecPage_index)}>
                                 {a.lecPage_title}
                             </Col>
                             <Col style={{ textAlign: "right" }}>
