@@ -6,7 +6,13 @@ const path = require("path");
 
 async function getUserID(req) {
   // request 헤더에서 sessionID 가져오기
-  const sessionID = req.headers.cookie.split("=")[1];
+  const cookies = req.headers.cookie.split("; ");
+  const loginSessionCookie = cookies.find((cookie) =>
+    cookie.startsWith("loginSession=")
+  );
+  const sessionID = loginSessionCookie
+    ? loginSessionCookie.split("=")[1]
+    : null;
 
   const tmp = sessionID.substring(sessionID.indexOf("s%3A") + 4);
   const replacedSessionID = tmp.substring(0, tmp.indexOf("."));
@@ -28,25 +34,6 @@ async function getUserID(req) {
     console.error(error);
     return null;
   }
-}
-
-function sortedData(lectures) {
-  lectures.sort((a, b) => {
-    const periodA = a.period;
-    const periodB = b.period;
-
-    // period가 빠른 순으로 정렬
-    if (periodA < periodB) {
-      return -1;
-    } else if (periodA > periodB) {
-      return 1;
-    } else {
-      return 0;
-    }
-  });
-
-  //정렬된 강의목록 return
-  return lectures;
 }
 
 function mappingToKor(day_of_week) {
@@ -103,8 +90,9 @@ function mappingWithId(sortedLectures) {
 exports.homeForm = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
   //let userID = await getUserID(req);
-  let userID = 2018202043;
   try {
+    let userID = req.query.userID;
+
     // ID 값을 사용하여 학생이 수강하고 있는 모든 강의 정보를 조회하는 쿼리문
     const query = `
     SELECT
@@ -124,7 +112,9 @@ exports.homeForm = async (req, res) => {
     WHERE
       Student_Lectures.student_id = :studentId
     GROUP BY
-      Professors.name, Lectures.lecture_name, Lectures.lecture_room, Schedules.day_of_week;
+      Professors.name, Lectures.lecture_name, Lectures.lecture_room, Schedules.day_of_week
+    ORDER BY
+      period;
     `;
 
     // 쿼리 실행
@@ -133,8 +123,8 @@ exports.homeForm = async (req, res) => {
       replacements: { studentId: userID },
     });
 
-    let sortedLectures = sortedData(lectures);
-    res.status(200).json(mappingWithId(sortedLectures));
+    let mappingLectures = mappingWithId(lectures);
+    res.status(200).json(mappingLectures);
   } catch (error) {
     console.error(error);
     if (!userID) res.status(401).send();
@@ -145,8 +135,9 @@ exports.homeForm = async (req, res) => {
 exports.homeDetail = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
   //let userID = await getUserID(req);
-  let userID = 2018202043;
   try {
+    let userID = req.query.userID;
+
     // DB에서 강의명, 강의 남은 개수, 총 강의 수, 강의 기간, 과제 남은 수, 총 과제 수, 과제 기간
     const query = `
     SELECT
@@ -180,4 +171,3 @@ exports.homeDetail = async (req, res) => {
     else res.status(500).send();
   }
 };
-
