@@ -10,34 +10,36 @@ import { useNavigate } from "react-router-dom";
 
 export default function Lec_lecture() {
     const lecture_name = useSelector((state)=>state.lecture.lecture); //querystring 전달인자
+    let userID = useSelector( (state) => state.userID ); // userID 불러오기
     const navigate = useNavigate();
 
     let [lecinfo, setLecInfo] = useState(info);
-    useEffect(() => {
-        getLecInfo();
+    useEffect(async() => {
+        let getLecInfo = async() => {
+            axios.get('/api/lecpage/lec_lecture', {
+                params: {
+                    lecture: lecture_name,
+                    userID : userID
+                }
+            }, {withCredentials : true})
+            .then((res) => {
+                if(res.data===200){
+                    let copy = {...res.data};
+                    setLecInfo(copy);
+                }
+            })
+            .catch((error) => {
+                console.log(error.data)
+                if (error.response.data === 401) {
+                    alert("권한없음(강의페이지");
+                }
+                if (error.response.data === 500) {
+                    alert("서버 오류 발생!(강의페이지)");
+                }
+            })
+        };
+        await getLecInfo();
     }, []);
-    let getLecInfo = () => {
-        axios.get('/api/lecpage/lec_lecture', {
-            params: {
-                lecture: lecture_name
-            }
-        })
-        .then((res) => {
-            if(res.data===200){
-                let copy = {...res.data};
-                setLecInfo(copy);
-            }
-        })
-        .catch((error) => {
-            console.log(error.data)
-            if (error.response.data === 401) {
-                alert("권한없음(강의페이지");
-            }
-            if (error.response.data === 500) {
-                alert("서버 오류 발생!(강의페이지)");
-            }
-        })
-    };
    // getLecInfo();
    // console.log(lec_notice[0].lecPage_title);
     

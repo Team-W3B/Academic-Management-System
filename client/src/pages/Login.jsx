@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, Link, useNavigate, } from 'react-router-dom';
 import axios from 'axios';
 import {useDispatch} from "react-redux";
-import { changeUser } from './../store'
+import { changeUser, changeUserID } from './../store'
 import styles from "./../scss/Login.module.scss";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -24,10 +24,11 @@ export default function Login() {
         console.log(res.status);
         if (res.status === 200) {
           console.log("로그인");
-          console.log(res);
-          console.log(res.data);
-          console.log(res.config);
+          // console.log(res);
+          // console.log(res.data);
+          // console.log(res.config);
           dispatch(changeUser(res.data.userInfo));
+          dispatch(changeUserID(user.logIn_id));
           alert("로그인에 성공하였습니다.");
           navigate("/MainPage");
         }

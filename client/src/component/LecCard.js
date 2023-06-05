@@ -5,30 +5,42 @@ import { Col, Row } from "react-bootstrap";
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import info from "../data/data";
+import { useSelector } from "react-redux";
 
 function LecCard() {
  
     // let [lecInfo, setLecInfo] = useState("");
     let [lecInfo, setLecInfo] = useState(info);
+    let userID = useSelector( (state) => {return state.userID} );
     // console.log(lecInfo);
     
-    let getLecInfo = () => {
-        axios.get('/api/home', {withCredentials : true})
+    /* let getLecInfo = async() => {
+        axios.get('/api/home', {params : {userID : userID} }, {withCredentials : true})
             .then((res)=> {
-
               console.log('성공~!')
               let copy = {...res.data}
               setLecInfo(copy)
-
             })
             .catch((error)=>{
               console.log('실패!')
               console.log(error.data)
             })
-    };
-    useEffect( () => {
-      console.log('getLecInfo 실행')
-      getLecInfo();
+    }; */
+    useEffect( async() => {
+      let getLecInfo = async() => {
+        axios.get('/api/home', {params : {userID : userID} }, {withCredentials : true})
+            .then((res)=> {
+              console.log('성공~!')
+              let copy = {...res.data}
+              setLecInfo(copy)
+            })
+            .catch((error)=>{
+              console.log('실패!')
+              console.log(error.data)
+            })
+      };
+      console.log('getLecInfo 실행');
+      await getLecInfo();
     }, []);
     
     return (
@@ -36,7 +48,7 @@ function LecCard() {
         
         <Row className={styles.Wrapper} >
             {
-                ['mon', 'tue', 'wed', 'thur'/* , 'fri' */].map(function(a, i) {
+                ['mon', 'tue', 'wed', 'thur', 'fri'].map(function(a, i) {
                     // console.log(a);
                     
                     return (

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styles from './../scss/PlanSearch.module.scss';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import qs from "qs";
 
 function PlanSearch() {
@@ -14,6 +14,7 @@ function PlanSearch() {
     let [checkLec, setCheckLec] = useState(false);
     let [lecName, setLecName] = useState('');
     let [buttonState, setButtonState] = useState('disabled');
+    let userID = useSelector( (state) => state.userID ); // userID 불러오기
 
     let plan_search =
     {
@@ -30,7 +31,12 @@ function PlanSearch() {
 
     let clickSearch = () => {
         console.log(plan_search);
-        axios.get('/api/plan/search', {params : plan_search}, {withCredentials : true})
+        axios.get('/api/plan/search', {
+            params : {
+                plan_search,
+                userID : userID
+            }
+        }, {withCredentials : true})
         .then( (res) => {
             console.log(res.status);
             if (res.status === 200) {
