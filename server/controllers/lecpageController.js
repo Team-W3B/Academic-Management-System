@@ -1,11 +1,18 @@
 const model = require("../models");
+const { QueryTypes } = require("sequelize");
 const { sequelize } = require("../models/index");
 const fsPromises = require("fs").promises;
 const path = require("path");
 
 async function getUserID(req) {
   // request 헤더에서 sessionID 가져오기
-  const sessionID = req.headers.cookie.split("=")[1];
+  const cookies = req.headers.cookie.split("; ");
+  const loginSessionCookie = cookies.find((cookie) =>
+    cookie.startsWith("loginSession=")
+  );
+  const sessionID = loginSessionCookie
+    ? loginSessionCookie.split("=")[1]
+    : null;
 
   const tmp = sessionID.substring(sessionID.indexOf("s%3A") + 4);
   const replacedSessionID = tmp.substring(0, tmp.indexOf("."));
@@ -89,11 +96,14 @@ async function queryPost(userID, lecName, boardType, index) {
 }
 
 // 과제 제출에 대한 쿼리문 함수
-async function queryAssSent(body, userID, lecName, index) {
+async function queryAssSent(body) {
   let content = body.lecDetail_content;
   let fileName = body.lecDetail_fileName;
   let file = body.lecDetail_file;
   let fileSize = body.lecDetail_fileSize;
+  let userID = body.userID;
+  let lecName = body.lecture;
+  let index = body.index;
 
   // DB에서 강의명으로 강의 아이디를 가져옴
   const lecture = await model.Lecture.findOne({
@@ -130,10 +140,12 @@ function createObj(id) {
 
 exports.lecHeader = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = 2018202043;
+  //let userID = await getUserID(req);
   try {
-    // 강의명을 쿼리스트링에서 가져옴
+    // 강의명과 ID를 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
+
+    let userID = req.query.userID;
 
     // DB에서 강의 제목, 강의실 이름, 교수님 이름, 강의 시간을 꺼내줌
     const query = `
@@ -167,10 +179,11 @@ exports.lecHeader = async (req, res) => {
 
 exports.lecNotice = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = 2018202043;
+  //let userID = await getUserID(req);
   try {
-    // 강의명을 쿼리스트링에서 가져옴
+    // 강의명과 ID를 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
+    let userID = req.query.userID;
 
     //공지사항 5개를 DB에서 추출
     let lecNotice = queryBoard(userID, lecName, 1, true);
@@ -185,12 +198,11 @@ exports.lecNotice = async (req, res) => {
 
 exports.lecFile = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = 2018202043;
+  //let userID = await getUserID(req);
   try {
-    // 강의명을 쿼리스트링에서 가져옴
+    // 강의명과 ID를 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-    //let lecName = "머신러닝";
-    //let lecName = "컴퓨터 네트워크";
+    let userID = req.query.userID;
 
     //자료실 글 5개를 DB에서 추출
     let lecFile = queryBoard(userID, lecName, 2, true);
@@ -206,11 +218,12 @@ exports.lecFile = async (req, res) => {
 
 exports.lecLecture = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = 2018202043;
+  //let userID = await getUserID(req);
 
   try {
-    // 강의명을 쿼리스트링에서 가져옴
+    // 강의명과 ID를 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
+    let userID = req.query.userID;
 
     //강의실 글 5개를 DB에서 추출
     let lecLec = queryBoard(userID, lecName, 3, true);
@@ -225,10 +238,11 @@ exports.lecLecture = async (req, res) => {
 
 exports.lecAssignment = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = 2018202043;
+  //let userID = await getUserID(req);
   try {
-    // 강의명을 쿼리스트링에서 가져옴
+    // 강의명과 ID를 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
+    let userID = req.query.userID;
 
     //과제 글 5개를 DB에서 추출
     let lecAss = queryBoard(userID, lecName, 4, true);
@@ -243,10 +257,11 @@ exports.lecAssignment = async (req, res) => {
 
 exports.attendence = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = 2018202043;
+  //let userID = await getUserID(req);
   try {
-    // 강의명을 쿼리스트링에서 가져옴
+    // 강의명과 ID를 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
+    let userID = req.query.userID;
 
     // DB에서 강의 제목, 강의실 이름, 교수님 이름, 강의 시간을 꺼내줌
     const query = `
@@ -303,10 +318,11 @@ exports.attendence = async (req, res) => {
 
 exports.notice = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = 2018202043;
+  //let userID = await getUserID(req);
   try {
-    // 강의명을 쿼리스트링에서 가져옴
+    // 강의명과 ID를 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
+    let userID = req.query.userID;
 
     //공지사항 5개를 DB에서 추출
     let lecNotice = queryBoard(userID, lecName, 1, false);
@@ -321,10 +337,11 @@ exports.notice = async (req, res) => {
 
 exports.file = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = 2018202043;
+  //let userID = await getUserID(req);
   try {
-    // 강의명을 쿼리스트링에서 가져옴
+    // 강의명과 ID를 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
+    let userID = req.query.userID;
 
     //자료실 글 5개를 DB에서 추출
     let lecFile = queryBoard(userID, lecName, 2, false);
@@ -339,10 +356,11 @@ exports.file = async (req, res) => {
 
 exports.lecture = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = 2018202043;
+  //let userID = await getUserID(req);
   try {
-    // 강의명을 쿼리스트링에서 가져옴
+    // 강의명과 ID를 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
+    let userID = req.query.userID;
 
     //강의실 글 5개를 DB에서 추출
     let lecLec = queryBoard(userID, lecName, 3, false);
@@ -357,10 +375,11 @@ exports.lecture = async (req, res) => {
 
 exports.assignment = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = 2018202043;
+  //let userID = await getUserID(req);
   try {
-    // 강의명을 쿼리스트링에서 가져옴
+    // 강의명과 ID를 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
+    let userID = req.query.userID;
 
     //과제 글 5개를 DB에서 추출
     let lecAss = queryBoard(userID, lecName, 4, false);
@@ -375,11 +394,11 @@ exports.assignment = async (req, res) => {
 
 exports.noticeDetail = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = 2018202043;
+  //let userID = await getUserID(req);
   try {
-    // 강의명을 쿼리스트링에서 가져옴
+    // 강의명과 ID를 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-
+    let userID = req.query.userID;
     let index = req.query.index;
 
     res.status(200).send(queryPost(userID, lecName, 1, index));
@@ -392,11 +411,11 @@ exports.noticeDetail = async (req, res) => {
 
 exports.fileDetail = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = 2018202043;
+  //let userID = await getUserID(req);
   try {
-    // 강의명을 쿼리스트링에서 가져옴
+    // 강의명과 ID를 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-
+    let userID = req.query.userID;
     let index = req.query.index;
 
     res.status(200).send(queryPost(userID, lecName, 2, index));
@@ -409,11 +428,11 @@ exports.fileDetail = async (req, res) => {
 
 exports.lectureDetail = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = 2018202043;
+  //let userID = await getUserID(req);
   try {
-    // 강의명을 쿼리스트링에서 가져옴
+    // 강의명과 ID를 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-
+    let userID = req.query.userID;
     let index = req.query.index;
 
     res.status(200).send(queryPost(userID, lecName, 3, index));
@@ -426,11 +445,11 @@ exports.lectureDetail = async (req, res) => {
 
 exports.assignmentDetail = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = 2018202043;
+  //let userID = await getUserID(req);
   try {
-    // 강의명을 쿼리스트링에서 가져옴
+    // 강의명과 ID를 쿼리스트링에서 가져옴
     let lecName = req.query.lecture;
-
+    let userID = req.query.userID;
     let index = req.query.index;
 
     res.status(200).send(queryPost(userID, lecName, 4, index));
@@ -443,14 +462,9 @@ exports.assignmentDetail = async (req, res) => {
 
 exports.assignmentSent = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = 2018202043;
+  //let userID = await getUserID(req);
   try {
-    // 강의명을 쿼리스트링에서 가져옴
-    let lecName = req.query.lecture;
-
-    let index = req.query.index;
-
-    await queryAssSent(req.body, userID, lecName, index);
+    await queryAssSent(req.body);
 
     res.status(200).send();
   } catch (error) {
@@ -459,4 +473,3 @@ exports.assignmentSent = async (req, res) => {
     else res.status(500).send();
   }
 };
-
