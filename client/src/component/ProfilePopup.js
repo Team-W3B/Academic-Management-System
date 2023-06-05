@@ -1,14 +1,18 @@
 import React from 'react';
 import styles from './../scss/ProfilePopup.module.scss';
 import faceIcon from './../imgs/faceIcon.svg';
+import { useSelector } from "react-redux";
 
 function ProfilePopup() {
+
+    let user = useSelector( (state) => state.user )
+
     return (
         <div className={styles.PwhiteCard}>
             <div className={styles.contents}>
                 <div className={styles.title}>
                     <p className={styles.test1}>
-                        <p><strong className={styles.emphasis0}>임태헌</strong>님</p>
+                        <p><strong className={styles.emphasis0}> {user} </strong>님</p>
                         <p>환영합니다! <strong className={styles.emphasis3}>😆</strong></p>
                     </p>
                     <img src={faceIcon} ></img>
