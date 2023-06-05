@@ -36,7 +36,7 @@ function LecCard() {
         
         <Row className={styles.Wrapper} >
             {
-                ['mon', 'tue', 'wed', 'thur'/* , 'fri' */].map(function(a, i) {
+                ['mon', 'tue', 'wed', 'thur', 'fri'].map(function(a, i) {
                     // console.log(a);
                     
                     return (
