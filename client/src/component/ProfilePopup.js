@@ -11,10 +11,10 @@ function ProfilePopup() {
         <div className={styles.PwhiteCard}>
             <div className={styles.contents}>
                 <div className={styles.title}>
-                    <p className={styles.test1}>
+                    <div className={styles.test1}>
                         <p><strong className={styles.emphasis0}> {user} </strong>님</p>
                         <p>환영합니다! <strong className={styles.emphasis3}>😆</strong></p>
-                    </p>
+                    </div>
                     <img src={faceIcon} ></img>
                 </div>
                 <div className={styles.detail}>

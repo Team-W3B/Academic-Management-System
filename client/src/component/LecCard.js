@@ -5,21 +5,21 @@ import { Col, Row } from "react-bootstrap";
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import info from "../data/data";
+import { useSelector } from "react-redux";
 
 function LecCard() {
  
     // let [lecInfo, setLecInfo] = useState("");
     let [lecInfo, setLecInfo] = useState(info);
+    let userID = useSelector( (state) => {return state.userID} );
     // console.log(lecInfo);
     
     let getLecInfo = () => {
-        axios.get('/api/home', {withCredentials : true})
+        axios.get('/api/home', {params : userID}, {withCredentials : true})
             .then((res)=> {
-
               console.log('성공~!')
               let copy = {...res.data}
               setLecInfo(copy)
-
             })
             .catch((error)=>{
               console.log('실패!')

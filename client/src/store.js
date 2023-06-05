@@ -1,6 +1,7 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import plan_info from "./data/planInfo_data";
 import planDetail from "./data/planDetail_data";
+import MPLD_data from './data/MainPageLecDetail_data';
 
 /* user 이름 */
 let user = createSlice({
@@ -13,6 +14,30 @@ let user = createSlice({
     }
 });
 export let { changeUser } = user.actions
+
+/* user ID */
+let userID = createSlice({
+    name : "userID",
+    initialState : "",
+    reducers : {
+        changeUserID(state, action) {
+            return action.payload
+        }
+    }
+});
+export let { changeUserID } = userID.actions
+
+/* main page lec detail */
+let mpld = createSlice({
+    name : "mpld",
+    initialState : MPLD_data,
+    reducers : {
+        setMPLD(state, action) {
+            return action.payload
+        }
+    }
+});
+export let { setMPLD } = mpld.actions
 
 /* 회원가입 */
 export let signUpSlice =createSlice({
@@ -80,7 +105,9 @@ const store = configureStore({
         plan_output : plan_output.reducer,
         plan_detail : plan_detail.reducer,
         lecture : lecNameSlice.reducer,
-        index : lecIndexSlice.reducer
+        index : lecIndexSlice.reducer,
+        mpld : mpld.reducer,
+        userID : userID.reducer,
     }
 
 });
