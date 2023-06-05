@@ -13,10 +13,33 @@ export default function Lec_check() {
 
     let [lecinfo, setLecInfo] = useState(info);
 
-    useEffect(() => {
-        getLecInfo();
+    useEffect(async() => {
+        let getLecInfo = async() => {
+            axios.get('/api/lecpage/lec_check', {
+                params: {
+                    lecture: lecture_name,
+                    userID : userID
+                }
+            }, {withCredentials : true})
+                .then((res) => {
+                    if (res.data === 200) {
+                        let copy = {...res.data};
+                        setLecInfo(copy);
+                    }
+                })
+                .catch((error) => {
+                    console.log(error.data)
+                    if (error.response.data === 401) {
+                        alert("권한없음(강의페이지");
+                    }
+                    if (error.response.data === 500) {
+                        alert("서버 오류 발생!(강의페이지)");
+                    }
+                })
+        };
+        await getLecInfo();
     }, []);
-    let getLecInfo = () => {
+    /* let getLecInfo = () => {
         axios.get('/api/lecpage/lec_check', {
             params: {
                 lecture: lecture_name,
@@ -38,7 +61,7 @@ export default function Lec_check() {
                     alert("서버 오류 발생!(강의페이지)");
                 }
             })
-    };
+    }; */
     //getLecInfo();
     let day;
     let check_color;

@@ -161,7 +161,10 @@ exports.lecHeader = async (req, res) => {
       LEFT JOIN Schedules ON Lectures.id = Schedules.lecture_id
     WHERE
       Student_Lectures.student_id = :studentId and Lectures.lecture_name = :lectureName
-    `;
+    GROUP BY
+      lecPage_prof, lecPage_lecture, lecPage_class;
+      `;
+    
 
     // 쿼리 실행
     const lecHead = await sequelize.query(query, {
@@ -186,7 +189,7 @@ exports.lecNotice = async (req, res) => {
     let userID = req.query.userID;
 
     //공지사항 5개를 DB에서 추출
-    let lecNotice = queryBoard(userID, lecName, 1, true);
+    let lecNotice = await queryBoard(userID, lecName, 1, true);
 
     res.status(200).send(lecNotice);
   } catch (error) {
@@ -205,7 +208,7 @@ exports.lecFile = async (req, res) => {
     let userID = req.query.userID;
 
     //자료실 글 5개를 DB에서 추출
-    let lecFile = queryBoard(userID, lecName, 2, true);
+    let lecFile = await queryBoard(userID, lecName, 2, true);
 
     //console.log(lecFile);
     res.status(200).send(lecFile);
@@ -226,7 +229,7 @@ exports.lecLecture = async (req, res) => {
     let userID = req.query.userID;
 
     //강의실 글 5개를 DB에서 추출
-    let lecLec = queryBoard(userID, lecName, 3, true);
+    let lecLec = await queryBoard(userID, lecName, 3, true);
 
     res.status(200).send(lecLec);
   } catch (error) {
@@ -245,7 +248,7 @@ exports.lecAssignment = async (req, res) => {
     let userID = req.query.userID;
 
     //과제 글 5개를 DB에서 추출
-    let lecAss = queryBoard(userID, lecName, 4, true);
+    let lecAss = await queryBoard(userID, lecName, 4, true);
 
     res.status(200).send(lecAss);
   } catch (error) {
@@ -285,7 +288,7 @@ exports.attendence = async (req, res) => {
     });
 
     // 데이터를 출석부 데이터에 맞게 변환
-    const data = lecAttendance.reduce((acc, cur) => {
+    const data = await lecAttendance.reduce((acc, cur) => {
       const item =
         acc.find((x) => x.lecPage_check_id === cur.week) || createObj(cur.week);
       switch (cur.round) {
@@ -344,7 +347,7 @@ exports.file = async (req, res) => {
     let userID = req.query.userID;
 
     //자료실 글 5개를 DB에서 추출
-    let lecFile = queryBoard(userID, lecName, 2, false);
+    let lecFile = await queryBoard(userID, lecName, 2, false);
 
     res.status(200).send(lecFile);
   } catch (error) {
@@ -363,7 +366,7 @@ exports.lecture = async (req, res) => {
     let userID = req.query.userID;
 
     //강의실 글 5개를 DB에서 추출
-    let lecLec = queryBoard(userID, lecName, 3, false);
+    let lecLec = await queryBoard(userID, lecName, 3, false);
 
     res.status(200).send(lecLec);
   } catch (error) {
@@ -382,7 +385,7 @@ exports.assignment = async (req, res) => {
     let userID = req.query.userID;
 
     //과제 글 5개를 DB에서 추출
-    let lecAss = queryBoard(userID, lecName, 4, false);
+    let lecAss = await queryBoard(userID, lecName, 4, false);
 
     res.status(200).send(lecAss);
   } catch (error) {
@@ -401,7 +404,7 @@ exports.noticeDetail = async (req, res) => {
     let userID = req.query.userID;
     let index = req.query.index;
 
-    res.status(200).send(queryPost(userID, lecName, 1, index));
+    res.status(200).send(await queryPost(userID, lecName, 1, index));
   } catch (error) {
     console.error(error);
     if (!userID) res.status(401).send();
@@ -418,7 +421,7 @@ exports.fileDetail = async (req, res) => {
     let userID = req.query.userID;
     let index = req.query.index;
 
-    res.status(200).send(queryPost(userID, lecName, 2, index));
+    res.status(200).send(await queryPost(userID, lecName, 2, index));
   } catch (error) {
     console.error(error);
     if (!userID) res.status(401).send();
@@ -435,7 +438,7 @@ exports.lectureDetail = async (req, res) => {
     let userID = req.query.userID;
     let index = req.query.index;
 
-    res.status(200).send(queryPost(userID, lecName, 3, index));
+    res.status(200).send(await queryPost(userID, lecName, 3, index));
   } catch (error) {
     console.error(error);
     if (!userID) res.status(401).send();
@@ -452,7 +455,7 @@ exports.assignmentDetail = async (req, res) => {
     let userID = req.query.userID;
     let index = req.query.index;
 
-    res.status(200).send(queryPost(userID, lecName, 4, index));
+    res.status(200).send(await queryPost(userID, lecName, 4, index));
   } catch (error) {
     console.error(error);
     if (!userID) res.status(401).send();

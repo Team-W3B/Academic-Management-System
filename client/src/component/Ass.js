@@ -15,32 +15,32 @@ export default function Ass() {
     const dispatch = useDispatch();
 
     let [lecinfo, setLecInfo] = useState(info);
-    useEffect(() => {
-        getLecInfo();
+    useEffect(async() => {
+        let getLecInfo = async() => {
+            axios.get('/api/lecpage/ass', {
+                params: {
+                    lecture: lecture_name,
+                    userID : userID
+                }
+            }, {withCredentials : true})
+                .then((res) => {
+                    if (res.data === 200) {
+                        let copy = { ...res.data };
+                        setLecInfo(copy);
+                    }
+                })
+                .catch((error) => {
+                    console.log(error.data)
+                    if (error.response.data === 401) {
+                        alert("권한없음(강의페이지");
+                    }
+                    if (error.response.data === 500) {
+                        alert("서버 오류 발생!(강의페이지)");
+                    }
+                })
+        };
+        await getLecInfo();
     }, []);
-    let getLecInfo = () => {
-        axios.get('/api/lecpage/ass', {
-            params: {
-                lecture: lecture_name,
-                userID : userID
-            }
-        }, {withCredentials : true})
-            .then((res) => {
-                if (res.data === 200) {
-                    let copy = { ...res.data };
-                    setLecInfo(copy);
-                }
-            })
-            .catch((error) => {
-                console.log(error.data)
-                if (error.response.data === 401) {
-                    alert("권한없음(강의페이지");
-                }
-                if (error.response.data === 500) {
-                    alert("서버 오류 발생!(강의페이지)");
-                }
-            })
-    };
     const navigate = useNavigate();
 
     const handleIndex = (index) => {

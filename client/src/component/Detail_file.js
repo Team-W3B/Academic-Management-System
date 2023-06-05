@@ -16,35 +16,35 @@ export default function Detail_file() {
     let userID = useSelector( (state) => state.userID ); // userID 불러오기
     const navigate = useNavigate();
     let [lecinfo, setLecInfo] = useState(info);
-    useEffect(() => {
-        getLecInfo();
+    useEffect(async() => {
+        let getLecInfo = async() => {
+            axios.get('/api/lecpage/file/detail_file', {
+                params: {
+                    lecture: lecture_name,
+                    index: index,
+                    userID : userID
+                },
+                // responseType: 'arraybuffer'  // 응답 데이터를 ArrayBuffer로 받음
+            }, {withCredentials : true})
+                .then((res) => {
+                    if (res.data === 200) {
+                        let copy = { ...res.data };
+                        setLecInfo(copy);
+                    }
+                })
+                .catch((error) => {
+    
+                    console.log(error.data)
+                    if (error.response.data === 401) {
+                        alert("권한없음(강의페이지");
+                    }
+                    if (error.response.data === 500) {
+                        alert("서버 오류 발생!(강의페이지)");
+                    }
+                })
+        };
+        await getLecInfo();
     }, []);
-    let getLecInfo = () => {
-        axios.get('/api/lecpage/file/detail_file', {
-            params: {
-                lecture: lecture_name,
-                index: index,
-                userID : userID
-            },
-            // responseType: 'arraybuffer'  // 응답 데이터를 ArrayBuffer로 받음
-        }, {withCredentials : true})
-            .then((res) => {
-                if (res.data === 200) {
-                    let copy = { ...res.data };
-                    setLecInfo(copy);
-                }
-            })
-            .catch((error) => {
-
-                console.log(error.data)
-                if (error.response.data === 401) {
-                    alert("권한없음(강의페이지");
-                }
-                if (error.response.data === 500) {
-                    alert("서버 오류 발생!(강의페이지)");
-                }
-            })
-    };
     return (
         <div className={styles.whiteCard}>
             <Row style={{height:"60px"}}>
