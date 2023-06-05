@@ -47,6 +47,7 @@ let InfoRow = (props) => {
     let info = props.info;
     let navigate = useNavigate();
     let dispatch = useDispatch();
+    let userID = useSelector( (state) => state.userID ); // userID 불러오기
 
     /* params 형식은 단순한 형태로는 잘 동작하지만, 객체가 중첩되기 시작하는 순간 제대로 stringify 처리를 하지 못한다. */
     axios.defaults.paramsSerializer = params => {
@@ -54,8 +55,13 @@ let InfoRow = (props) => {
     }
 
     let clickLec = () => {
-        navigate("/Plan/Detail/" + `${info.planOut_reg_num}`);
-        /* axios.get('/api/plan/detail', {params : info.planOut_reg_num}, {withCredentials : true})
+        // navigate("/Plan/Detail/" + `${info.planOut_reg_num}`);
+        axios.get('/api/plan/detail', {
+            params : {
+                planDetail_regNum : info.planOut_reg_num,
+                // userID : userID
+            }
+        }, {withCredentials : true})
         .then( (res) => {
             console.log(res.status);
             if (res.status === 200) {
@@ -73,7 +79,7 @@ let InfoRow = (props) => {
             if (error.response.status === 500) {
                 alert("서버가 처리 방법을 모르는 상황이 발생했습니다. 서버는 아직 처리 방법을 알 수 없습니다.");
             }
-        }) */
+        })
     }
     
     return (

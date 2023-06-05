@@ -16,7 +16,7 @@ function MainPage() {
   console.log(userID);
 
   let getMPLD = () => {
-    axios.get('/api/home/detail', {params : userID}, {withCredentials : true})
+    axios.get('/api/home/detail', {params : {userID : userID} }, {withCredentials : true})
         .then((res)=> {
             let copy = [...res.data];
             console.log(copy);

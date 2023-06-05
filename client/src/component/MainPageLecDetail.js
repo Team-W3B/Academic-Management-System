@@ -3,7 +3,7 @@ import styles from './../scss/MainPageLecDetail.module.scss';
 import MPLD_data from '../data/MainPageLecDetail_data';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { setlecure } from '../store';
+import { setLecture } from '../store';
 import {  Link, useNavigate  } from "react-router-dom";
 
 let MainPageLecDetail  = () => {
@@ -58,7 +58,7 @@ let SubjectDetail = (props) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const handleOn = (name) => {
-        dispatch(setlecure(name));
+        dispatch(setLecture(name));
         //console.log(name);
         navigate( '/LecPage' );
     };

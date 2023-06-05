@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 export default function Detail_not() {
     const lecture_name = useSelector((state) => state.lecture.lecture); //querystring 전달인자
     const index = useSelector((state)=>state.index.index); //querystring 전달인자
+    let userID = useSelector( (state) => state.userID ); // userID 불러오기
     //console.log(index);
     const navigate = useNavigate();
     let [lecinfo, setLecInfo] = useState(info);
@@ -23,9 +24,10 @@ export default function Detail_not() {
         axios.get('/api/lecpage/notice/detail_not', {
             params: {
                 lecture: lecture_name,
-                index : index
+                index : index,
+                userID : userID
             }
-        })
+        }, {withCredentials : true})
             .then((res) => {
                 if (res.data === 200) {
                     let copy = { ...res.data };

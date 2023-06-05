@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 export default function Detail_file() {
     const lecture_name = useSelector((state) => state.lecture.lecture); //querystring 전달인자
     const index = useSelector((state)=>state.index.index); //querystring 전달인자
+    let userID = useSelector( (state) => state.userID ); // userID 불러오기
     const navigate = useNavigate();
     let [lecinfo, setLecInfo] = useState(info);
     useEffect(() => {
@@ -22,10 +23,11 @@ export default function Detail_file() {
         axios.get('/api/lecpage/file/detail_file', {
             params: {
                 lecture: lecture_name,
-                index: index
+                index: index,
+                userID : userID
             },
-            responseType: 'arraybuffer'  // 응답 데이터를 ArrayBuffer로 받음
-        })
+            // responseType: 'arraybuffer'  // 응답 데이터를 ArrayBuffer로 받음
+        }, {withCredentials : true})
             .then((res) => {
                 if (res.data === 200) {
                     let copy = { ...res.data };

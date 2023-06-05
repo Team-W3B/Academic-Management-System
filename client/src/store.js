@@ -80,12 +80,12 @@ export let lecNameSlice = createSlice({
     name:"lecture",
     initialState:{lecture:""},
     reducers:{
-        setlecure:(state, action)=>{
+        setLecture:(state, action)=>{
             state.lecture = action.payload
         }
     }
 });
-export const {setlecure} = lecNameSlice.actions
+export const {setLecture} = lecNameSlice.actions
 
 export let lecIndexSlice = createSlice({
     name:"index",

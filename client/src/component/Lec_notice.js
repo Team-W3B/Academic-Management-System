@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Lec_notice() {
     const lecture_name = useSelector((state)=>state.lecture.lecture); //querystring 전달인자
+    let userID = useSelector( (state) => state.userID ); // userID 불러오기
     let navigate = useNavigate();
     let [lecinfo, setLecInfo] = useState(info);
     useEffect(() => {
@@ -18,9 +19,10 @@ export default function Lec_notice() {
     let getLecInfo = () => {
         axios.get('/api/lecpage/lec_notice', {
             params: {
-                lecture: lecture_name
+                lecture: lecture_name,
+                userID : userID
             }
-        })
+        }, {withCredentials : true})
             .then((res) => {
                 if (res.data === 200) {
                     let copy = { ...res.data };

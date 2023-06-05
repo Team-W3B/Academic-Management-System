@@ -4,7 +4,6 @@ import { Container, Col, Row } from "react-bootstrap";
 import styles from './../scss/PlanDetail.module.scss';
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import axios from "axios";
 
 function PlanDetail() {
 
