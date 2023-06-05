@@ -33,7 +33,7 @@ app.use(
   })
 );
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "server")));
 
 app.use(
@@ -77,3 +77,4 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
+

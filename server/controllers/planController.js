@@ -6,7 +6,13 @@ const path = require("path");
 
 async function getUserID(req) {
   // request 헤더에서 sessionID 가져오기
-  const sessionID = req.headers.cookie.split("=")[1];
+  const cookies = req.headers.cookie.split("; ");
+  const loginSessionCookie = cookies.find((cookie) =>
+    cookie.startsWith("loginSession=")
+  );
+  const sessionID = loginSessionCookie
+    ? loginSessionCookie.split("=")[1]
+    : null;
 
   const tmp = sessionID.substring(sessionID.indexOf("s%3A") + 4);
   const replacedSessionID = tmp.substring(0, tmp.indexOf("."));
@@ -63,7 +69,7 @@ async function querySearch(userID, grade_semester, isMyLecture, lecture) {
             Lectures.grade_semester = :grade_semester and Lectures.lecture_name = :lecture`;
 
   if (isMyLecture)
-    searchQUERY += `and Student_Lectures.lecture_id = Lectures.id and Student_Lectures.student_id = :userID `;
+    searchQUERY += ` and Student_Lectures.lecture_id = Lectures.id and Student_Lectures.student_id = :userID `;
 
   searchQUERY += `
           GROUP BY
@@ -255,14 +261,16 @@ async function querydetailINFO(lectureID) {
 
 exports.planSearch = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = 2018202043;
+  //let userID = await getUserID(req);
   try {
+    // ID, 학년학기, 수강여부, 강의명을 쿼리스트링에서 가져옴
+    let userID = req.query.userID;
     const grade_semester = req.query.planSearch_semester;
     const isMyLecture = req.query.planSearch_check_lec;
     const lecture = req.query.planSearch_lec;
 
     let data = await querySearch(userID, grade_semester, isMyLecture, lecture);
-    req.status(200).send(data);
+    res.status(200).send(data);
   } catch (error) {
     console.error(error);
     if (!userID) res.status(401).send();
@@ -272,8 +280,9 @@ exports.planSearch = async (req, res) => {
 
 exports.planDetail = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
-  let userID = 2018202043;
+  //let userID = await getUserID(req);
   try {
+    // 강의ID 쿼리스트링에서 가져옴
     const lectureID = req.query.planDetail_regNum;
 
     let basicINFO = await querybasicINFO(lectureID);
