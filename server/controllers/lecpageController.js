@@ -96,11 +96,14 @@ async function queryPost(userID, lecName, boardType, index) {
 }
 
 // 과제 제출에 대한 쿼리문 함수
-async function queryAssSent(body, userID, lecName, index) {
+async function queryAssSent(body) {
   let content = body.lecDetail_content;
   let fileName = body.lecDetail_fileName;
   let file = body.lecDetail_file;
   let fileSize = body.lecDetail_fileSize;
+  let userID = body.userID;
+  let lecName = body.lecture;
+  let index = body.index;
 
   // DB에서 강의명으로 강의 아이디를 가져옴
   const lecture = await model.Lecture.findOne({
@@ -461,12 +464,7 @@ exports.assignmentSent = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
   //let userID = await getUserID(req);
   try {
-    // 강의명과 ID를 쿼리스트링에서 가져옴
-    let lecName = req.query.lecture;
-    let userID = req.query.userID;
-    let index = req.query.index;
-
-    await queryAssSent(req.body, userID, lecName, index);
+    await queryAssSent(req.body);
 
     res.status(200).send();
   } catch (error) {
