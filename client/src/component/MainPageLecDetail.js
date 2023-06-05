@@ -1,29 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './../scss/MainPageLecDetail.module.scss';
 import MPLD_data from '../data/MainPageLecDetail_data';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { setlecure } from '../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLecture } from '../store';
 import {  Link, useNavigate  } from "react-router-dom";
 
 let MainPageLecDetail  = () => {
 
-    let [mpld, setMpld] = useState(MPLD_data);
-    
-    let getMPLD = () => {
-        axios.get('/api/home/detail')
-            .then((res)=> {
-                console.log(res);
-                let copy = {...res.data};
-                setMpld(copy)
-            })
-            .catch((error)=>{
-                console.log(error.data)
-            })
-    };
-    getMPLD();
-    
-   
+    let mpld = useSelector( (state) => {return state.mpld} );
     
     return (
         <div className={styles.Dcard}>
@@ -73,7 +58,7 @@ let SubjectDetail = (props) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const handleOn = (name) => {
-        dispatch(setlecure(name));
+        dispatch(setLecture(name));
         //console.log(name);
         navigate( '/LecPage' );
     };

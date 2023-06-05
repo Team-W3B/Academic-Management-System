@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 export default function Detail_assPost() {
     const lecture = useSelector((state) => state.lecture.lecture); //querystring 전달인자
     const index = useSelector((state)=>state.index.index); //querystring 전달인자
+    let userID = useSelector( (state) => state.userID ); // userID 불러오기
+
     const navigate = useNavigate();
     const formData = new FormData();
     let [lecDetail_content, setContentInfo] = useState('');
@@ -27,6 +29,7 @@ export default function Detail_assPost() {
         formData.append("lecDetail_content",JSON.stringify(lecDetail_content));
         formData.append("lecture",JSON.stringify(lecture));
         formData.append("index",JSON.stringify(index));
+        formData.append("userID", JSON.stringify(userID));
         // for (const key of formData.keys()) {
         //     console.log(key);
         //   }
@@ -35,7 +38,7 @@ export default function Detail_assPost() {
         //   }
        
         axios.post('/api/lecpage/ass/detail_ass_snt'
-            , formData
+            , formData, {withCredentials : true}
             , {
                 headers: {
                     "Content-Type": "multipart/form-data"
