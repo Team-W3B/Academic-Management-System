@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       score: {
-        type: Sequelize.STRING,
+        type: Sequelize.FLOAT,
       },
       student_id: {
         allowNull: false,
@@ -104,3 +104,4 @@ module.exports = {
     await queryInterface.dropTable("Student_Lectures");
   },
 };
+

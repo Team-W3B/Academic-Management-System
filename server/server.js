@@ -15,6 +15,8 @@ const signupRouter = require("./routes/signup");
 const homeRouter = require("./routes/home");
 const lecRouter = require("./routes/lecpage");
 const planRouter = require("./routes/plan");
+const scoreRouter = require("./routes/score");
+const enrollRouter = require("./routes/enroll");
 
 //상수
 const db = require("./models");
@@ -57,6 +59,8 @@ app.use("/api/signup", signupRouter);
 app.use("/api/home", homeRouter);
 app.use("/api/lecpage", lecRouter);
 app.use("/api/plan", planRouter);
+app.use("/api/score", scoreRouter);
+app.use("/api/enroll", enrollRouter);
 
 //app.use("/api", loginRouter);
 
@@ -77,4 +81,3 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
-

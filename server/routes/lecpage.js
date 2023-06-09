@@ -3,8 +3,6 @@ var router = express.Router();
 var lecpageController = require("../controllers/lecpageController");
 
 /* 강의페이지 화면에 대한 라우팅 */
-router.get("/", lecpageController.lecHeader);
-
 router.get("/lec_notice", lecpageController.lecNotice);
 
 router.get("/lec_file", lecpageController.lecFile);
@@ -27,10 +25,17 @@ router.get("/notice/detail_not", lecpageController.noticeDetail);
 
 router.get("/file/detail_file", lecpageController.fileDetail);
 
-router.get("/lecture.detail_lec", lecpageController.lectureDetail);
+router.get("/lecture/detail_lec", lecpageController.lectureDetail);
 
 router.get("/ass/detail_ass", lecpageController.assignmentDetail);
+
+router.get("/notice/detail_blobNot", lecpageController.noticeBlobFile);
+
+router.get("/file/detail_blobNot", lecpageController.fileBlobFile);
+
+router.get("/ass/detail_blobNot", lecpageController.assignmentBlobFile);
 
 router.post("/ass/detail_ass_snt", lecpageController.assignmentSent);
 
 module.exports = router;
+

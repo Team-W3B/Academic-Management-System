@@ -63,7 +63,7 @@ module.exports = (sequelize, DataTypes) => {
       midterm_exam: { type: DataTypes.INTEGER },
       final_exam: { type: DataTypes.INTEGER },
       total: { type: DataTypes.INTEGER },
-      score: { type: DataTypes.STRING },
+      score: { type: DataTypes.FLOAT },
       student_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -91,3 +91,4 @@ module.exports = (sequelize, DataTypes) => {
   );
   return Student_Lecture;
 };
+
