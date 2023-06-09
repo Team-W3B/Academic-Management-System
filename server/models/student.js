@@ -18,6 +18,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "student_id",
         sourceKey: "id",
       });
+
+      Student.hasMany(models.Cart, {
+        foreignKey: "student_id",
+        sourceKey: "id",
+      });
     }
   }
   Student.init(

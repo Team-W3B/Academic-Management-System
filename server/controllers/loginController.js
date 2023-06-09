@@ -14,10 +14,7 @@ exports.loginProcess = async (req, res) => {
     });
     if (student && (await bcrypt.compare(request_password, student.passwd))) {
       // 학생 로그인 성공
-      req.session.save(function () {
-        req.session.userID = id;
-        res.status(200).send({ userInfo: student.name });
-      });
+      res.status(200).send({ userInfo: student.name });
       return;
     }
 
@@ -47,4 +44,3 @@ exports.loginProcess = async (req, res) => {
     res.status(500).send();
   }
 };
-

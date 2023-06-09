@@ -23,6 +23,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "lecture_id",
         sourceKey: "id",
       });
+
+      Lecture.hasOne(models.Cart, {
+        foreignKey: "lecture_id",
+        sourceKey: "id",
+      });
     }
   }
   Lecture.init(
@@ -56,3 +61,4 @@ module.exports = (sequelize, DataTypes) => {
   );
   return Lecture;
 };
+

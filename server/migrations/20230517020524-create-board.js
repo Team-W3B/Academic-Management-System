@@ -27,8 +27,8 @@ module.exports = {
       file_name: {
         type: Sequelize.STRING,
       },
-      file_size: {
-        type: Sequelize.INTEGER,
+      file_path: {
+        type: Sequelize.STRING,
       },
       file: {
         type: Sequelize.BLOB,
@@ -75,3 +75,4 @@ module.exports = {
     await queryInterface.dropTable("Boards");
   },
 };
+
