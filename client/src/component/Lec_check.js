@@ -13,9 +13,9 @@ export default function Lec_check() {
 
     let [lecinfo, setLecInfo] = useState(info);
 
-    useEffect(async() => {
+    useEffect(() => {
         let getLecInfo = async() => {
-            axios.get('/api/lecpage/lec_check', {
+            await axios.get('/api/lecpage/lec_check', {
                 params: {
                     lecture: lecture_name,
                     userID : userID
@@ -37,7 +37,7 @@ export default function Lec_check() {
                     }
                 })
         };
-        await getLecInfo();
+        getLecInfo();
     }, []);
     /* let getLecInfo = () => {
         axios.get('/api/lecpage/lec_check', {
@@ -70,6 +70,7 @@ export default function Lec_check() {
             <div className={styles.class_name} >
                 출석</div>
             {lecinfo.map(function (a, i) {
+              
                 return (
                     
                         <div key={i} i={i} lecinfo={a} style={{ textAlign: "left", padding: "5%" }}>

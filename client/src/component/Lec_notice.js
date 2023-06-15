@@ -13,9 +13,9 @@ export default function Lec_notice() {
     let userID = useSelector( (state) => state.userID ); // userID 불러오기
     let navigate = useNavigate();
     let [lecinfo, setLecInfo] = useState(info);
-    useEffect(async() => {
+    useEffect(() => {
         let getLecInfo = async() => {
-            axios.get('/api/lecpage/lec_notice', {
+            await axios.get('/api/lecpage/lec_notice', {
                 params: {
                     lecture: lecture_name,
                     userID : userID
@@ -37,7 +37,7 @@ export default function Lec_notice() {
                     }
                 })
         };
-        await getLecInfo();
+         getLecInfo();
     }, []);
     const handleCheck = (e) => {
         console.log(e.target.value);

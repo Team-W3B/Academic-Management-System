@@ -60,7 +60,7 @@ export default function Login() {
 
     const handleid = (e) => {
       setid(e.target.value);
-      const regex = /^[2]{1}[0]{1}[0-9+]{8}$/;
+      const regex = /^[1-2]{1}[0]{1}[0-9+]{8}$/;
       if (regex.test(e.target.value)) {
         setidValid(true);
       } else {

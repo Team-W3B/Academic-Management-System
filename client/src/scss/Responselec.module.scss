@@ -1,0 +1,132 @@
+@import "./App.module.scss";
+  .class_name{
+    //color: black;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 120, 78, 1) 0%,
+      rgba(251, 52, 124, 1) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+   
+    text-overflow: ellipsis;
+    font-size: 32px;
+    
+    font-family: "SF Pro", sans-serif;
+    font-weight: initial;
+    line-height: 117%;
+    text-align: left;
+    width: 100%;
+    padding: 5%
+  }
+ 
+
+  .lec_name {
+    width: 100%;
+    font-family: "SF Pro Display";
+    font-size: 1.6vw;
+    font-weight: 800;
+    line-height: 2.4rem;
+    color: rgba(25, 20, 20, 1);
+   // display: flex;
+    align-items: center;
+    //margin-left: 3%;
+    //margin-bottom: 0.2vw;
+    letter-spacing: -0.018rem;
+    text-align: center;
+    
+  }
+  
+  .whiteCard {
+   /// display: flex;
+    //flex-direction: column;
+   
+    width: 100%;
+	 height: 600px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 12px;
+    box-shadow: 0.4vw 1.0vw 1vw 0.2vw rgba(0, 0, 0, 0.09);
+    z-index: -1;
+    padding-top:3%;
+    margin:10px;
+    padding-left: 8%;
+    padding-right: 8%;
+    padding-bottom: 8%;
+  }
+
+
+.cardWrapper {
+    @include flex_container(column, flex-start, center);
+
+    /* 크기 설정 */
+    width: 110%;
+    height: 100%;
+    padding-top: 3%;
+    
+    /* card 설정 */
+   // @include Card(white, 48px );
+     overflow-y: auto;
+    // z-index: 2;
+}
+.cardWrapper::-webkit-scrollbar {
+    width: 5px;  
+    padding : 0 20px;
+}
+
+.cardWrapper::-webkit-scrollbar-thumb {
+    background: #FB347C; /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 둥근 테두리 */
+}
+
+.cardWrapper::-webkit-scrollbar-track {
+    background: rgba(220, 20, 60, .1);  /*스크롤바 뒷 배경 색상*/
+}
+
+.Container {
+    @include flex_container(column, null, null);
+    gap: 4px;
+}
+.titleText {
+    @include sf-pro-display-16-bold;
+}
+.contentText {
+    @include sf-pro-display-12-medium;
+}
+.mainColorText {
+    @include text_gradient($mainColor);
+}
+.greenColorText {
+    @include text_gradient($green_gradient);
+}
+.row_lec {
+    padding: 6px 0;
+}
+
+.row_lec:hover {
+  border-radius: 8px;
+  padding: 6px 0px 6px 4px;
+  box-shadow: 1px 2px 12px 2px rgba(0, 0, 0, 0.09);
+    transition: 100ms;
+}
+.row_lec:active {
+  background-color: gray;
+}
+.row_lec:link {
+  border: 3px solid brown;
+    border-radius: 3px;
+    padding: 3px;
+    background-color: gray;
+}
+.searchButton {
+  background: $mainColor;
+  @include sf-pro-display-16-medium;
+ // border: 1px solid $disabled_color;
+  border-radius: 12px;
+ // display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  width: 100%;
+  border : none;
+  color : white;
+}

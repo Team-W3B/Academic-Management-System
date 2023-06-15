@@ -524,3 +524,8 @@
     transform: rotate(360deg);
   }
 }
+
+@import "./App.module.scss";
+.mainColorText {
+  @include text_gradient($mainColor);
+}

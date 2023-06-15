@@ -13,18 +13,16 @@ import {
 import HeaderNav from "./../component/HeaderNav";
 import Lec from "./../component/Lec";
 import Footer from "./../component/Footer";
-import File from "../component/File";
+import Detail_file_prof from "../component/Detail_file_prof";
 
-export default function LecPage_file() {
-    //uerID 가지고 와서 교수이면 File_prof로 학생이면 File로
+export default function LecPage_file_detail_prof() {
     return (
         <>
             <HeaderNav />
             <div>
                 <Lec />
                 <div className={style.detail_wrapp}>
-                    
-                   <File />
+                    <Detail_file_prof/>
                 </div>
             </div>
             <Footer />

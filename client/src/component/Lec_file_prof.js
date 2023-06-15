@@ -14,60 +14,9 @@ export default function Lec_file() {
     let navigate = useNavigate();
 
     let [lecinfo, setLecInfo] = useState(info);
-    useEffect(() => {
-        let getLecInfo = async() => {
-            await axios.get('/api/lecpage/lec_file', {
-                params: {
-                    lecture: lecture_name,
-                    userID : userID
-                }
-            }, {withCredentials : true})
-            .then((res) => {
-                if(res.data===200){
-                    let copy = {...res.data};
-                    setLecInfo(copy);
-                }
-            })
-            .catch((error) => {
-                console.log(error.data)
-                if (error.response.data === 401) {
-                    alert("권한없음(강의페이지");
-                }
-                if (error.response.data === 500) {
-                    alert("서버 오류 발생!(강의페이지)");
-                }
-            })
-        };
-         getLecInfo();
-    }, []);
-    /* let getLecInfo = () => {
-        axios.get('/api/lecpage/lec_file', {
-            params: {
-                lecture: lecture_name,
-                userID : userID
-            }
-        }, {withCredentials : true})
-        .then((res) => {
-            if(res.data===200){
-                let copy = {...res.data};
-                setLecInfo(copy);
-            }
-        })
-        .catch((error) => {
-            console.log(error.data)
-            if (error.response.data === 401) {
-                alert("권한없음(강의페이지");
-            }
-            if (error.response.data === 500) {
-                alert("서버 오류 발생!(강의페이지)");
-            }
-        })
-    }; */
-    //getLecInfo();
-   // console.log(lec_notice[0].lecPage_title);
     
     return (
-        <div onClick={() => navigate('/LecPage_file')}>
+        <div onClick={() => navigate('/LecPage_file_prof')}>
             <div className={styles.whiteCard}>
 
                 <div className={styles.class_name}>

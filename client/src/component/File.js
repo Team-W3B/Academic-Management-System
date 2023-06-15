@@ -15,32 +15,62 @@ export default function File() {
     const dispatch = useDispatch();
 
     let [lecinfo, setLecInfo] = useState(info);
-    useEffect(async() => {
-        let getLecInfo = async() => {
-            axios.get('/api/lecpage/file', {
-                params: {
-                    lecture: lecture_name,
-                    userID : userID
-                }
-            }, {withCredentials : true})
-                .then((res) => {
-                    if (res.data === 200) {
-                        let copy = { ...res.data };
-                        setLecInfo(copy);
-                    }
-                })
-                .catch((error) => {
-                    console.log(error.data)
-                    if (error.response.data === 401) {
-                        alert("권한없음(강의페이지");
-                    }
-                    if (error.response.data === 500) {
-                        alert("서버 오류 발생!(강의페이지)");
-                    }
-                })
+    //useEffect(() => {
+    //     let getLecInfo = async() => {
+    //         await axios.get('/api/lecpage/file', {
+    //             params: {
+    //                 lecture: lecture_name,
+    //                 userID : userID
+    //             }
+    //         }, {withCredentials : true})
+    //             .then((res) => {
+    //                 console.log(res);
+    //                 if (res.data === 200) {
+    //                     let copy = { ...res.data };
+    //                     setLecInfo(copy);
+    //                 }
+    //             })
+    //             .catch((error) => {
+    //                 console.log(error.data)
+    //                 if (error.response.data === 401) {
+    //                     alert("권한없음(강의페이지");
+    //                 }
+    //                 if (error.response.data === 500) {
+    //                     alert("서버 오류 발생!(강의페이지)");
+    //                 }
+    //             })
+    //     };
+    //     getLecInfo();
+    // }, []);
+
+    useEffect(() => {
+        const getLecInfo = async () => {
+          try {
+            const response = await axios.get('/api/lecpage/file', {
+              params: {
+                lecture: lecture_name,
+                userID: userID
+              },
+              withCredentials: true
+            });
+            console.log(response);
+            if (response.data === 200) {
+              const copy = { ...response.data };
+              setLecInfo(copy);
+            }
+          } catch (error) {
+            console.log(error.data);
+            if (error.response.data === 401) {
+              alert("권한없음(강의페이지)");
+            }
+            if (error.response.data === 500) {
+              alert("서버 오류 발생!(강의페이지)");
+            }
+          }
         };
-        await getLecInfo();
-    }, []);
+      
+        getLecInfo();
+      }, []);
     const navigate = useNavigate();
 
     const handleIndex = (index) => {

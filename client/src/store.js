@@ -2,6 +2,8 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 import plan_info from "./data/planInfo_data";
 import planDetail from "./data/planDetail_data";
 import MPLD_data from './data/MainPageLecDetail_data';
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 
 /* user 이름 */
 let user = createSlice({
@@ -98,6 +100,116 @@ export let lecIndexSlice = createSlice({
 });
 export const {setIndex} = lecIndexSlice.actions
 
+export let filenameSlice = createSlice({
+    name:"lecDetail_fileName",
+    initialState:{lecDetail_fileName:""},
+    reducers:{
+        setFile:(state, action)=>{
+            state.lecDetail_fileName = action.payload
+        }
+    }
+});
+export const {setFile} = filenameSlice.actions
+
+export let filesizeSlice = createSlice({
+    name:"lecDetail_fileSize",
+    initialState:{lecDetail_fileSize:""},
+    reducers:{
+        setFilesize:(state, action)=>{
+            state.lecDetail_fileSize = action.payload
+        }
+    }
+});
+export const {setFilesize} = filesizeSlice.actions
+
+export let filecontentSlice = createSlice({
+    name:"lecDetail_content",
+    initialState:{lecDetail_content:""},
+    reducers:{
+        setFilecontent:(state, action)=>{
+            state.lecDetail_content = action.payload
+        }
+    }
+});
+export const {setFilecontent} = filecontentSlice.actions
+
+export let asscheck1Slice = createSlice({
+    name:"asscheck1",
+    initialState:{asscheck1:""},
+    reducers:{
+        setAss1check:(state, action)=>{
+            state.asscheck1 = action.payload
+        }
+    }
+});
+export const {setAss1check} = asscheck1Slice.actions
+
+export let searchmajorSlice = createSlice({
+    name:"major",
+    initialState:{major:""},
+    reducers:{
+        setMajorcheck:(state, action)=>{
+            state.major = action.payload
+        }
+    }
+});
+export const {setMajorcheck} = searchmajorSlice.actions
+
+export let searchlecSlice = createSlice({
+    name:"lec",
+    initialState:{lec:""},
+    reducers:{
+        setLeccheck:(state, action)=>{
+            state.lec = action.payload
+        }
+    }
+});
+export const {setLeccheck} = searchlecSlice.actions
+
+export let searchvalueSlice = createSlice({
+    name:"value",
+    initialState:{value:""},
+    reducers:{
+        setValuecheck:(state, action)=>{
+            state.value = action.payload
+        }
+    }
+});
+export const {setValuecheck} = searchvalueSlice.actions
+
+export let responselecSlice = createSlice({
+    name:"res_lec",
+    initialState:{res_lec:""},
+    reducers:{
+        setRes_leccheck:(state, action)=>{
+            state.res_lec = action.payload
+        }
+    }
+});
+export const {setRes_leccheck} = responselecSlice.actions
+
+export let responseprofSlice = createSlice({
+    name:"res_prof",
+    initialState:{res_prof:""},
+    reducers:{
+        setRes_profcheck:(state, action)=>{
+            state.res_prof = action.payload
+        }
+    }
+});
+export const {setRes_profcheck} = responseprofSlice.actions
+
+export let responsetimeSlice = createSlice({
+    name:"res_time",
+    initialState:{res_time:""},
+    reducers:{
+        setRes_timecheck:(state, action)=>{
+            state.res_time = action.payload
+        }
+    }
+});
+export const {setRes_timecheck} = responsetimeSlice.actions
+
 const store = configureStore({
     reducer: {
         user : user.reducer,
@@ -108,7 +220,16 @@ const store = configureStore({
         index : lecIndexSlice.reducer,
         mpld : mpld.reducer,
         userID : userID.reducer,
+        lecDetail_fileName : filenameSlice.reducer,
+        lecDetail_fileSize :filesizeSlice.reducer,
+        lecDetail_content : filecontentSlice.reducer,
+        asscheck1 : asscheck1Slice.reducer,
+        major : searchmajorSlice.reducer,
+        lec : searchlecSlice.reducer,
+        value : searchvalueSlice.reducer,
+        res_lec : responselecSlice.reducer,
+        res_prof : responseprofSlice.reducer,
+        res_time : responsetimeSlice.reducer
     }
-
 });
 export default store;

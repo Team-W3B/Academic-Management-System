@@ -14,9 +14,9 @@ export default function Lec_lecture() {
     const navigate = useNavigate();
 
     let [lecinfo, setLecInfo] = useState(info);
-    useEffect(async() => {
-        let getLecInfo = async() => {
-            axios.get('/api/lecpage/lec_lecture', {
+    useEffect(() => {
+        let getLecInfo = () => {
+             axios.get('/api/lecpage/lec_lecture', {
                 params: {
                     lecture: lecture_name,
                     userID : userID
@@ -38,7 +38,7 @@ export default function Lec_lecture() {
                 }
             })
         };
-        await getLecInfo();
+         getLecInfo();
     }, []);
    // getLecInfo();
    // console.log(lec_notice[0].lecPage_title);
