@@ -31,10 +31,6 @@ module.exports = {
         allowNull: true,
         type: Sequelize.STRING,
       },
-      file_size: {
-        allowNull: true,
-        type: Sequelize.INTEGER,
-      },
       file: {
         allowNull: true,
         type: Sequelize.BLOB,
@@ -57,3 +53,4 @@ module.exports = {
     await queryInterface.dropTable("Assignments");
   },
 };
+

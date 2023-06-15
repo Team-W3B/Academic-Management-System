@@ -72,8 +72,6 @@ async function queryPost(userID, lecName, boardType, index) {
       Boards.content AS lecDetail_content,
       CONCAT(DATE_FORMAT(Boards.write_date, "%Y-%m-%d"), ' ~ ', DATE_FORMAT(Boards.deadline, "%Y-%m-%d")) AS lecDetail_duration,
       Boards.file_name AS lecDetail_fileName,
-      Boards.file AS lecDetail_file,
-      Boards.file_size AS lecDetail_fileSize
     FROM
       Student_Lectures
       LEFT JOIN Lectures ON Student_Lectures.lecture_id = Lectures.id
@@ -95,12 +93,37 @@ async function queryPost(userID, lecName, boardType, index) {
   return data;
 }
 
+// 게시판에 넣을 파일에 대한 쿼리문 함수
+async function queryFile(userID, lecName, boardType, index) {
+  let query = `
+    SELECT
+      Boards.file AS lecDetail_file,
+    FROM
+      Student_Lectures
+      LEFT JOIN Lectures ON Student_Lectures.lecture_id = Lectures.id
+      LEFT JOIN Boards ON (Student_Lectures.student_id = Boards.sl_student_id and Student_Lectures.lecture_id = Boards.sl_lecture_id)
+    WHERE
+      Student_Lectures.student_id = :userID and Lectures.lecture_name = :lecName and Boards.board_type_id = boardType and Boards.id = :index
+    `;
+
+  const data = await sequelize.query(query, {
+    type: QueryTypes.SELECT,
+    replacements: {
+      userID: userID,
+      lecName: lecName,
+      boardType: boardType,
+      index: index,
+    },
+  });
+
+  return data;
+}
+
 // 과제 제출에 대한 쿼리문 함수
 async function queryAssSent(body) {
   let content = body.lecDetail_content;
   let fileName = body.lecDetail_fileName;
   let file = body.lecDetail_file;
-  let fileSize = body.lecDetail_fileSize;
   let userID = body.userID;
   let lecName = body.lecture;
   let index = body.index;
@@ -114,9 +137,9 @@ async function queryAssSent(body) {
   // DB에서
   let query = `
     INSERT INTO Assignments
-      (id, ass_student_id, ass_lecture_id, content, file_name, file_size, file)
+      (id, ass_student_id, ass_lecture_id, content, file_name, file)
     VALUES
-      (:index, :userID, :lectureID, :content, :fileName, :fileSize, :file)
+      (:index, :userID, :lectureID, :content, :fileName, :file)
     `;
 
   await sequelize.query(query, {
@@ -127,7 +150,6 @@ async function queryAssSent(body) {
       lectureID: lecture.id,
       content: content,
       fileName: fileName,
-      fileSize: fileSize,
       file: file,
     },
   });
@@ -137,48 +159,6 @@ async function queryAssSent(body) {
 function createObj(id) {
   return { lecPage_check_id: id };
 }
-
-exports.lecHeader = async (req, res) => {
-  // 로그인한 학번을 세션에서 가져옴
-  //let userID = await getUserID(req);
-  try {
-    // 강의명과 ID를 쿼리스트링에서 가져옴
-    let lecName = req.query.lecture;
-
-    let userID = req.query.userID;
-
-    // DB에서 강의 제목, 강의실 이름, 교수님 이름, 강의 시간을 꺼내줌
-    const query = `
-    SELECT
-      Professors.name AS lecPage_prof,
-      Lectures.lecture_name AS lecPage_lecture,
-      Lectures.lecture_room AS lecPage_class,
-      GROUP_CONCAT(Schedules.period order by Schedules.period SEPARATOR ', ') AS lecPage_time
-    FROM
-      Student_Lectures
-      LEFT JOIN Lectures ON Lectures.id = Student_Lectures.lecture_id
-      LEFT JOIN Professors ON Lectures.professor_id = Professors.id
-      LEFT JOIN Schedules ON Lectures.id = Schedules.lecture_id
-    WHERE
-      Student_Lectures.student_id = :studentId and Lectures.lecture_name = :lectureName
-    GROUP BY
-      lecPage_prof, lecPage_lecture, lecPage_class;
-      `;
-    
-
-    // 쿼리 실행
-    const lecHead = await sequelize.query(query, {
-      type: QueryTypes.SELECT,
-      replacements: { studentId: userID, lectureName: lecName },
-    });
-
-    res.status(200).send(lecHead);
-  } catch (error) {
-    console.error(error);
-    if (!userID) res.status(401).send();
-    else res.status(500).send();
-  }
-};
 
 exports.lecNotice = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴
@@ -438,7 +418,31 @@ exports.lectureDetail = async (req, res) => {
     let userID = req.query.userID;
     let index = req.query.index;
 
-    res.status(200).send(await queryPost(userID, lecName, 3, index));
+    let query = `
+    SELECT
+      Boards.title AS lecDetail_title,
+      Boards.write_date AS lecDetail_date,
+      Boards.content AS lecDetail_content,
+      CONCAT(DATE_FORMAT(Boards.write_date, "%Y-%m-%d"), ' ~ ', DATE_FORMAT(Boards.deadline, "%Y-%m-%d")) AS lecDetail_duration,
+      Boards.file_path AS lecDetail_fileName,
+    FROM
+      Student_Lectures
+      LEFT JOIN Lectures ON Student_Lectures.lecture_id = Lectures.id
+      LEFT JOIN Boards ON (Student_Lectures.student_id = Boards.sl_student_id and Student_Lectures.lecture_id = Boards.sl_lecture_id)
+    WHERE
+      Student_Lectures.student_id = :userID and Lectures.lecture_name = :lecName and Boards.board_type_id = 3 and Boards.id = :index
+    `;
+
+    const data = await sequelize.query(query, {
+      type: QueryTypes.SELECT,
+      replacements: {
+        userID: userID,
+        lecName: lecName,
+        index: index,
+      },
+    });
+
+    res.status(200).send(data);
   } catch (error) {
     console.error(error);
     if (!userID) res.status(401).send();
@@ -456,6 +460,57 @@ exports.assignmentDetail = async (req, res) => {
     let index = req.query.index;
 
     res.status(200).send(await queryPost(userID, lecName, 4, index));
+  } catch (error) {
+    console.error(error);
+    if (!userID) res.status(401).send();
+    else res.status(500).send();
+  }
+};
+
+exports.noticeBlobFile = async (req, res) => {
+  // 로그인한 학번을 세션에서 가져옴
+  //let userID = await getUserID(req);
+  try {
+    // 강의명과 ID를 쿼리스트링에서 가져옴
+    let lecName = req.query.lecture;
+    let userID = req.query.userID;
+    let index = req.query.index;
+
+    res.status(200).send(await queryFile(userID, lecName, 1, index));
+  } catch (error) {
+    console.error(error);
+    if (!userID) res.status(401).send();
+    else res.status(500).send();
+  }
+};
+
+exports.fileBlobFile = async (req, res) => {
+  // 로그인한 학번을 세션에서 가져옴
+  //let userID = await getUserID(req);
+  try {
+    // 강의명과 ID를 쿼리스트링에서 가져옴
+    let lecName = req.query.lecture;
+    let userID = req.query.userID;
+    let index = req.query.index;
+
+    res.status(200).send(await queryFile(userID, lecName, 2, index));
+  } catch (error) {
+    console.error(error);
+    if (!userID) res.status(401).send();
+    else res.status(500).send();
+  }
+};
+
+exports.assignmentBlobFile = async (req, res) => {
+  // 로그인한 학번을 세션에서 가져옴
+  //let userID = await getUserID(req);
+  try {
+    // 강의명과 ID를 쿼리스트링에서 가져옴
+    let lecName = req.query.lecture;
+    let userID = req.query.userID;
+    let index = req.query.index;
+
+    res.status(200).send(await queryFile(userID, lecName, 4, index));
   } catch (error) {
     console.error(error);
     if (!userID) res.status(401).send();

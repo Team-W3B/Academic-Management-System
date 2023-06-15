@@ -49,10 +49,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      file_size: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-      },
       file: {
         type: DataTypes.BLOB,
         allowNull: true,
@@ -66,3 +62,4 @@ module.exports = (sequelize, DataTypes) => {
   );
   return Assignment;
 };
+

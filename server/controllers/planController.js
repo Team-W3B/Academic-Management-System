@@ -131,7 +131,7 @@ async function querybasicINFO(lectureID) {
         Plans.leftover AS PlanDetail_num_of_student,
         Plans.assistant AS PlanDetail_assist,
         Professors.name AS PlanDetail_prof,
-        Professors.email AS PlanDetail_email
+        Professors.email AS PlanDetail_email,
         Professors.tel AS PlanDetail_tel
       FROM
         Lectures
@@ -250,14 +250,6 @@ async function querydetailINFO(lectureID) {
 
   return data;
 }
-
-// function addID(data) {
-//   let id = 1;
-
-//   data.forEach(element => {
-//     element.id = id++
-//   });
-// }
 
 exports.planSearch = async (req, res) => {
   // 로그인한 학번을 세션에서 가져옴

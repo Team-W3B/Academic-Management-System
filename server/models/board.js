@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       deadline: { type: DataTypes.DATE },
       content: { type: DataTypes.TEXT },
       file_name: { type: DataTypes.STRING },
-      file_size: { type: DataTypes.INTEGER },
+      file_path: { type: DataTypes.STRING },
       file: { type: DataTypes.BLOB },
       board_type_id: {
         type: DataTypes.INTEGER,
@@ -66,3 +66,4 @@ module.exports = (sequelize, DataTypes) => {
   );
   return Board;
 };
+
