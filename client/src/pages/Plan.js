@@ -11,8 +11,11 @@ function Plan() {
         <>
         <div className={styles.container}>
             <div className={styles.content}>
+                {/* 헤더 */}
                 <HeaderNav />
+                {/* 강의계획서 조회 문구 */}
                 <h1 className={styles.lecName}> 강의계획서 조회 </h1>
+                {/* 컨텐츠 */}
                 <div style={{ display : 'flex', justifyContent : 'center' }}>
                     <Outlet></Outlet>
                 </div>

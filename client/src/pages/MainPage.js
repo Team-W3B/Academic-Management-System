@@ -11,7 +11,10 @@ import { setMPLD } from "../store";
 
 function MainPage() {
 
-  let dispatch = useDispatch();
+  /* let userID_test = localStorage.getItem('LoginID');
+  console.log(userID_test);
+
+  let dispatch = useDispatch(); */
   let userID = useSelector( (state) => {return state.userID} )
   console.log(userID);
 

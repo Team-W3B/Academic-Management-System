@@ -2,6 +2,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 import plan_info from "./data/planInfo_data";
 import planDetail from "./data/planDetail_data";
 import MPLD_data from './data/MainPageLecDetail_data';
+import score_data from "./data/score_data";
 
 /* user 이름 */
 let user = createSlice({
@@ -75,6 +76,18 @@ let plan_detail = createSlice({
 });
 export let { setPlanDetail } = plan_detail.actions
 
+/* 성적석차 */
+let Score_data = createSlice({
+    name : 'Score_data',
+    initialState : score_data,
+    reducers : {
+        setScoreData(state, action) {
+            return action.payload
+        }
+    }
+});
+export let { setScoreData } = Score_data.actions
+
 
 export let lecNameSlice = createSlice({
     name:"lecture",
@@ -108,6 +121,7 @@ const store = configureStore({
         index : lecIndexSlice.reducer,
         mpld : mpld.reducer,
         userID : userID.reducer,
+        Score_data : Score_data.reducer
     }
 
 });

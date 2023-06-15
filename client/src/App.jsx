@@ -18,6 +18,8 @@ import LecPage_not_detail from "./pages/LecPage_not_detail";
 import LecPage_file_detail from "./pages/LecPage_file_detail";
 import LecPage_ass_detail from "./pages/LecPage_ass_detail";
 import LecPage_lec_detail from "./pages/LecPage_lec_detail";
+import Score from "./pages/Score";
+import Prof from "./pages/Prof";
 
 function App() {
   return (
@@ -31,11 +33,6 @@ function App() {
         <Route path="/MainPage" element={ <MainPage /> } />
         <Route path="/LecPage" element={ <LecPage /> } />
         <Route path="/LecPage_notice" element={ <LecPage_notice /> } />
-        <Route path="/Plan" element={ <Plan /> } >
-          <Route path="Search" element={ <PlanSearch /> } />
-          <Route path="Output" element={ <PlanOutput /> } />
-          <Route path="Detail/:id" element={ <PlanDetail /> } />
-        </Route>
         <Route path="/LecPage_ass" element={ <LecPage_ass /> } />
         <Route path="/LecPage_file" element={ <LecPage_file /> } />
         <Route path="/LecPage_lecture" element={ <LecPage_lecture /> } />
@@ -44,6 +41,16 @@ function App() {
         <Route path="/LecPage_file_detail" element={ <LecPage_file_detail /> } />
         <Route path="/LecPage_ass_detail" element={ <LecPage_ass_detail /> } />
         <Route path="/LecPage_lec_detail" element={ <LecPage_lec_detail /> } />
+
+        <Route path="/Plan" element={ <Plan /> } >
+          <Route path="Search" element={ <PlanSearch /> } />
+          <Route path="Output" element={ <PlanOutput /> } />
+          <Route path="Detail/:id" element={ <PlanDetail /> } />
+        </Route>
+
+        <Route path="/Score" element={ <Score /> } />
+        <Route path="/Prof" element={ <Prof /> } />
+
       </Routes>
     </div>
     // </BrowserRouter>

@@ -31,7 +31,7 @@ let HeaderNav = () => {
                             <Nav className="me-auto nav">
                                 <Nav.Link style={{ padding: "0 1rem" }} id={styles.nav} onClick={ () => {navigate( '/schedule' ) } } > 전체일정 </Nav.Link>
                                 <Nav.Link style={{ padding: "0 1rem" }} id={styles.nav} onClick={ () => { navigate('/Plan/Search') } } > 강의계획서 </Nav.Link>
-                                <Nav.Link style={{ padding: "0 1rem" }} id={styles.nav} onClick={ () => {navigate( '/scores' ) } } > 성적/석차 </Nav.Link>
+                                <Nav.Link style={{ padding: "0 1rem" }} id={styles.nav} onClick={ () => {navigate( '/Scores' ) } } > 성적/석차 </Nav.Link>
                             </Nav>
                             <div
                                 onMouseOver={()=>{ setProfile(true); setProfileName(false);}}
