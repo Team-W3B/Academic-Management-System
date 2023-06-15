@@ -1,0 +1,146 @@
+@import "./App.module.scss";
+
+.width100 {
+    width : 100%;
+}
+.vgap12 {
+    @extend .vbox;
+    justify-content: center;
+    align-items : center;
+    gap : 12px;
+}
+.hgap12 {
+    @extend .hbox;
+    justify-content: center;
+    align-items : center;
+    gap : 12px;
+}
+
+.cardWrapper {
+    @include flex_container(column, flex-start, center);
+
+    /* 크기 설정 */
+    width: 320px;
+    height: 400px;
+    padding: 48px;
+
+    /* card 설정 */
+    @include Card(white, 48px );
+    overflow-y: auto;
+    z-index: 2;
+}
+.cardWrapper::-webkit-scrollbar {
+    width: 5px;  
+    padding : 0 20px;
+}
+
+.cardWrapper::-webkit-scrollbar-thumb {
+    background: rgb(220, 20, 60); /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 둥근 테두리 */
+}
+
+.cardWrapper::-webkit-scrollbar-track {
+    background: rgba(220, 20, 60, .1);  /*스크롤바 뒷 배경 색상*/
+}
+
+.Container {
+    @include flex_container(column, null, null);
+    gap: 4px;
+}
+.titleText {
+    @include sf-pro-display-16-bold;
+}
+.contentText {
+    @include sf-pro-display-12-medium;
+}
+.mainColorText {
+    @include text_gradient($mainColor);
+}
+.greenColorText {
+    @include text_gradient($green_gradient);
+}
+.row_lec {
+    padding: 6px 0;
+}
+
+.row_lec:hover {
+    @include hoverShadow();
+    transition: 100ms;
+}
+
+
+
+@import "./App.module.scss";
+
+
+
+form {
+    display : flex;
+    flex-direction: column;
+    gap : 12px;
+}
+
+/* 강의계획서 조회 */
+.lecName {
+    @include flex_container($direction: column, $align: flex-start );
+    @include sf-pro-display-64-bold;
+    color: #000000;
+    width: 639px;
+    height: 113px;
+    padding-left: 108px;
+}
+
+
+.input {
+    /* Auto layout */
+    @include flex_container();
+    padding: 0px 16px;
+
+    width: 100%;
+    height: 36px;
+
+    /* Background 설정 */
+    background: $input_BG;
+    
+    /* border 설정 */
+    border: 1px solid $almost-white;
+    border-radius: 12px;
+
+    margin : 0;
+}
+.disabledButton {
+    @include short-button;
+    background: white;
+    width: 64px;
+    height: 36px;
+    opacity: 0.5;
+    transition: 0.5s;
+}
+.abledButton {
+    @include short-button;
+    @include border_gradient;
+    width: 64px;
+    height: 36px;
+    transition: 0.5s;
+}
+.disabled_text {
+    @include sf-pro-display-16-medium;
+    color : $disabled_color;
+    opacity: 0.5;
+    transition: 0.5s;
+    margin: 0;
+}
+.abled_text {
+    @include sf-pro-display-16-bold;
+    @include text_gradient($mainColor);
+    transition: 0.5s;
+    margin: 0;
+}
+
+.searchButton {
+    background: $mainColor;
+    @include sf-pro-display-16-medium;
+    @include short-button;
+    border : none;
+    color : white;
+}

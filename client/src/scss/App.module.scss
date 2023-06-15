@@ -17,6 +17,7 @@ $green_gradient : linear-gradient(
 $disabled_color : #86868b;
 $input_BG : rgba(249, 249, 249, 0.8);
 $almost-white : #EEEEEE;
+$ios_blue : #007AFF;
 
 html {
   font-size: 50%;
@@ -26,6 +27,7 @@ html {
   text-align: center;
 }
 
+/* footer를 하단에 고정시키기 위한 3개의 class ------------------------------------- */
 .container {
   display: flex;
   flex-direction: column;
@@ -45,14 +47,32 @@ html {
   padding: 79px;
   // background-color: #f1f1f1;
 }
+/* --------------------------------------------------------------------- */
 
 .hbox {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
+.vbox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 .space_between {
   justify-content: space-between;
+}
+@mixin sf-pro-display-10-medium {
+  font-family: "SF Pro Display";
+  font-size: 10px;
+  font-weight: 500;
+  // line-height: 19px;
+}
+@mixin sf-pro-display-10-bold {
+  font-family: "SF Pro Display";
+  font-size: 10px;
+  font-weight: 700;
+  // line-height: 19px;
 }
 @mixin sf-pro-display-12-medium {
   font-family: "SF Pro Display";
@@ -82,7 +102,7 @@ html {
   font-family: "SF Pro Display";
   font-size: 24px;
   font-weight: 500;
-  // line-height: 28px;
+  line-height: 24px;
 }
 @mixin sf-pro-display-32-bold {
   font-family: "SF Pro Display";
@@ -94,7 +114,7 @@ html {
   font-family: "SF Pro Display";
   font-size: 64px;
   font-weight: 700;
-  // line-height: 38px;
+  line-height: 32px;
 }
 @mixin short-button {
   border: 1px solid $disabled_color;

@@ -2,8 +2,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 import plan_info from "./data/planInfo_data";
 import planDetail from "./data/planDetail_data";
 import MPLD_data from './data/MainPageLecDetail_data';
-import { persistStore } from "redux-persist";
-import { PersistGate } from "redux-persist/integration/react";
+import score_data from "./data/score_data";
 
 /* user 이름 */
 let user = createSlice({
@@ -76,6 +75,18 @@ let plan_detail = createSlice({
     }
 });
 export let { setPlanDetail } = plan_detail.actions
+
+/* 성적석차 */
+let Score_data = createSlice({
+    name : 'Score_data',
+    initialState : score_data,
+    reducers : {
+        setScoreData(state, action) {
+            return action.payload
+        }
+    }
+});
+export let { setScoreData } = Score_data.actions
 
 
 export let lecNameSlice = createSlice({
@@ -229,7 +240,9 @@ const store = configureStore({
         value : searchvalueSlice.reducer,
         res_lec : responselecSlice.reducer,
         res_prof : responseprofSlice.reducer,
-        res_time : responsetimeSlice.reducer
+        res_time : responsetimeSlice.reducer,
+        Score_data : Score_data.reducer
+
     }
 });
 export default store;

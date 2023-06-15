@@ -29,6 +29,7 @@ export default function Login() {
           // console.log(res.config);
           dispatch(changeUser(res.data.userInfo));
           dispatch(changeUserID(user.logIn_id));
+          localStorage.setItem('LoginID', logIn_id);
           alert("로그인에 성공하였습니다.");
           navigate("/MainPage");
         }
