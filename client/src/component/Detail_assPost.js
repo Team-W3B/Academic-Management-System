@@ -8,9 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import file_image from './../imgs/file_image.svg'
 import goback from './../imgs/goback.svg'
 import { useNavigate } from "react-router-dom";
+import { setFile, setFilesize, setFilecontent ,setAss1check} from "../store";
+//import { setAss1check } from "../store";
 
 export default function Detail_assPost() {
-    const lecture = useSelector((state) => state.lecture.lecture); //querystring 전달인자
+    const lecture_name = useSelector((state) => state.lecture.lecture); //querystring 전달인자
     const index = useSelector((state)=>state.index.index); //querystring 전달인자
     let userID = useSelector( (state) => state.userID ); // userID 불러오기
 
@@ -20,14 +22,26 @@ export default function Detail_assPost() {
     let [lecDetail_file, setFileInfo] = useState('');
     let [lecDetail_fileName, setFilenameInfo] = useState('');
     let [lecDetail_fileSize, setFilesizeInfo] = useState('');
-
+    
+    const dispatch = useDispatch();
+    dispatch(setFile(lecDetail_fileName));
+    dispatch(setFilesize(lecDetail_fileSize));
+    dispatch(setFilecontent(lecDetail_content));
+    console.log(lecDetail_fileName);
     const Submit_file = (e) =>{
-       
+       // const navigate = useNavigate();
+       // navigate('/Detail_assPost_after')
+
+        let asscheck1=2;
+        //const dispatch = useDispatch();
+        dispatch(setAss1check(asscheck1));
+        console.log(asscheck1);
+
         formData.append("lecDetail_file",lecDetail_file);
         formData.append("lecDetail_fileName",JSON.stringify(lecDetail_fileName));
         formData.append("lecDetail_fileSize",JSON.stringify(lecDetail_fileSize));
         formData.append("lecDetail_content",JSON.stringify(lecDetail_content));
-        formData.append("lecture",JSON.stringify(lecture));
+        formData.append("lecture",JSON.stringify(lecture_name));
         formData.append("index",JSON.stringify(index));
         formData.append("userID", JSON.stringify(userID));
         // for (const key of formData.keys()) {
@@ -78,9 +92,9 @@ export default function Detail_assPost() {
     return (
         <div className={styles.whiteCard}>
             <Row style={{ height: "60px" }}>
-                <Col>
-                    <img style={{ height: "37px", marginBottom: "10px" }} src={goback}  />
-                </Col>
+                {/* <Col>
+                    <img style={{ height: "37px", marginBottom: "10px" }} src={goback}  onClick={delete_File}/>
+                </Col> */}
                 <Col>
                     <div className={styles.class_name} style={{ textAlign: "right" }} onClick={Submit_file}>제출하기</div>
                 </Col>
@@ -111,7 +125,7 @@ export default function Detail_assPost() {
                         
                         <input type="file" name="file"  onChange={handlefile}/>
                     </Col>
-                    <Col sm={4}>[KB]</Col>
+                    <Col sm={4}>{lecDetail_fileSize}[KB]</Col>
                 </Row>
             </div>
             <div style={{

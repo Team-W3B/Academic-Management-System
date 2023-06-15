@@ -1,0 +1,174 @@
+@import "./App.module.scss";
+
+.hbox_score {
+    @extend .hbox;
+    justify-content: center;
+    // justify-items: center;
+    gap : 12px;
+}
+.hbox_arrow_toggle {
+    @extend .hbox_score;
+    gap : 32px;
+}
+.vbox_score {
+    @extend .vbox;
+    // gap : 12px;
+}
+.gap12 {
+    gap: 12px;
+}
+
+
+.h_card {
+    @include flex_container(column, flex-start, center);
+
+    /* 크기 설정 */
+    width: 480px;
+    height: 192px;
+    padding: 24px;
+
+    /* card 설정 */
+    @include Card(white, 48px );
+    overflow-y: auto;
+    z-index: 2;
+}
+.h_card_mini {
+    @include flex_container(column, flex-start, center);
+
+    /* 크기 설정 */
+    width: 240px;
+    height: 90px;
+    // padding: 16px;
+
+    /* card 설정 */
+    @include Card(white, 24px );
+    overflow-y: auto;
+    z-index: 2;
+}
+.cardNav {
+    @include flex_container(column, center, center);
+    width : 100%;
+    height: 25%;
+    background-color: #333333;
+    color: white;
+    // z-index: 3;
+}
+
+.lecName {
+    @include flex_container($direction: column, $align: flex-start );
+    @include sf-pro-display-64-bold;
+    color: #000000;
+    width: 639px;
+    height: 113px;
+    padding-left: 64px;
+}
+
+.titleText {
+    @include sf-pro-display-12-bold;
+}
+.contentText {
+    @include sf-pro-display-10-medium;
+    // padding : 0 6px;
+}
+.Container {
+    @include flex_container(column, null, null);
+    // gap: 8px;
+    padding: 0px;
+}
+
+.mainColorText {
+    @include text_gradient($mainColor);
+}
+.greenColorText {
+    @include text_gradient($green_gradient);
+}
+.strongText {
+    @include sf-pro-display-10-bold;
+}
+.Text24 {
+    @include sf-pro-display-24-medium;
+}
+.blueText {
+    color: $ios_blue;
+}
+.row_lec {
+    padding: 4px 0;
+    margin: 0;
+}
+.row_lec:hover {
+    @include hoverShadow();
+    transition: 100ms;
+}
+
+/* ------------------------------------------------------------------ */
+.border {
+    /* Background 설정 */
+    background: white;
+    
+    /* border 설정 */
+    border: 1px solid $almost-white;
+    border-radius: 8px;
+    // padding: 0 16px;
+}
+.v_card {
+    @include flex_container(column, center, center);
+
+    /* 크기 설정 */
+    width: 240px;
+    height: 400px;
+    padding: 48px 24px;    
+
+    /* card 설정 */
+    @include Card(white, 48px );
+    overflow-y: auto;
+    z-index: 2;
+}
+.cardWrapper::-webkit-scrollbar {
+    width: 5px;  
+    padding : 0 20px;
+}
+
+.cardWrapper::-webkit-scrollbar-thumb {
+    background: rgb(220, 20, 60); /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 둥근 테두리 */
+}
+
+.cardWrapper::-webkit-scrollbar-track {
+    background: rgba(220, 20, 60, .1);  /*스크롤바 뒷 배경 색상*/
+}
+
+
+.contentText {
+    @include sf-pro-display-12-medium;
+    padding: 0px;
+    // flex-grow: 2;
+}
+.strongText {
+    @include sf-pro-display-12-bold;
+    padding: 0px;
+    // flex-grow: 1;
+}
+.header2 {
+    @include sf-pro-display-16-bold;
+    padding: 12px 0 4px 0;
+    margin: 0;
+}
+
+.grow1 {
+    flex-grow: 1;
+}
+.grow2 {
+    flex-grow: 2;
+}
+.grow7 {
+    flex-grow: 7;
+}
+
+
+
+/* ------------------------------------- */
+/* .greenColorText {
+    @include text_gradient($green_gradient);
+} */
+
+

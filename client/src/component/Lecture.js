@@ -14,10 +14,10 @@ export default function Lecture() {
     let userID = useSelector( (state) => state.userID ); // userID 불러오기
     const dispatch = useDispatch();
 
-    let [lecInfo, setLecInfo] = useState(info);
-    useEffect(async() => {
+    let [lecinfo, setLecInfo] = useState(info);
+    useEffect(() => {
         let getLecInfo = async() => {
-            axios.get('/api/lecpage/lecture', {
+            await axios.get('/api/lecpage/lecture', {
                 params: {
                     lecture: lecture_name,
                     userID : userID
@@ -39,14 +39,15 @@ export default function Lecture() {
                 }
             })
         };
-        await getLecInfo();
+        getLecInfo();
     }, []);
     const navigate = useNavigate();
 
     const handleIndex = (index) => {
         dispatch(setIndex(index));
         //console.log(index);
-        navigate('/LecPage_lec_detail');
+        navigate('/LecPage_lec_detail')
+        
     }
     
     return (
@@ -54,11 +55,11 @@ export default function Lecture() {
 
         <div className={styles.class_name}>
         온라인 강의 리스트</div>
-            {lecInfo.map(function(a,i){
+            {lecinfo.map(function(a,i){
                 //console.log(lec_notice[0]);
                 return(
                    
-                    <div key={i} i={i} lecInfo={a}>
+                    <div key={i} i={i} lecinfo={a}>
                         <Row style={{
                         // width: "100%",
                         // textAlign: "center",

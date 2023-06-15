@@ -26,6 +26,50 @@ const lec_check = [
         first: "지각",
         third:"공결",
         fourth:"출석"
+    },
+    {
+        lecPage_check_id : 6,     //5주차
+        first: "지각",
+        third:"공결",
+        fourth:"출석"
+    },
+    {
+        lecPage_check_id : 7,  
+        
+    }
+    ,
+    {
+        lecPage_check_id : 8,
+        
+        
+    },
+    {
+        lecPage_check_id : 9,
+        
+    },
+    {
+        lecPage_check_id : 10,
+        
+    },
+    {
+        lecPage_check_id : 11,
+       
+    },
+    {
+        lecPage_check_id :12,
+       
+    },
+    {
+        lecPage_check_id : 13,  
+        
+    },
+    {
+        lecPage_check_id : 14,
+        
+    },
+    {
+        lecPage_check_id :15,
+       
     }
 ]
  

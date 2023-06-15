@@ -1,0 +1,161 @@
+
+  
+  .class_name{
+    //color: black;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 120, 78, 1) 0%,
+      rgba(251, 52, 124, 1) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+   
+    text-overflow: ellipsis;
+    font-size: 32px;
+    
+    font-family: "SF Pro", sans-serif;
+    font-weight: initial;
+    line-height: 117%;
+    text-align: left;
+    width: 100%;
+    padding: 5%
+  }
+  
+  .center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // width: 100vmin;
+    width: 300px;
+    height: 150px;
+    object-fit:scale-down;
+  }
+  
+  
+  
+
+  .Lec {
+    width: 100%;
+    height: auto;
+    // background-color: #EEEEEE;
+    border-radius: 16px;
+    padding: 0.8vw;
+    // margin: 4px;
+    // margin-bottom: 0.2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .lec_name {
+  //  height: 24px;
+    width: 100%;
+    font-family: "SF Pro Display";
+    font-size: 1.6vw;
+    font-weight: 800;
+    line-height: 2.4rem;
+    color: rgba(25, 20, 20, 1);
+   // display: flex;
+    align-items: center;
+    //margin-left: 3%;
+    //margin-bottom: 0.2vw;
+    letter-spacing: -0.018rem;
+    text-align: center;
+  }
+  .lec_detail {
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    width: 100%;
+  }
+  .classroom {
+    // height: 12px;
+    width: 40%;
+    height: auto;
+    font-family: "SF Pro Display";
+    font-size: 0.5vmax;
+    font-weight: 500;
+    line-height: 12px;
+    color: #333333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    margin-right: 0.4vmax;
+    opacity: 0.5;
+  }
+  
+  .Wrapper {
+    width: 100%;
+    padding: 0rem 10vw;
+    height: 600px;
+    min-height: 300%;
+    padding-bottom: 12vh;
+    position: relative;
+  }
+  .whiteCard {
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    //align-items: center;
+   // text-align: center;
+    // width: 100%;
+    // height: auto;
+    width: 130%;
+	  height: 600%;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 12px;
+    box-shadow: 0.4vw 1.0vw 1vw 0.2vw rgba(0, 0, 0, 0.09);
+    z-index: -1;
+    padding:3%;
+    margin:10px;
+  }
+
+  /* .footer {
+    width: 1920px;
+    height: 128px;
+  } */
+  a {
+    text-decoration-line: none;
+  }
+
+.flex {
+  display: flex;
+  /* flex-direction: column; */
+  /* align-items: center; */
+  justify-content: center;
+  /* padding: 12px; */
+}
+.img_display{
+
+  top: 50%;
+  left: 30px;
+  position: relative;
+}
+
+.grid-container {
+  display: grid;
+  margin: 0px 24px 0px 24px;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-area: "a b c"; */
+  align-items: center;
+  justify-content: center;
+  /* grid-auto-flow: row; */
+  place-items: center;
+}
+.bold_font {
+  font-family: SF-Pro-Display-Bold;
+  font-size: larger;
+  color: #333333;
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

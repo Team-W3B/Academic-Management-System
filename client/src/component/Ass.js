@@ -15,8 +15,8 @@ export default function Ass() {
     const dispatch = useDispatch();
 
     let [lecinfo, setLecInfo] = useState(info);
-    useEffect(async() => {
-        let getLecInfo = async() => {
+    useEffect(() => {
+        let getLecInfo = () => {
             axios.get('/api/lecpage/ass', {
                 params: {
                     lecture: lecture_name,
@@ -39,7 +39,7 @@ export default function Ass() {
                     }
                 })
         };
-        await getLecInfo();
+         getLecInfo();
     }, []);
     const navigate = useNavigate();
 

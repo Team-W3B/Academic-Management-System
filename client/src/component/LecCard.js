@@ -13,19 +13,7 @@ function LecCard() {
     let [lecInfo, setLecInfo] = useState(info);
     let userID = useSelector( (state) => {return state.userID} );
     // console.log(lecInfo);
-    
-    /* let getLecInfo = async() => {
-        axios.get('/api/home', {params : {userID : userID} }, {withCredentials : true})
-            .then((res)=> {
-              console.log('성공~!')
-              let copy = {...res.data}
-              setLecInfo(copy)
-            })
-            .catch((error)=>{
-              console.log('실패!')
-              console.log(error.data)
-            })
-    }; */
+
     useEffect( async() => {
       let getLecInfo = async() => {
         axios.get('/api/home', {params : {userID : userID} }, {withCredentials : true})

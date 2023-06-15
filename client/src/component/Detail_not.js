@@ -17,9 +17,9 @@ export default function Detail_not() {
     //console.log(index);
     const navigate = useNavigate();
     let [lecinfo, setLecInfo] = useState(info);
-    useEffect(async() => {
+    useEffect(() => {
         let getLecInfo = async() => {
-            axios.get('/api/lecpage/notice/detail_not', {
+            await axios.get('/api/lecpage/notice/detail_not', {
                 params: {
                     lecture: lecture_name,
                     index : index,
@@ -42,9 +42,43 @@ export default function Detail_not() {
                     }
                 })
         };
-        await getLecInfo();
+         getLecInfo();
     }, []);
 
+    const handleFile = () =>{ // blob file 받기
+        //console.log('handleFile');
+        axios.get('/api/lecpage/file/detail_blobNot', {
+            params: {
+                lecture: lecture_name,
+                index: index,
+                userID: userID
+            },
+            responseType: 'blob', 
+        }, { withCredentials: true })
+            .then((res) => {
+                if (res.data === 200) {
+                    // let copy = { ...res.data };
+                    // setLecFileInfo(copy);
+                    const url = window.URL.createObjectURL(new Blob([res.data]));
+                    const link = document.createElement('a'); // blob 객체 url설정 링크
+                    link.href = url;                 
+                    link.setAttribute('download', 'file');
+                    document.body.appendChild(link); // link body에 추가
+                    link.click();                    // 파일 다운로드 시작
+                }
+            })
+            .catch((error) => {
+
+                console.log(error.data)
+                if (error.response.data === 401) {
+                    alert("권한없음(강의페이지");
+                }
+                if (error.response.data === 500) {
+                    alert("서버 오류 발생!(강의페이지)");
+                }
+            });
+        
+    };
     return (
         <div className={styles.whiteCard}>
             <Row style={{height:"60px"}}>
@@ -78,7 +112,7 @@ export default function Detail_not() {
                     borderBottom: "1px solid #D6D6D6",
                     margin: "3px",
 
-                }}>
+                }} onClick={handleFile}>
                     <img style={{ margin: "3px" }} src={file_image} />파일 : {lecinfo.lecDetail_fileName} [{lecinfo.lecDetail_fileSize}KB]</div>}
             <div style={{
                 borderBottom: "1px solid #D6D6D6",
