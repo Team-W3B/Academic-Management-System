@@ -15,8 +15,8 @@ export default function Lec_ass() {
 
     let [lecinfo, setLecInfo] = useState(info);
     useEffect(() => {
-        let getLecInfo = async() => {
-            await axios.get('/api/lecpage/lec_ass', {
+        let getLecInfo = () => {
+             axios.get('/api/lecpage/lec_ass', {
                 params: {
                     lecture: lecture_name,
                     userID : userID

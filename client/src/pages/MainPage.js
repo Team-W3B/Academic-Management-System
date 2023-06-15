@@ -31,8 +31,8 @@ function MainPage() {
         })
   }; */
 
-  useEffect( async() => {
-    let getMPLD = async() => {
+  useEffect( () => {
+    let getMPLD = () => {
       axios.get('/api/home/detail', {params : {userID : userID} }, {withCredentials : true})
           .then((res)=> {
               let copy = [...res.data];
@@ -45,7 +45,7 @@ function MainPage() {
           })
     };
     console.log('MPLD 실행')
-    await getMPLD();
+     getMPLD();
   }, []);
 
   return (

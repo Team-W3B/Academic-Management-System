@@ -221,6 +221,28 @@ export let responsetimeSlice = createSlice({
 });
 export const {setRes_timecheck} = responsetimeSlice.actions
 
+export let responseclassSlice = createSlice({
+    name:"res_class",
+    initialState:{res_class:""},
+    reducers:{
+        setRes_classcheck:(state, action)=>{
+            state.res_class = action.payload
+        }
+    }
+});
+export const {setRes_classcheck} = responseclassSlice.actions
+
+export let responsevalueSlice = createSlice({
+    name:"res_value",
+    initialState:{res_value:""},
+    reducers:{
+        setRes_valuecheck:(state, action)=>{
+            state.res_value = action.payload
+        }
+    }
+});
+export const {setRes_valuecheck} = responsevalueSlice.actions
+
 const store = configureStore({
     reducer: {
         user : user.reducer,
@@ -241,8 +263,9 @@ const store = configureStore({
         res_lec : responselecSlice.reducer,
         res_prof : responseprofSlice.reducer,
         res_time : responsetimeSlice.reducer,
-        Score_data : Score_data.reducer
-
+        Score_data : Score_data.reducer,
+        res_class : responseclassSlice.reducer,
+        res_value : responsevalueSlice.reducer
     }
 });
 export default store;
