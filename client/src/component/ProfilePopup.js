@@ -20,8 +20,8 @@ function ProfilePopup() {
                 </div>
                 <div className={styles.detail}>
                     <p className={styles.test2} onClick={() => navigate('/Register_lec')}>수강신청</p>
-                    <p className={styles.test2}>개인정보수정</p>
-                    <p className={styles.test2}>로그아웃</p>
+                    {/* <p className={styles.test2}  >개인정보수정</p> */}
+                    <p className={styles.test2} onClick={() => navigate('/Login')} >로그아웃</p>
                 </div>
             </div>
         </div>

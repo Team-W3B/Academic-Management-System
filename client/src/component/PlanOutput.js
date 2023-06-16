@@ -55,7 +55,7 @@ let InfoRow = (props) => {
     }
 
     let clickLec = () => {
-        // navigate("/Plan/Detail/" + `${info.planOut_reg_num}`);
+        navigate("/Plan/Detail/" + `${info.planOut_reg_num}`);
         axios.get('/api/plan/detail', {
             params : {
                 planDetail_regNum : info.planOut_reg_num,

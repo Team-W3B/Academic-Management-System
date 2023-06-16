@@ -7,19 +7,7 @@
     // width: 100vw;
     height: 10vh;
   }
-  // .ab{
-  //   display: flex;
-	// justify-content: center;
-	// flex-direction: column;
-	// align-items: flex-start;
-	// gap: 16px;
-	// box-sizing: border-box;
-	// position: absolute;
-	// left: 186px;
-	// top: 0px;
-	// width: 639px;
-	// height: 157px;
-  // }
+
   .whiteCard_big{
     display: flex;
     flex-direction: column;
@@ -287,18 +275,14 @@
   .whiteCard {
     display: flex;
     flex-direction: column;
-    //align-items: center;
-   // text-align: center;
-    // width: 100%;
-    // height: auto;
     width: 400px;
-	height: 200px;
+	  height: 200px;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 12px;
     box-shadow: 0.4vw 1.0vw 1vw 0.2vw rgba(0, 0, 0, 0.09);
     z-index: -1;
     padding:3%;
-    margin:10px;
+    // margin:10px;
   }
 
   /* .footer {

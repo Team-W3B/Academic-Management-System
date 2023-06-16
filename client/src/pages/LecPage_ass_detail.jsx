@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./../scss/Lec.module.scss";
+import styles from "./../scss/Lec.module.scss";
 
 import HeaderNav from "./../component/HeaderNav";
 import Lec from "./../component/Lec";
@@ -8,6 +8,7 @@ import Detail_ass from "../component/Detail_ass";
 import Detail_assPost from "../component/Detail_assPost";
 import Detail_assPost_after from "../component/Detail_assPost_after";
 import { useSelector } from "react-redux";
+import { Stack } from "react-bootstrap";
 
 export default function LecPage_ass_detail() {
     let lecDetail_fileName = useSelector( (state) => state.lecDetail_fileName.lecDetail_fileName);
@@ -22,19 +23,18 @@ export default function LecPage_ass_detail() {
     return (
         <>
             <HeaderNav />
-            <div>
-                <Lec />
-                <div className={style.detail_wrapp}>
+            <Lec />
+            <Stack gap={5}>
+                <div className={styles.hbox_lec}>
                     <Detail_ass/>
                 </div>
-                <div style={{marginTop:"50px"}} className={style.detail_wrapp}>
-                    {asscheck1!==2?
-                    <Detail_assPost/>:
-                    <Detail_assPost_after/>}
-
-                    
+                <div className={styles.hbox_lec}>
+                    {
+                        asscheck1!==2 ?
+                            <Detail_assPost/> : <Detail_assPost_after/>
+                    }
                 </div>
-            </div>
+            </Stack>
             <Footer />
         </>
     );

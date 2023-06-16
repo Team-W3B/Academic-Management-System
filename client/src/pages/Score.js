@@ -23,8 +23,8 @@ function Score() {
         return qs.stringify(params);
     } */
 
-    useEffect( async() => {
-        let getScore = async() => {
+    useEffect( () => {
+        let getScore = () => {
         axios.get('/api/score', {params : {userID : userID} }, {withCredentials : true})
             .then((res)=> {
                 console.log('성공~!')
@@ -38,7 +38,7 @@ function Score() {
         };
 
         console.log('getScore 실행');
-        await getScore();
+        getScore();
     }, []);
 
 
