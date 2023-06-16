@@ -32,7 +32,7 @@ function MainPage() {
           })
     };
     console.log('MPLD 실행')
-    getMPLD();
+    // getMPLD();
   }, []);
 
   return (

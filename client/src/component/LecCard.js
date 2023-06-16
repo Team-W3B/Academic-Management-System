@@ -16,7 +16,7 @@ function LecCard() {
 
     useEffect( () => {
       let getLecInfo = () => {
-        axios.get('/api/home', {params : {userID : userID} }, {withCredentials : true})
+         axios.get('/api/home', {params : {userID : userID} }, {withCredentials : true})
             .then((res)=> {
               console.log('성공~!')
               let copy = {...res.data}

@@ -111,11 +111,10 @@
 .row_lec:active {
   background-color: gray;
 }
-.row_lec:link {
-  border: 3px solid brown;
-    border-radius: 3px;
-    padding: 3px;
-    background-color: gray;
+
+.clickedRow {
+  border: 3px solid #FB347C;
+  border-radius: 8px;
 }
 .searchButton {
   background: $mainColor;

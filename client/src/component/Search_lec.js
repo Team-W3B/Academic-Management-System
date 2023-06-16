@@ -17,24 +17,6 @@ export default function Search_lec() {
     let [btnActive, setBtnActive] = useState("");
     let [value, setValue] = useState('');
     const dispatch = useDispatch();
-    //dispatch(setMajorcheck(major));
-    //dispatch(setLeccheck(lec));
-    // console.log(major);
-     //console.log(lec);
-    // console.log(value);
-    // const [isChecked, setIsChecked] = useState(false);
-
-    // const handleCheckboxChange = (event) => {
-    //     //console.log(isChecked)
-    //     setIsChecked(event.target.checked);
-    //     if (isChecked === true) {
-    //         setValue("여석")
-    //         //console.log(value)
-    //     } else {
-    //         setValue("")
-    //         //console.log(value)
-    //     }
-    // };
     const [selectedButton, setSelectedButton] = useState(null);
 
   const handleButtonClick = (buttonId, value) => {
@@ -77,13 +59,6 @@ export default function Search_lec() {
                     >
                         교양
                     </button></Col>
-                    {/* <Col classname={styles.searchButton}>
-                        전공
-                    </Col>
-
-                    <Col>
-                        교양
-                    </Col> */}
                 </Row>
                 <Row>
                     <Col sm={3}>
@@ -108,23 +83,7 @@ export default function Search_lec() {
                             placeholder="" />
                     </Col>
                 </Row>
-                {/* <Row>
-                    <Col sm={4}>
-                        여석
-                    </Col>
-                    <Col sm={6} >
-                        <label>
-                            <input
-                                type="checkbox"
-                                // checked={isChecked}
-                                onChange={handleCheckboxChange}
-                            />
-                        </label>
-
-                        // {/* <input type="checkbox" value={value} onChange={() => handleSingleCheck("여석",)}/> }
-                        // {/* <Form.Check aria-label="option 1" onClick={handleA} /> }
-                    </Col>
-                </Row> */}
+              
             </div>
                 <button type="button" onClick={requestCheck} className={styles.searchButton}> 검색 </button>
         </div>
