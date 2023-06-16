@@ -31,33 +31,47 @@ function App() {
     // <BrowserRouter>
     <div className="App" >
       <Routes>
-        <Route exact path="/" element={<Login />} />
-        <Route exact path="/Signup" element={<Signup/>}/>
-        <Route exact path="/Login" element={<Login/>}/>
-        <Route path="/SignUpComplete" element={ <SignUpComplete /> } />
-        <Route path="/MainPage" element={ <MainPage /> } />
+        <Route exact path="/" element={<Login />} /> {/* 첫 화면 - 로그인 */}
+        <Route exact path="/Login" element={<Login/>}/> {/* 로그인 */}
+        <Route exact path="/Signup" element={<Signup/>}/> {/* 회원가입 */}
+        <Route path="/SignUpComplete" element={ <SignUpComplete /> } /> {/* 회원가입 완료 */}
+        <Route path="/MainPage" element={ <MainPage /> } /> {/* 홈페이지 */}
+
+        {/* LecPage - sub */}
         <Route path="/LecPage" element={ <LecPage /> } />
-        <Route path="/LecPage_prof" element={ <LecPage_prof /> } />
         <Route path="/LecPage_notice" element={ <LecPage_notice /> } />
         <Route path="/LecPage_ass" element={ <LecPage_ass /> } />
         <Route path="/LecPage_file" element={ <LecPage_file /> } />
         <Route path="/LecPage_lecture" element={ <LecPage_lecture /> } />
 
+        
+        <Route path="/LecPage_prof" element={ <LecPage_prof /> } />
+
+        {/* ------------------------------------------------------------------ */}
         <Route path="/LecPage_file_prof" element={ <LecPage_file_prof /> } />
         <Route path="/LecPage_file_detail_prof" element={ <LecPage_file_detail_prof /> } />
+        {/* ------------------------------------------------------------------ */}
 
+        {/* 강의페이지 세부들 */}
         <Route path="/LecPage_not_detail" element={ <LecPage_not_detail /> } />
         <Route path="/LecPage_file_detail" element={ <LecPage_file_detail /> } />
         <Route path="/LecPage_ass_detail" element={ <LecPage_ass_detail /> } />
         <Route path="/LecPage_lec_detail" element={ <LecPage_lec_detail /> } />
+
+        {/* 강의계획서 */}
         <Route path="/Plan" element={ <Plan /> } >
           <Route path="Search" element={ <PlanSearch /> } />
           <Route path="Output" element={ <PlanOutput /> } />
           <Route path="Detail/:id" element={ <PlanDetail /> } />
         </Route>
 
+        {/* 성적|석차 */}
         <Route path="/Score" element={ <Score /> } />
-        <Route path="/Prof" element={ <Prof /> } />     
+
+        {/* 교수 출석부 */}
+        <Route path="/Prof" element={ <Prof /> } />
+
+        {/* 수강신청 */}
         <Route path="/Register_lec" element={ <Register_lec /> } />
 
       </Routes>

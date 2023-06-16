@@ -31,6 +31,8 @@ function PlanSearch() {
 
     let clickSearch = () => {
         console.log(plan_search);
+        alert("검색 성공!");
+        navigate("/Plan/Output");
         axios.get('/api/plan/search', {
             params : {
                 plan_search,

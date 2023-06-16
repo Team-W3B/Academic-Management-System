@@ -18,21 +18,8 @@ function MainPage() {
   let userID = useSelector( (state) => {return state.userID} )
   console.log(userID);
 
-  /* let getMPLD = async() => {
-    axios.get('/api/home/detail', {params : {userID : userID} }, {withCredentials : true})
-        .then((res)=> {
-            let copy = [...res.data];
-            console.log(copy);
-            dispatch(setMPLD(copy));
-        })
-        .catch((error)=>{
-            console.log(error.data)
-            // setMpld(MPLD_data);
-        })
-  }; */
-
-  useEffect( async() => {
-    let getMPLD = async() => {
+  useEffect( () => {
+    let getMPLD = () => {
       axios.get('/api/home/detail', {params : {userID : userID} }, {withCredentials : true})
           .then((res)=> {
               let copy = [...res.data];
@@ -45,7 +32,7 @@ function MainPage() {
           })
     };
     console.log('MPLD 실행')
-    await getMPLD();
+    getMPLD();
   }, []);
 
   return (

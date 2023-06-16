@@ -14,8 +14,8 @@ function LecCard() {
     let userID = useSelector( (state) => {return state.userID} );
     // console.log(lecInfo);
 
-    useEffect( async() => {
-      let getLecInfo = async() => {
+    useEffect( () => {
+      let getLecInfo = () => {
         axios.get('/api/home', {params : {userID : userID} }, {withCredentials : true})
             .then((res)=> {
               console.log('성공~!')
@@ -28,7 +28,7 @@ function LecCard() {
             })
       };
       console.log('getLecInfo 실행');
-      await getLecInfo();
+      // getLecInfo();
     }, []);
     
     return (

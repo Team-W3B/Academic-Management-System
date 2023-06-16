@@ -27,7 +27,18 @@ let planDetail =
         planDetail_15weeks : [
             {week : 1, content : "Intronduction", operation : ""},
             {week : 2, content : "Software processes", operation : ""},
-            {week : 3, content : "Software processes", operation : "과제"},
+            {week : 3, content : "Software processes", operation : ""},
+            {week : 4, content : "Agile software development", operation : "과제"},
+            {week : 5, content : "Requirements engineering", operation : "프로젝트1"},
+            {week : 6, content : "Requirements engineering", operation : ""},
+            {week : 7, content : "System modeling", operation : "프로젝트2"},
+            {week : 8, content : "Mid-term Exam	", operation : ""},
+            {week : 9, content : "Architectural Design", operation : ""},
+            {week : 10, content : "Design and Implementation", operation : ""},
+            {week : 11, content : "Software Testing", operation : ""},
+            {week : 12, content : "Software Evolution", operation : ""},
+            {week : 13, content : "Dependable Systems", operation : ""},
+            {week : 14, content : "Reliability Engineering", operation : "프로젝트3"},
             {week : 15, content : "Final Exam", operation : "보강/기말고사"}, // 15개 주에 대한 데이터가 모두 들어와야 함.
         ]
     }

@@ -40,7 +40,10 @@ const TextBox = () => {
 
       </p>
       <p className={styles.subText}>
-        이제 KLAS를 이용하실 수 있습니다. 광운의 자랑이 되어주세요!
+        이제 KLAS를 이용하실 수 있습니다.
+      </p>
+      <p className={styles.subText}>
+        광운의 자랑이 되어주세요!
       </p>
     </div>
   );

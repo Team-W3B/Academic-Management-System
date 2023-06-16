@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
-import styles from "./../scss/Lec_detailpage.module.scss";
-import { Col, Row } from "react-bootstrap";
+import styles from "./../scss/Lec.module.scss";
+import { Col, Container, Row, Stack } from "react-bootstrap";
 import axios from 'axios';
 import info from "./../data/detail_file";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -41,73 +41,65 @@ export default function Detail_file_prof() {
         setContentInfo(e.target.value);
     }
     return (
-        <div className={styles.whiteCard} style={{ height: "500px" }}>
-            <Row style={{ height: "60px" }}>
-                <Col>
-                    <img style={{ height: "37px", marginBottom: "10px" }} src={goback} onClick={handleClick } />
-                </Col>
-                <Col>
-                    <div className={styles.class_name} style={{ textAlign: "right" }} >제출하기</div>
-                </Col>
-            </Row>
-            <div className={styles.lec_name}>
-                자료 작성
-            </div>
-            <div style={{
-                //width: "100%",
-                // textAlign: "center",
-                borderBottom: "1px solid #D6D6D6",
-                margin: "3px"
-            }} className={styles.contain}>
-            </div>
-            <div style={{
-                //width: "100%",
-                // textAlign: "center",
-                borderBottom: "1px solid #D6D6D6",
-                margin: "3px",
-            }}>
-                <Row>
-                    <Col sm={3} style={{ textAlign: "center" }} >
-                        제목
-                    </Col>
-                    <Col sm={9} style={{ height: "20px" }}>
-                        <input style={{ height: "100%", width: "100%" }} type="text" onChange={handletitle}/>
-                    </Col>
-                </Row>
-            </div>
-            <div style={{
-                //width: "100%",
-                // textAlign: "center",
-                borderBottom: "1px solid #D6D6D6",
-                margin: "3px",
-            }}>
-                <Row>
-                    <Col sm={3} style={{ textAlign: "center" }}>
-                        <img style={{ margin: "3px" }} src={file_image} />
-                        파일
-                    </Col>
-                    <Col sm={3}>
-                        <input type="file" name="file" onChange={handlefile} />
-                    </Col>
-                    <Col sm={4}>{lecDetail_fileSize}[KB]</Col>
-                </Row>
-            </div>
+        <div className={styles.v_card_notice}>
+            {/* <Stack direction="horizontal" className={styles.row_space_between}>
+                <div>
+                    <h1 className={`${styles.mediumText} ${styles.blueColorText}`} onClick={handleClick } > 작성 완료 </h1>
+                </div>
+            </Stack> */}
+            <Stack direction="horizontal" className={`${styles.align_bottom} ${styles.border_bottom}`} gap={4} >
+                <div>
+                    <h1 className={`${styles.titleText} `} > 자료 작성 </h1>
+                </div>
+            </Stack>
 
-            <div style={{
-                //width: "100%",
-                // textAlign: "center",
-                borderBottom: "1px solid #D6D6D6",
-                margin: "3px",
-            }}>
-                <Row>
-                    <Col sm={3} style={{ textAlign: "center" }}>
-                        내용
-                    </Col>
-                    <Col sm={9} style={{ height: "150px" }}>
-                        <input style={{ height: "100%", width: "100%" }} type="text" onChange={handlecontent}/>
+            <Stack direction="horizontal" className={`${styles.border_bottom} ${styles.align_center}`}>
+                <div className={styles.hbox_lec_ass_due}>
+                    <h1 className={`${styles.contentBoldText} `} > 제목 </h1>
+                </div>
+                <input
+                    className={ `${styles.indexMediumText} ${styles.inputTitle} `}
+                    type="text"
+                    placeholder="제목을 입력해주세요"
+                    onChange={handletitle}
+                    // value={logIn_id}
+                />
+            </Stack>
+
+            <Stack direction="horizontal" className={styles.border_bottom}>
+                <div className={styles.hbox_lec_ass_due}>
+                    <Stack direction="horizontal">
+                        <img src={file_image} />
+                        <h1 className={`${styles.contentBoldText} `} > 파일 </h1>
+                    </Stack>
+                </div>
+                <div /* onClick={handleFile} */>
+                    <h1 className={`${styles.indexMediumText} `} >
+                        <input type="file" name="file"  onChange={handlefile}/>
+                        [{lecDetail_fileSize}KB]
+                    </h1>
+                </div>
+            </Stack>
+            <Stack direction="horizontal" className={styles.border_bottom}>
+                <div className={styles.hbox_lec_ass_content2}>
+                    <h1 className={`${styles.contentBoldText} `} > 내용 / 주의사항 </h1>
+                </div>
+                <input
+                    className={ `${styles.indexMediumText} ${styles.inputWrap} `}
+                    type="text"
+                    placeholder="내용을 입력해주세요"
+                    onChange={handlecontent}
+                    // value={logIn_id}
+                />
+            </Stack>
+
+            <Container direction="horizontal" className={styles.hbox_lec_ass_due}>
+                <Row className={styles.hbox_lec_ass_due}>
+                    <Col>
+                        <button type="button" onClick={handleClick } className={styles.searchButton} > 작성완료 </button>
                     </Col>
                 </Row>
-            </div>
+            </Container>
         </div>
     );
 }

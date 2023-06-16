@@ -1,13 +1,12 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
-import styles from "./../scss/Lec_detailpage.module.scss";
-import { Col, Row } from "react-bootstrap";
+import styles from "./../scss/Lec.module.scss";
+import { Col, Row, Stack } from "react-bootstrap";
 import axios from 'axios';
 import info from "./../data/detail_ass";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from "react-redux";
 import file_image from './../imgs/file_image.svg'
-import goback from './../imgs/goback.svg'
 import { useNavigate } from "react-router-dom";
 
 export default function Detail_ass() {
@@ -78,75 +77,54 @@ export default function Detail_ass() {
     };
 
     return (
-        <div className={styles.whiteCard}>
-            <Row style={{ height: "60px" }}>
-                <Col>
-                    <img style={{ height: "37px", marginBottom: "10px" }} src={goback} onClick={() => navigate('/LecPage_ass')} />
-                </Col>
-                <Col>
-                    <div className={styles.class_name} style={{ textAlign: "right" }} >과제</div>
-                </Col>
-            </Row>
-            <Row>
-                <Col className={styles.lec_name}>
-                    {lecinfo.lecDetail_title}
-                </Col>
-                <Col className={styles.child} style={{ textAlign: "right" }}>
-                    {lecinfo.lecDetail_date}
-                </Col>
-            </Row>
-            <div style={{
-                //width: "100%",
-                // textAlign: "center",
-                borderBottom: "1px solid #D6D6D6",
-                margin: "3px"
-            }} className={styles.contain} />
+        <div className={styles.v_card_notice}>
+            <Stack direction="horizontal" className={styles.row_space_between}>
+                <div>
+                    <h1 className={`${styles.mediumText} ${styles.blueColorText}`} onClick={() => navigate('/LecPage_ass')} > 돌아가기 </h1>
+                </div>
+                <div>
+                    <h1 className={`${styles.mediumText} ${styles.mainColorText}`} onClick={() => navigate('/LecPage_ass')} > 과제 </h1>
+                </div>
+            </Stack>
+            <Stack direction="horizontal" className={`${styles.align_bottom} ${styles.border_bottom}`} gap={4} >
+                <div>
+                    <h1 className={`${styles.titleText} `} > {lecinfo.lecDetail_title} </h1>
+                </div>
+                <div>
+                    <h1 className={`${styles.contentText} ${styles.greyText} `} > {lecinfo.lecDetail_date} </h1>
+                </div>
+            </Stack>
 
-            <div style={{
-                //width: "100%",
-                // textAlign: "center",
-                borderBottom: "1px solid #D6D6D6",
-                margin: "3px",
-            }}>
-                <Row>
-                    <Col sm={3} style={{ textAlign: "center" }}>
-                        제출기한
-                    </Col>
-                    <Col sm={9}>
-                        {lecinfo.lecDetail_duration}
-                    </Col>
-                </Row></div>
-            <div style={{
-                //width: "100%",
-                // textAlign: "center",
-                borderBottom: "1px solid #D6D6D6",
-                margin: "3px",
-            }}>
-                <Row>
-                    <Col sm={3} >
-                        <div style={{ textAlign: "center", height: "150px" }} >
-                            내용 / 주의사항</div>
-                    </Col>
-                    <Col sm={9}>
-                        {lecinfo.lecDetail_content}
-                    </Col>
-                </Row></div>
-            <div style={{
-                //width: "100%",
-                // textAlign: "center",
-                borderBottom: "1px solid #D6D6D6",
-                margin: "3px",
-            }}>
-                <Row>
-                    <Col sm={3} style={{ textAlign: "center" }}>
-                        <img style={{ margin: "3px" }} src={file_image} />
-                        파일
-                    </Col>
-                    <Col sm={9} onClick={handleFile}>
-                        {lecinfo.lecDetail_fileName} [{lecinfo.lecDetail_fileSize}KB]
-                    </Col>
-                </Row>
-            </div>
+            {/* <Stack> */}
+                <Stack direction="horizontal" className={styles.border_bottom}>
+                        <div className={styles.hbox_lec_ass_due}>
+                            <h1 className={`${styles.contentBoldText} `} > 제출기한 </h1>
+                        </div>
+                        <div>
+                            <h1 className={`${styles.indexMediumText} `} > {lecinfo.lecDetail_duration} </h1>
+                        </div>
+                </Stack>
+                <Stack direction="horizontal" className={styles.border_bottom}>
+                        <div className={styles.hbox_lec_ass_content}>
+                            <h1 className={`${styles.contentBoldText} `} > 내용 / 주의사항 </h1>
+                        </div>
+                        <div>
+                            <h1 className={`${styles.indexMediumText} `} > {lecinfo.lecDetail_content} </h1>
+                        </div>
+                </Stack>
+
+                <Stack direction="horizontal" className={styles.border_bottom}>
+                        <div className={styles.hbox_lec_ass_due}>
+                            <Stack direction="horizontal">
+                                <img src={file_image} />
+                                <h1 className={`${styles.contentBoldText} `} > 파일 </h1>
+                            </Stack>
+                        </div>
+                        <div onClick={handleFile}>
+                            <h1 className={`${styles.indexMediumText} `} > {lecinfo.lecDetail_fileName} [{lecinfo.lecDetail_fileSize}KB] </h1>
+                        </div>
+                </Stack>
+            {/* </Stack> */}
         </div>
     );
 }

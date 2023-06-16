@@ -4,6 +4,11 @@
     @extend .hbox;
     gap : 16px;
 }
+.hbox_content {
+    @extend .hbox_plan;
+    gap: 0px;
+    width: 64px;
+}
 
 .h_card {
     @include flex_container(column, flex-start, center);

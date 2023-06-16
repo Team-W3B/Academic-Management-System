@@ -71,23 +71,23 @@ function PlanDetail() {
                     <Row>
                         <Col className={`${styles.strongText} ${styles.grow1} `} > 평가비율 </Col>
                         <Col className={`${styles.Container} ${styles.contentText} ${styles.grow7} ${styles.border} `}>
-                            <Row>
-                                <Col className={`${styles.mainColorText} ${styles.strongText} `}> 출석 </Col>
-                                <Col className={`${styles.mainColorText} ${styles.strongText} `}> 중간고사 </Col>
-                                <Col className={`${styles.mainColorText} ${styles.strongText} `}> 기말고사 </Col>
-                                <Col className={`${styles.mainColorText} ${styles.strongText} `}> 과제보고서 </Col>
-                                <Col className={`${styles.mainColorText} ${styles.strongText} `}> 수업태도 </Col>
-                                <Col className={`${styles.mainColorText} ${styles.strongText} `}> Quiz </Col>
-                                <Col className={`${styles.mainColorText} ${styles.strongText} `}> 기타 </Col>
+                            <Row style={{ justifyContent : "space-between", padding : "0 24px" }}>
+                                <div className={styles.hbox_content}> <Col className={`${styles.mainColorText} ${styles.strongText} `}> 출석 </Col> </div>
+                                <div className={styles.hbox_content}> <Col className={`${styles.mainColorText} ${styles.strongText} `}> 중간고사 </Col> </div>
+                                <div className={styles.hbox_content}> <Col className={`${styles.mainColorText} ${styles.strongText} `}> 기말고사 </Col> </div>
+                                <div className={styles.hbox_content}> <Col className={`${styles.mainColorText} ${styles.strongText} `}> 과제보고서 </Col> </div>
+                                <div className={styles.hbox_content}> <Col className={`${styles.mainColorText} ${styles.strongText} `}> 수업태도 </Col> </div>
+                                <div className={styles.hbox_content}> <Col className={`${styles.mainColorText} ${styles.strongText} `}> Quiz </Col> </div>
+                                <div className={styles.hbox_content}> <Col className={`${styles.mainColorText} ${styles.strongText} `}> 기타 </Col> </div>
                             </Row>
-                            <Row>
-                                <Col className={`${styles.contentText} `}> {detail_info.planDetail_eval_rate.attendance} </Col>
-                                <Col className={`${styles.contentText} `}> {detail_info.planDetail_eval_rate.midterm} </Col>
-                                <Col className={`${styles.contentText} `}> {detail_info.planDetail_eval_rate.finterm} </Col>
-                                <Col className={`${styles.contentText} `}> {detail_info.planDetail_eval_rate.ass} </Col>
-                                <Col className={`${styles.contentText} `}> {detail_info.planDetail_eval_rate.attitude} </Col>
-                                <Col className={`${styles.contentText} `}> {detail_info.planDetail_eval_rate.quiz} </Col>
-                                <Col className={`${styles.contentText} `}> {detail_info.planDetail_eval_rate.etc} </Col>
+                            <Row style={{ justifyContent : "space-between", padding : "0 24px" }}>
+                                <div className={styles.hbox_content}> <Col className={` ${styles.contentText} `}> {detail_info.planDetail_eval_rate.attendance} </Col> </div>
+                                <div className={styles.hbox_content}> <Col className={` ${styles.contentText} `}> {detail_info.planDetail_eval_rate.midterm} </Col> </div>
+                                <div className={styles.hbox_content}> <Col className={` ${styles.contentText} `}> {detail_info.planDetail_eval_rate.finterm} </Col> </div>
+                                <div className={styles.hbox_content}> <Col className={` ${styles.contentText} `}> {detail_info.planDetail_eval_rate.ass} </Col> </div>
+                                <div className={styles.hbox_content}> <Col className={` ${styles.contentText} `}> {detail_info.planDetail_eval_rate.attitude} </Col> </div>
+                                <div className={styles.hbox_content}> <Col className={` ${styles.contentText} `}> {detail_info.planDetail_eval_rate.quiz} </Col> </div>
+                                <div className={styles.hbox_content}> <Col className={` ${styles.contentText} `}> {detail_info.planDetail_eval_rate.etc} </Col> </div>
                             </Row>
                         </Col>
                     </Row>
