@@ -32,6 +32,8 @@ let HeaderNav = () => {
                                 <Nav.Link style={{ padding: "0 1rem" }} id={styles.nav} onClick={ () => {navigate( '/MainPage' ) } } > 홈 화면 </Nav.Link>
                                 <Nav.Link style={{ padding: "0 1rem" }} id={styles.nav} onClick={ () => { navigate('/Plan/Search') } } > 강의계획서 </Nav.Link>
                                 <Nav.Link style={{ padding: "0 1rem" }} id={styles.nav} onClick={ () => {navigate( '/Score' ) } } > 성적/석차 </Nav.Link>
+                                <Nav.Link style={{ padding: "0 1rem" }} id={styles.nav} onClick={ () => {navigate( '/Prof' ) } } > 출석부 </Nav.Link>
+                                <Nav.Link style={{ padding: "0 1rem" }} id={styles.nav} onClick={ () => {navigate( '/LecPage_prof' ) } } > 교수님 전용 </Nav.Link>
                             </Nav>
                             <div
                                 onMouseOver={()=>{ setProfile(true); setProfileName(false);}}

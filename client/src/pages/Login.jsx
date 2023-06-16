@@ -32,6 +32,7 @@ export default function Login() {
           localStorage.setItem('LoginID', logIn_id);
           alert("로그인에 성공하였습니다.");
           navigate("/MainPage");
+          // navigate("/LecPage_prof");
         }
       })
       .catch((error) => {

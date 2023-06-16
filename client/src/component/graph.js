@@ -4,51 +4,51 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 const data = [
   {
     name: '1학년1학기',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
+    전공평점: 0.0,
+    평균평점: 3.9,
+    // amt: 2400,
   },
   {
     name: '1학년2학기',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
+    전공평점: 4.1,
+    평균평점: 4.2,
+    // amt: 2210,
   },
   {
     name: '2학년1학기',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
+    전공평점: 4.5,
+    평균평점: 3.9,
+    // amt: 2290,
   },
   {
     name: '2학년2학기',
-    uv: 2780,
-    pv: 3908,
+    전공평점: 2.9,
+    평균평점: 3.3,
     amt: 2000,
   },
   {
     name: '3학년1학기',
-    uv: 1890,
-    pv: 4800,
+    전공평점: 4.5,
+    평균평점: 3.7,
     amt: 2181,
   },
   {
     name: '3학년2학기',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
+    전공평점: 4.5,
+    평균평점: 4.2,
+    // amt: 2500,
   },
   {
     name: '4학년1학기',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
+    전공평점: 4.3,
+    평균평점: 4.3,
+    // amt: 2100,
   },
   {
     name: '4학년2학기',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
+    전공평점: 4.5,
+    평균평점: 4.4,
+    // amt: 2100,
   },
 ];
 
@@ -74,8 +74,8 @@ export default class Example extends PureComponent {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+          <Line type="monotone" dataKey="전공평점" stroke="#8884d8" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="평균평점" stroke="#82ca9d" />
         </LineChart>
       </ResponsiveContainer>
     );

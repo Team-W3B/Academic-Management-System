@@ -3,7 +3,7 @@ import React from "react";
 import HeaderNav from "./../component/HeaderNav";
 import Footer from "./../component/Footer";
 import styles from './../scss/Prof.module.scss';
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
 import { useState } from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -45,7 +45,7 @@ let Prof_Attendance = () => {
         {name : "김민준", attendance : false},
         {name : "장지웅", attendance : false},
         {name : "김민성", attendance : false},
-        {name : "구구구", attendance : false},
+        {name : "김현성", attendance : false},
     ];
     let [checked, setChecked] = useState(false);
 
@@ -75,7 +75,7 @@ let Prof_Attendance = () => {
                                                 value="1"
                                                 onChange={(e) => setChecked(e.currentTarget.checked)}
                                             >
-                                                attendance
+                                                check
                                             </ToggleButton>
                                         </Col>
                                     </Row>
@@ -84,7 +84,7 @@ let Prof_Attendance = () => {
                         }
                     </div>
                     <Row>
-                        <Button variant="outline-primary">저장</Button>
+                        <Button variant="outline-primary" onClick={()=> { alert("저장되었습니다.") }} >저장</Button>
                     </Row>
                 </Col>
             </Container>
@@ -101,9 +101,10 @@ let Prof_Grade = () => {
         {name : "김민준", attendance : false},
         {name : "장지웅", attendance : false},
         {name : "김민성", attendance : false},
-        {name : "구구구", attendance : false},
+        {name : "김현성", attendance : false},
     ];
     let [checked, setChecked] = useState(false);
+    let navigate = useNavigate();
 
     return (
         <>
@@ -141,7 +142,7 @@ let Prof_Grade = () => {
                         }
                     </div>
                     <Row>
-                        <Button variant="outline-primary">저장</Button>
+                        <Button variant="outline-primary" onClick={()=> { alert("저장되었습니다."); navigate('/LecPage_prof');}} >저장</Button>
                     </Row>
                 </Col>
             </Container>
